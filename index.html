@@ -10,17 +10,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #020609;
+      --bg: #07112a;
       --cyan: #00d4ff;
       --purple: #7b2fff;
       --green: #00ffb4;
-      --text: #cce8f4;
-      --muted: #3a5a70;
+      --text: #d8eeff;
+      --muted: #4a7a9b;
     }
 
     html, body {
       height: 100%;
-      background: var(--bg);
+      background: linear-gradient(135deg, #07112a 0%, #0d1f4a 50%, #0a1535 100%);
       color: var(--text);
       font-family: 'Space Grotesk', sans-serif;
       overflow: hidden;
@@ -53,7 +53,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(ellipse at center, transparent 40%, rgba(2,6,9,0.7) 100%);
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(7,17,42,0.5) 100%);
       pointer-events: none;
       z-index: 1;
     }

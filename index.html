@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promorphic — Agentic Infrastructure For Tokenized Assets</title>
-  <meta name="description" content="The universal layer that connects agents to assets. An agent connects once and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.">
+  <meta name="description" content="The universal layer that connects agents to assets. Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every venue it trades.">
   <link rel="canonical" href="https://promorphic.xyz/">
   <meta property="og:site_name" content="Promorphic">
   <meta property="og:title" content="Promorphic — Agentic Infrastructure For Tokenized Assets">
@@ -20,8 +20,7 @@
   <meta name="twitter:title" content="Promorphic — Agentic Infrastructure For Tokenized Assets">
   <meta name="twitter:description" content="The universal layer that connects agents to assets.">
   <meta name="twitter:image" content="https://promorphic.xyz/brand/og-image.png?v=2">
-  <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0c0e">
   <meta name="color-scheme" content="dark light">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -30,14 +29,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>
-    // Light or dark, chosen before first paint: the visitor's saved choice, else their system setting.
+    // Dark unless the visitor has chosen light. Set before first paint.
     (function () {
       var root = document.documentElement, theme = null;
       root.className = 'js';
       try { theme = localStorage.getItem('pm-theme'); } catch (e) {}
-      if (theme !== 'light' && theme !== 'dark') {
-        theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      }
+      if (theme !== 'light') theme = 'dark';
       root.setAttribute('data-theme', theme);
     })();
   </script>
@@ -54,30 +51,21 @@
   }
   </script>
   <style>
-    /* ── Tokens (verbatim from the Promorphic design system, tokens.json v1) ──
-       The page is one theme at a time, set on <html data-theme>. Without JavaScript it follows the system setting. */
+    /* ── Tokens (Promorphic design system, tokens.json v2: amber has three jobs, text is always neutral) ──
+       The page is one theme at a time, set on <html data-theme>. Dark is the default, and what shows without JavaScript. */
     :root, [data-theme="dark"] {
       --surface-0: #0b0c0e; --surface-1: #14161a; --surface-2: #1c1f24; --hairline: #2a2e35;
       --ink: #f2efe8; --ink-muted: #a8a49b; --ink-faint: #8a867e;
-      --brand: #f2b135; --brand-strong: #ffc85a; --on-brand: #14110a; --brand-ink: #f2b135; --brand-subtle: #2a2210;
-      --focus: #f2b135; --overlay: #0b0c0ecc;
+      --brand: #f2b135; --brand-strong: #ffc85a; --on-brand: #14110a;
+      --focus: var(--ink); --overlay: #0b0c0ecc;
       color-scheme: dark;
     }
     [data-theme="light"] {
       --surface-0: #f7f5f0; --surface-1: #ffffff; --surface-2: #ede9e1; --hairline: #d9d4ca;
       --ink: #14130f; --ink-muted: #5c5950; --ink-faint: #6e6a60;
-      --brand: #f2b135; --brand-strong: #e0a020; --on-brand: #14110a; --brand-ink: #7a4d00; --brand-subtle: #fbeccd;
-      --focus: #7a4d00; --overlay: #f7f5f0cc;
+      --brand: #f2b135; --brand-strong: #e0a020; --on-brand: #14110a;
+      --focus: var(--ink); --overlay: #f7f5f0cc;
       color-scheme: light;
-    }
-    @media (prefers-color-scheme: light) {
-      :root:not([data-theme]) {
-        --surface-0: #f7f5f0; --surface-1: #ffffff; --surface-2: #ede9e1; --hairline: #d9d4ca;
-        --ink: #14130f; --ink-muted: #5c5950; --ink-faint: #6e6a60;
-        --brand-strong: #e0a020; --brand-ink: #7a4d00; --brand-subtle: #fbeccd;
-        --focus: #7a4d00; --overlay: #f7f5f0cc;
-        color-scheme: light;
-      }
     }
     :root {
       --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
@@ -100,10 +88,10 @@
     h1, h2, h3 { text-wrap: balance; }
     p { text-wrap: pretty; }
     :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-    .section-rule { border-top: var(--border-w) solid var(--hairline); }
     .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
-    .section { padding: var(--section-pad) 0; scroll-margin-top: calc(var(--header-h) + var(--space-6) - var(--section-pad)); }
-    .section-flush { padding-top: 0; scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+    .section { padding: var(--section-pad) 0; border-top: var(--border-w) solid var(--hairline); scroll-margin-top: calc(var(--header-h) + var(--space-6) - var(--section-pad)); }
+    .section-flush { padding-top: 0; border-top: 0; scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+    .section-rule { border-top: var(--border-w) solid var(--hairline); }
     .measure { max-width: var(--measure); }
     .measure-wide { max-width: 760px; }
     .lead { font-size: 20px; line-height: 1.5; letter-spacing: -0.005em; }
@@ -117,7 +105,7 @@
     .display-lg { font-size: clamp(32px, 5vw, 48px); line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; }
     .heading-md { font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.015em; }
     .heading-sm { font-size: 20px; line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
-    .eyebrow { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--brand-ink); margin-bottom: var(--space-4); }
+    .eyebrow { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--ink-muted); margin-bottom: var(--space-4); }
     .eyebrow::after { content: ""; display: inline-block; width: var(--space-6); height: var(--border-w); background: var(--hairline); }
     .label { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; }
 
@@ -182,16 +170,16 @@
     .ig-streams .t-ph-layer { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
     .ig-streams .t-ink { fill: var(--ink); }
     .ig-streams .t-muted { fill: var(--ink-muted); }
-    .ig-streams .t-brandink { fill: var(--brand-ink); }
+    .ig-streams .t-brandink { fill: var(--ink-muted); }
     .streams-desktop { display: none; }
     .streams-phone, .streams-phone ~ .diagram-caption { max-width: 480px; margin-left: auto; margin-right: auto; }
-    .diagram-caption { margin-top: var(--space-5); color: var(--ink-faint); }
+    .diagram-caption { margin-top: var(--space-5); color: var(--ink-faint); text-align: center; }
 
     /* ── Grids & cards ── */
     .grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
     .card { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; transition: background-color 150ms var(--ease), border-color 150ms var(--ease); }
     .card:hover { background: var(--surface-2); border-color: var(--ink-faint); }
-    .card .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--brand-ink); }
+    .card .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
     .card h3 { color: var(--ink); }
     .card p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .stat { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
@@ -201,13 +189,41 @@
     .section-head { margin-bottom: var(--space-6); }
     .section-head .lead { margin-top: var(--space-4); }
     .split { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+    .split-head { margin-bottom: var(--space-6); }
     .footnote { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .footnote strong { color: var(--ink); }
-    /* The analogy: its own centred slab on the amber tint, the one highlighted paragraph */
-    .analogy { max-width: 920px; margin: var(--space-7) auto 0; padding: var(--space-5); background: var(--brand-subtle); color: var(--ink); border: var(--border-w) solid var(--brand); border-radius: var(--radius-sm); text-align: center; text-wrap: balance; font-size: 22px; line-height: 1.3; font-weight: 500; letter-spacing: -0.015em; }
+    /* The analogy: a raised slab like every card, larger type, one highlighted phrase */
+    .analogy { max-width: 920px; margin: var(--space-7) auto 0; padding: var(--space-5); background: var(--surface-1); color: var(--ink); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); text-align: center; text-wrap: balance; font-size: 22px; line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; }
+    /* Highlight, inline: the marker band on a phrase; a band per line when it wraps */
+    .hl-inline { color: var(--on-brand); background: var(--brand); padding: 0.02em 0.16em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-    /* ── Venue strip: official wordmarks, unmodified, one continuous band on the amber tint, drifting right to left ── */
-    .venues { background: var(--brand-subtle); border-top: var(--border-w) solid var(--hairline); border-bottom: var(--border-w) solid var(--hairline); padding: var(--space-5) 0; }
+    /* ── The three parts: one figure, three cells, the action's path drawn through all of them ── */
+    .parts-grid { display: grid; grid-template-columns: 1fr; background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; }
+    .part { min-width: 0; border-top: var(--border-w) solid var(--hairline); }
+    .part:first-child { border-top: 0; }
+    .part-glyph { display: block; width: 100%; height: auto; border-bottom: var(--border-w) solid var(--hairline); }
+    .part-text { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5); }
+    .part .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
+    .part p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .pg-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
+    .pg-faint { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
+    .pg-line { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: butt; }
+    .pg-dry { fill: none; stroke: var(--ink-muted); stroke-width: 1.25; stroke-dasharray: 4 6; }
+    .pg-gate { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; }
+    .pg-tick { fill: none; stroke: var(--ink-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pg-src { fill: none; stroke: var(--ink-muted); stroke-width: 2; }
+    .pg-node { fill: var(--brand); }
+    .pg-end { fill: var(--surface-1); stroke: var(--ink-faint); stroke-width: 1; }
+    .pg-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; fill: var(--ink-muted); }
+    .parts .diagram-caption { max-width: none; }
+    @media (min-width: 600px) and (max-width: 959px) {
+      .part { display: grid; grid-template-columns: 300px 1fr; align-items: stretch; }
+      .part-glyph { align-self: center; border-bottom: 0; }
+      .part-text { justify-content: center; border-left: var(--border-w) solid var(--hairline); }
+    }
+
+    /* ── Venue strip: official wordmarks, unmodified, one continuous band on the raised surface, drifting right to left ── */
+    .venues { background: var(--surface-1); border-top: var(--border-w) solid var(--hairline); border-bottom: var(--border-w) solid var(--hairline); padding: var(--space-5) 0; }
     .marquee { overflow: hidden; }
     /* six identical sets; the track moves left by exactly one set, so the loop has no seam up to a 5400px window */
     .marquee-track { display: flex; width: max-content; animation: pm-marquee 40s linear infinite; }
@@ -218,10 +234,8 @@
     .marquee-set .on-dark { display: none; }
     [data-theme="dark"] .marquee-set .on-light { display: none; }
     [data-theme="dark"] .marquee-set .on-dark { display: block; }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme]) .marquee-set .on-light { display: none; }
-      :root:not([data-theme]) .marquee-set .on-dark { display: block; }
-    }
+    :root:not([data-theme]) .marquee-set .on-light { display: none; }
+    :root:not([data-theme]) .marquee-set .on-dark { display: block; }
     .logo-frame { position: relative; display: block; overflow: hidden; }
     .logo-frame img { position: absolute; left: -50%; top: 50%; width: 200%; height: auto; transform: translateY(-50%); }
     @keyframes pm-marquee { from { transform: translateX(0); } to { transform: translateX(calc(-100% / 6)); } }
@@ -245,7 +259,7 @@
     .footer .container { display: flex; flex-direction: column; gap: var(--space-4); }
     .footer .links { display: flex; flex-wrap: wrap; gap: var(--space-5); }
     .footer .links a { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-muted); text-decoration: none; transition: color 150ms var(--ease); }
-    .footer .links a:hover { color: var(--brand-ink); }
+    .footer .links a:hover { color: var(--ink); }
     .footer .legal { color: var(--ink-faint); }
 
     /* ── Reveal: a 300ms fade, nothing moves. Content stays visible without JavaScript. ── */
@@ -268,8 +282,8 @@
       .heading-md { font-size: 28px; }
       .hero { padding: var(--space-10) 0 var(--space-8); }
       .grid { gap: var(--space-5); }
-      .grid-4 { grid-template-columns: repeat(2, 1fr); }
-      .card, .stat { padding: var(--space-6); }
+      .grid-4, .grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .card, .stat, .part-text { padding: var(--space-6); }
       .analogy { margin-top: var(--space-8); padding: var(--space-7) var(--space-8); font-size: 28px; }
       .split { grid-template-columns: 5fr 7fr; gap: var(--space-7); align-items: start; }
       .footer .container { flex-direction: row; align-items: center; justify-content: space-between; }
@@ -283,7 +297,10 @@
       .display-xl { line-height: 1; }
       .display-lg { line-height: 1.05; }
       .nav { gap: var(--space-6); }
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-3, .grid-6 { grid-template-columns: repeat(3, 1fr); }
+      .parts-grid { grid-template-columns: repeat(3, 1fr); }
+      .part { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
+      .part:first-child { border-left: 0; }
       .split { gap: var(--space-8); }
       .facts { grid-template-columns: repeat(3, 1fr); }
       .fact { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
@@ -330,7 +347,7 @@
   <section class="hero">
     <div class="container">
       <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
-      <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong> An agent connects once and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
+      <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong> Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every venue it trades.</p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:founders@promorphic.xyz">Talk to us</a>
         <a class="btn btn-secondary" href="#layer">See the layer</a>
@@ -460,14 +477,280 @@
         <text class="t-sans t-ink t-name" x="300" y="438" text-anchor="middle">Promorphic</text>
         <text class="t-mono t-brandink t-ph-layer" x="300" y="470" text-anchor="middle">THE UNIVERSAL LAYER</text>
         </svg></div>
-        <figcaption class="label diagram-caption">Agents flow in once. Every venue flows out.</figcaption>
+        <figcaption class="label diagram-caption">One connection in. Every venue out.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ── Stats ── -->
-  <section class="section section-flush" aria-label="The market in four numbers">
+  <!-- ── What an agent can do ── -->
+  <section class="section" id="can">
     <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">What an agent can do</div>
+        <h2 class="display-lg measure-wide">What a desk does, an agent can now do.</h2>
+      </div>
+      <div class="grid grid-6 reveal">
+        <div class="card">
+          <div class="idx">01</div>
+          <h3 class="heading-md">Discover</h3>
+          <p>Every tokenized asset, across every issuer and venue, in one catalogue.</p>
+        </div>
+        <div class="card">
+          <div class="idx">02</div>
+          <h3 class="heading-md">Price</h3>
+          <p>Net asset value, yield and market price, adjusted for corporate actions and marked with their age.</p>
+        </div>
+        <div class="card">
+          <div class="idx">03</div>
+          <h3 class="heading-md">Hold</h3>
+          <p>Positions reconciled across chains. The book an agent sees is the book that exists.</p>
+        </div>
+        <div class="card">
+          <div class="idx">04</div>
+          <h3 class="heading-md">Move</h3>
+          <p>Every transfer checked against the venue’s own rules before it is sent.</p>
+        </div>
+        <div class="card">
+          <div class="idx">05</div>
+          <h3 class="heading-md">Redeem</h3>
+          <p>Subscriptions and redemptions routed to the right window, inside the cutoff.</p>
+        </div>
+        <div class="card">
+          <div class="idx">06</div>
+          <h3 class="heading-md">Pledge</h3>
+          <p>Tokenized funds posted as collateral, at whatever hour the margin call arrives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Two economies ── -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow">The vision</div>
+          <h2 class="display-lg">One economy, seen from two sides.</h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">Two economies are being built at once. The <strong>agentic economy</strong>: software that acts on behalf of people and companies. The <strong>onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
+          <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides. Promorphic is the connective tissue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Problem ── -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">The problem</div>
+        <h2 class="display-lg measure-wide">Agents can read tokenized markets. They cannot act in them without a human.</h2>
+        <p class="lead muted measure">Every issuer and venue keeps its own rules, rhythms and rails. The markets now run around the clock. The people who could click “confirm” do not.</p>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="card">
+          <div class="idx">01</div>
+          <h3 class="heading-md">Read-only</h3>
+          <p>An agent can look up any tokenized fund in seconds. It cannot put a single dollar into one until a person steps in.</p>
+        </div>
+        <div class="card">
+          <div class="idx">02</div>
+          <h3 class="heading-md">Fragmented</h3>
+          <p>One fund, six chains, six rulebooks. Subscription paths, transfer rules, valuation times and redemption windows differ on every venue.</p>
+        </div>
+        <div class="card">
+          <div class="idx">03</div>
+          <h3 class="heading-md">Always on</h3>
+          <p>Tokenized collateral trades through the weekend. A margin call at 3am on a Sunday needs an answer, and the desk is asleep.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The universal layer ── -->
+  <section class="section" id="layer">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow">The universal layer</div>
+          <h2 class="display-lg">Connect once. Reach every tokenized asset.</h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">Tokenized assets live across dozens of issuers and venues, each with its own rules, rhythms, and rails. Promorphic sits in front of all of them as one universal layer: an agent connects once, and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
+          <p class="muted">Ethereum, Solana, Canton, Arc, Robinhood Chain, Base, and beyond.</p>
+        </div>
+      </div>
+      <p class="analogy reveal">Stripe made every bank look the same to a developer. <span class="hl-inline">Promorphic makes every tokenized asset look the same to an agent</span>, with correctness and guardrails built in.</p>
+    </div>
+  </section>
+
+  <!-- ── Venues ── -->
+  <div class="venues">
+    <div class="marquee">
+      <div class="marquee-track">
+        <ul class="marquee-set" aria-label="Venues">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="Ethereum" width="1920" height="1080" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="Ethereum" width="1920" height="1080" decoding="async"></span></li>
+          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="Solana" width="134" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="Solana" width="134" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="Canton" width="101" height="26" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="Canton" width="101" height="26" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="Arc" width="82" height="28" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="Arc" width="82" height="28" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="Robinhood Chain" width="152" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="Robinhood Chain" width="152" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="Base" width="87" height="22" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="Base" width="87" height="22" decoding="async"></li>
+        </ul>
+        <ul class="marquee-set" aria-hidden="true">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" decoding="async"></span></li>
+          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" decoding="async"></li>
+        </ul>
+        <ul class="marquee-set" aria-hidden="true">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" decoding="async"></span></li>
+          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" decoding="async"></li>
+        </ul>
+        <ul class="marquee-set" aria-hidden="true">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" decoding="async"></span></li>
+          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" decoding="async"></li>
+        </ul>
+        <ul class="marquee-set" aria-hidden="true">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" decoding="async"></span></li>
+          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" decoding="async"></li>
+        </ul>
+        <ul class="marquee-set" aria-hidden="true">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" decoding="async"></span></li>
+          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" decoding="async"></li>
+          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" decoding="async"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Features ── -->
+  <section class="section" id="features" style="border-top: 0;">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">The layer, in three parts</div>
+        <h2 class="display-lg measure-wide">Reach the asset. Know the trade will clear. Trust the number.</h2>
+      </div>
+      <figure class="parts reveal">
+        <div class="parts-grid">
+          <div class="part">
+            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-faint" d="M96 100 C170 100 190 25 264 25"/><path class="pg-faint" d="M96 100 C170 100 190 55 264 55"/><path class="pg-faint" d="M96 100 C170 100 190 115 264 115"/><path class="pg-faint" d="M96 100 C170 100 190 145 264 145"/><path class="pg-faint" d="M96 100 C170 100 190 175 264 175"/><path class="pg-line" d="M0 100 H96 C170 100 190 85 264 85 C306 85 318 100 360 100"/><rect class="pg-end" x="260" y="21" width="8" height="8"/><rect class="pg-end" x="260" y="51" width="8" height="8"/><rect class="pg-node" x="260" y="81" width="8" height="8"/><rect class="pg-end" x="260" y="111" width="8" height="8"/><rect class="pg-end" x="260" y="141" width="8" height="8"/><rect class="pg-end" x="260" y="171" width="8" height="8"/><rect class="pg-node" x="93" y="97" width="6" height="6"/><text class="pg-label" x="16" y="86">AGENT</text></svg>
+            <div class="part-text">
+              <div class="idx">01</div>
+              <h3 class="heading-md">Universal access</h3>
+              <p>One connection reaches every issuer and venue. Routing picks the path: primary or secondary, best price, inside the cutoff.</p>
+            </div>
+          </div>
+          <div class="part">
+            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-dry" d="M76 84 H320"/><path class="pg-line" d="M0 100 H360"/><path class="pg-gate" d="M90 36 V74 M90 126 V164"/><path class="pg-tick" d="M84 21 l4 4 l8 -9"/><text class="pg-label" x="90" y="186" text-anchor="middle">ALLOWLIST</text><path class="pg-gate" d="M180 36 V74 M180 126 V164"/><path class="pg-tick" d="M174 21 l4 4 l8 -9"/><text class="pg-label" x="180" y="186" text-anchor="middle">RULES</text><path class="pg-gate" d="M270 36 V74 M270 126 V164"/><path class="pg-tick" d="M264 21 l4 4 l8 -9"/><text class="pg-label" x="270" y="186" text-anchor="middle">WINDOW</text><text class="pg-label" x="16" y="88">DRY RUN</text></svg>
+            <div class="part-text">
+              <div class="idx">02</div>
+              <h3 class="heading-md">Eligibility simulation</h3>
+              <p>Every action is rehearsed against the venue’s own rules before it is sent. Nothing bounces, and nothing goes through by accident.</p>
+            </div>
+          </div>
+          <div class="part">
+            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-faint" d="M64 30 C150 30 160 100 228 100"/><path class="pg-src" d="M46 30 H64"/><path class="pg-faint" d="M64 52 C150 52 160 100 228 100"/><path class="pg-src" d="M34 52 H64"/><path class="pg-faint" d="M64 80 C150 80 160 100 228 100"/><path class="pg-src" d="M52 80 H64"/><path class="pg-faint" d="M64 122 C150 122 160 100 228 100"/><path class="pg-src" d="M38 122 H64"/><path class="pg-faint" d="M64 146 C150 146 160 100 228 100"/><path class="pg-src" d="M48 146 H64"/><path class="pg-faint" d="M64 172 C150 172 160 100 228 100"/><path class="pg-src" d="M32 172 H64"/><path class="pg-line" d="M0 100 H360"/><rect class="pg-node" x="225" y="97" width="6" height="6"/><text class="pg-label" x="344" y="86" text-anchor="end">VENUE</text></svg>
+            <div class="part-text">
+              <div class="idx">03</div>
+              <h3 class="heading-md">Truth layer</h3>
+              <p>Prices adjusted for corporate actions, valuations marked with their age, halts as they happen, supply reconciled across chains. Data an agent can trade on.</p>
+            </div>
+          </div>
+        </div>
+        <figcaption class="label diagram-caption">Every action passes through all three before it reaches a venue.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Control ── -->
+  <section class="section" id="control">
+    <div class="container">
+      <div class="split split-head">
+        <div class="reveal">
+          <div class="eyebrow">Control</div>
+          <h2 class="display-lg">Autonomy, on the owner’s terms.</h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">Every agent acts under a mandate its owner sets: how much, in which assets, with which counterparties. One switch stops it. Every action is recorded.</p>
+        </div>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="card">
+          <div class="idx">01</div>
+          <h3 class="heading-md">Limits</h3>
+          <p>Size, asset and counterparty limits, set by the owner and enforced before every action.</p>
+        </div>
+        <div class="card">
+          <div class="idx">02</div>
+          <h3 class="heading-md">Stop</h3>
+          <p>One switch halts an agent at once.</p>
+        </div>
+        <div class="card">
+          <div class="idx">03</div>
+          <h3 class="heading-md">Record</h3>
+          <p>A full log of what each agent did, when, and under whose mandate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Who it's for ── -->
+  <section class="section" id="who">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Who it’s for</div>
+        <h2 class="display-lg">Built for the people who put agents to work.</h2>
+      </div>
+      <div class="grid grid-4 reveal">
+        <div class="card">
+          <div class="idx">01</div>
+          <h3 class="heading-sm">Agent platforms and wallets</h3>
+          <p>Give every agent you host tokenized assets it can actually use.</p>
+        </div>
+        <div class="card">
+          <div class="idx">02</div>
+          <h3 class="heading-sm">Treasuries and trading desks</h3>
+          <p>Put idle balances to work and meet weekend margin calls without staffing them.</p>
+        </div>
+        <div class="card">
+          <div class="idx">03</div>
+          <h3 class="heading-sm">Issuers</h3>
+          <p>Reach every agent through one listing instead of one integration per platform.</p>
+        </div>
+        <div class="card">
+          <div class="idx">04</div>
+          <h3 class="heading-sm">Institutions on permissioned rails</h3>
+          <p>Let agents operate on Canton and its peers, with the venue’s own rules enforced before every action.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why now ── -->
+  <section class="section" id="why-now">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Why now</div>
+        <h2 class="display-lg measure-wide">Both sides of the market have arrived.</h2>
+      </div>
       <div class="grid grid-4 reveal">
         <div class="stat">
           <div class="value">$38–46B</div>
@@ -493,185 +776,8 @@
     </div>
   </section>
 
-  <!-- ── Two economies ── -->
-  <section class="section section-rule" id="vision">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <div class="eyebrow">The vision</div>
-          <h2 class="display-lg">One economy, seen from two sides.</h2>
-        </div>
-        <div class="reveal">
-          <p class="lead">Two economies are being built at once. The <strong>agentic economy</strong>: software that acts on behalf of people and companies. The <strong>onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
-          <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides. Promorphic is the connective tissue.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Problem ── -->
-  <section class="section section-flush" id="problem">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">The problem</div>
-        <h2 class="display-lg measure-wide">Agents can read tokenized markets. They cannot act in them without a human.</h2>
-        <p class="lead muted measure">Every issuer and venue has its own rules, rhythms and rails, and the markets now run around the clock while the people who could click “confirm” do not.</p>
-      </div>
-      <div class="grid grid-3 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-md">Read-only</h3>
-          <p>Agents can query tokenized assets almost everywhere and transact almost nowhere. Allocating a single dollar into a tokenized treasury still takes a human.</p>
-        </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-md">Fragmented</h3>
-          <p>The same fund lives on six chains with six subscription paths, six sets of transfer rules, six NAV schedules and six redemption windows. Transfers fail unpredictably.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-md">Always on</h3>
-          <p>Markets run around the clock; operations run on business days. A Sunday 3am margin call on tokenized collateral needs someone awake, and that someone is software.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── The universal layer ── -->
-  <section class="section section-flush" id="layer">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <div class="eyebrow">The universal layer</div>
-          <h2 class="display-lg">Connect once. Reach every tokenized asset.</h2>
-        </div>
-        <div class="reveal">
-          <p class="lead">Tokenized assets live across dozens of issuers and venues, each with its own rules, rhythms, and rails. Promorphic sits in front of all of them as one universal layer: an agent connects once, and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
-          <p class="muted">Ethereum, Solana, Canton, Arc, Robinhood Chain, Base, and beyond.</p>
-        </div>
-      </div>
-      <p class="analogy reveal">Stripe made every bank look the same to a developer. Promorphic makes every tokenized asset look the same to an agent, with correctness and guardrails built in.</p>
-    </div>
-  </section>
-
-  <!-- ── Venues ── -->
-  <div class="venues">
-    <div class="marquee">
-      <div class="marquee-track">
-        <ul class="marquee-set" aria-label="Venues">
-          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="Ethereum" width="1920" height="1080" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="Ethereum" width="1920" height="1080" loading="lazy" decoding="async"></span></li>
-          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="Solana" width="134" height="20" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="Solana" width="134" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="Canton" width="101" height="26" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="Canton" width="101" height="26" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="Arc" width="82" height="28" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="Arc" width="82" height="28" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="Robinhood Chain" width="152" height="20" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="Robinhood Chain" width="152" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="Base" width="87" height="22" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="Base" width="87" height="22" loading="lazy" decoding="async"></li>
-        </ul>
-        <ul class="marquee-set" aria-hidden="true">
-          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"></span></li>
-          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"></li>
-        </ul>
-        <ul class="marquee-set" aria-hidden="true">
-          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"></span></li>
-          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"></li>
-        </ul>
-        <ul class="marquee-set" aria-hidden="true">
-          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"></span></li>
-          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"></li>
-        </ul>
-        <ul class="marquee-set" aria-hidden="true">
-          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"></span></li>
-          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"></li>
-        </ul>
-        <ul class="marquee-set" aria-hidden="true">
-          <li><span class="logo-frame" style="width:150px;height:26px"><img class="on-light" src="/brand/venues/ethereum-on-light.svg?v=3" alt="" width="1920" height="1080" decoding="async"><img class="on-dark" src="/brand/venues/ethereum-on-dark.svg?v=3" alt="" width="1920" height="1080" loading="lazy" decoding="async"></span></li>
-          <li><img class="on-light" src="/brand/venues/solana-on-light.svg?v=3" alt="" width="134" height="20" decoding="async"><img class="on-dark" src="/brand/venues/solana-on-dark.svg?v=3" alt="" width="134" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/canton-on-light.svg?v=3" alt="" width="101" height="26" decoding="async"><img class="on-dark" src="/brand/venues/canton-on-dark.svg?v=3" alt="" width="101" height="26" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/arc-on-light.svg?v=3" alt="" width="82" height="28" decoding="async"><img class="on-dark" src="/brand/venues/arc-on-dark.svg?v=3" alt="" width="82" height="28" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/robinhood-chain-on-light.svg?v=3" alt="" width="152" height="20" decoding="async"><img class="on-dark" src="/brand/venues/robinhood-chain-on-dark.svg?v=3" alt="" width="152" height="20" loading="lazy" decoding="async"></li>
-          <li><img class="on-light" src="/brand/venues/base-on-light.svg?v=3" alt="" width="87" height="22" decoding="async"><img class="on-dark" src="/brand/venues/base-on-dark.svg?v=3" alt="" width="87" height="22" loading="lazy" decoding="async"></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Features ── -->
-  <section class="section" id="features">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">What ships</div>
-        <h2 class="display-lg measure-wide">Three things every agent needs before it touches a tokenized asset.</h2>
-      </div>
-      <div class="grid grid-3 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-md">Universal access</h3>
-          <p>Connect once, reach every tokenized asset. One normalized view of the market, and routing that picks the right venue, path and moment: mint or redeem versus secondary, best price, cutoff-aware.</p>
-        </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-md">Eligibility simulation</h3>
-          <p>Before the agent acts, Promorphic dry-runs the action against the venue’s own rules: allowlists, transfer hooks, authorization, redemption windows. Nothing bounces, and nothing goes through by accident.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-md">Truth layer</h3>
-          <p>Corporate-action-aware pricing, NAV freshness, multiplier normalization, halt propagation, cross-chain supply and position reconciliation. Data an agent can trade on.</p>
-        </div>
-      </div>
-      <p class="footnote reveal"><strong>Guardrails ship with all three.</strong> Owner-set limits, allowed assets and counterparties, a kill switch, and a full action log.</p>
-    </div>
-  </section>
-
-  <!-- ── Who it's for ── -->
-  <section class="section section-flush" id="who">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Who it’s for</div>
-        <h2 class="display-lg">Built for the people who put agents to work.</h2>
-      </div>
-      <div class="grid grid-4 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-sm">Agent platforms and wallets</h3>
-          <p>Give every agent you host tokenized assets it can actually use.</p>
-        </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-sm">Treasuries and trading desks</h3>
-          <p>Sweep idle balances into yield and meet weekend margin calls without staffing them.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-sm">Issuers</h3>
-          <p>Reach every agent through one listing instead of one integration per platform.</p>
-        </div>
-        <div class="card">
-          <div class="idx">04</div>
-          <h3 class="heading-sm">Institutions on permissioned rails</h3>
-          <p>Let agents operate on Canton and its peers with the venue’s own rules enforced before every action.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── Why Promorphic ── -->
-  <section class="section section-rule" id="why">
+  <section class="section" id="why">
     <div class="container">
       <div class="split">
         <div class="reveal">
@@ -679,7 +785,7 @@
           <h2 class="display-lg">An AI-first company.</h2>
         </div>
         <div class="reveal">
-          <p class="lead">We push the limits of where the agentic economy and the onchain tokenization economy converge. Agents are the user we build for, and tokenized assets are what they act on.</p>
+          <p class="lead">Promorphic exists to push the limits of where the agentic economy and the onchain tokenization economy converge. We design for the agent as the user and the institution as the owner.</p>
           <p class="muted">We are building the layer we would want to use: neutral across issuers, native to agents, and correct by construction.</p>
         </div>
       </div>
@@ -764,7 +870,7 @@
     function paint() {
       var dark = root.getAttribute('data-theme') !== 'light';
       themeSwitch.setAttribute('aria-checked', dark ? 'true' : 'false');
-      themeColor.forEach(function (m) { m.removeAttribute('media'); m.setAttribute('content', dark ? '#0b0c0e' : '#f7f5f0'); });
+      themeColor.forEach(function (m) { m.setAttribute('content', dark ? '#0b0c0e' : '#f7f5f0'); });
     }
     themeSwitch.hidden = false;
     themeSwitch.addEventListener('click', function () {

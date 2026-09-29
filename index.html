@@ -119,21 +119,38 @@
 
     /* ── Hero ── */
     .hero { padding: var(--space-8) 0 var(--space-7); }
-    .hero h1 { max-width: 900px; }
+    /* Headline highlight: one block, so every band is the same length; a band per line, 0.1em apart */
+    .hero h1 { line-height: 1.3; }
+    .hl { display: block; width: -moz-fit-content; width: fit-content; max-width: 100%; padding: 0 0.16em; color: var(--on-brand); background: linear-gradient(to bottom, transparent 0.05em, var(--brand) 0.05em, var(--brand) calc(100% - 0.05em), transparent calc(100% - 0.05em)) 0 0 / 100% 1.3em repeat-y; }
+    .hl br { display: none; }
+    @media (min-width: 480px) { .hl br { display: inline; } }
+    @media (max-width: 479px) { .hero h1 { font-size: min(44px, 10.5vw); } }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
     .hero .sub strong { color: var(--ink); }
 
-    /* ── Layer diagram ── */
-    .diagram { margin-top: var(--space-8); border-top: var(--border-w) solid var(--hairline); padding-top: var(--space-6); }
-    .ld { --ld-gap: var(--space-7); }
-    .ld-row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); }
-    .ld-node { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; white-space: nowrap; color: var(--ink); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); padding: var(--space-2) var(--space-3); }
-    .ld-layer { position: relative; margin: var(--ld-gap) 0; }
-    .ld-layer::before, .ld-layer::after { content: ""; position: absolute; left: 50%; width: var(--border-w); height: var(--ld-gap); background: var(--hairline); }
-    .ld-layer::before { bottom: 100%; }
-    .ld-layer::after { top: 100%; }
-    .ld-bar { height: var(--space-3); background: var(--brand); }
-    .ld-bar-label { position: absolute; z-index: 1; left: 50%; transform: translateX(-50%); bottom: calc(100% + var(--space-3)); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--brand-ink); background: var(--surface-0); padding: 0 var(--space-2); }
+    /* ── Hero figure: streams converge on the layer and fan out to the venues ── */
+    .diagram { margin-top: var(--space-8); padding-top: var(--space-4); }
+    .ig { display: block; width: 100%; height: auto; max-width: 100%; }
+    .ig-streams .s-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
+    .ig-streams .s-stream { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
+    .ig-streams .s-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 28 260; animation: pm-flow 12s linear infinite; }
+    @keyframes pm-flow { from { stroke-dashoffset: 576; } to { stroke-dashoffset: 0; } }
+    .streams.is-paused .s-flow { animation-play-state: paused; }
+    .ig-streams .s-hair { stroke: var(--hairline); stroke-width: 1; }
+    .ig-streams .f-s0 { fill: var(--surface-0); }
+    .ig-streams .f-ink { fill: var(--ink); }
+    .ig-streams .f-brand { fill: var(--brand); }
+    .ig-streams .t-mono { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; }
+    .ig-streams .t-sans { font-family: var(--font-sans); }
+    .ig-streams .t-name { font-size: 30px; font-weight: 500; letter-spacing: -.02em; }
+    .ig-streams .t-sm { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
+    .ig-streams .t-ph { font-size: 17px; letter-spacing: .04em; }
+    .ig-streams .t-ph-layer { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
+    .ig-streams .t-ink { fill: var(--ink); }
+    .ig-streams .t-muted { fill: var(--ink-muted); }
+    .ig-streams .t-brandink { fill: var(--brand-ink); }
+    .streams-desktop { display: none; }
+    .streams-phone, .streams-phone ~ .diagram-caption { max-width: 480px; margin-left: auto; margin-right: auto; }
     .diagram-caption { margin-top: var(--space-5); color: var(--ink-faint); }
 
     /* ── Grids & cards ── */
@@ -155,12 +172,24 @@
     .analogy { margin-top: var(--space-6); padding: var(--space-5); border: var(--border-w) solid var(--hairline); background: var(--surface-1); border-radius: var(--radius-sm); }
     .analogy p { font-size: 20px; line-height: 1.5; letter-spacing: -0.005em; color: var(--ink); }
 
-    /* ── Venue strip ── */
+    /* ── Venue strip: official wordmarks, unmodified, drifting right to left ── */
     .venues { background: var(--surface-2); border-top: var(--border-w) solid var(--hairline); border-bottom: var(--border-w) solid var(--hairline); }
-    .venues .container { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); padding-top: var(--space-4); padding-bottom: var(--space-4); }
-    .venues .vl { color: var(--ink-muted); margin-right: var(--space-3); }
-    .venue { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-pill); padding: var(--space-1) var(--space-3); white-space: nowrap; }
-    .venue.more { color: var(--ink-muted); background: transparent; border-style: dashed; }
+    .venues .container { display: flex; align-items: center; gap: var(--space-5); padding-top: var(--space-5); padding-bottom: var(--space-5); }
+    .venues .vl { flex: none; color: var(--ink-muted); }
+    .marquee { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
+    .marquee-track { display: flex; align-items: center; width: max-content; list-style: none; animation: pm-marquee 40s linear infinite; }
+    .marquee-track li { flex: none; display: flex; align-items: center; padding-right: var(--space-8); }
+    .marquee-track img { display: block; }
+    .logo-frame { position: relative; display: block; overflow: hidden; }
+    .logo-frame img { position: absolute; left: -50%; top: 50%; width: 200%; height: auto; transform: translateY(-50%); }
+    @keyframes pm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee:hover .marquee-track, .venues.is-paused .marquee-track { animation-play-state: paused; }
+    .marquee-toggle { flex: none; background: none; border: 0; color: var(--ink-muted); cursor: pointer; padding: var(--space-1) 0; transition: color 150ms var(--ease); }
+    .marquee-toggle:hover { color: var(--ink); }
+    @media (max-width: 719px) {
+      .venues .container { flex-wrap: wrap; justify-content: space-between; row-gap: var(--space-4); }
+      .marquee { order: 3; flex-basis: 100%; }
+    }
 
     /* ── Why ── */
     .facts { display: grid; grid-template-columns: 1fr; gap: 0; border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); margin-top: var(--space-6); }
@@ -190,11 +219,11 @@
       html { scroll-behavior: auto; }
       .js .reveal { opacity: 1; transition: none; }
       .header, .mark .mark-block { transition: none; }
-    }
-
-    /* ── Narrow phones: the bar label shortens rather than wraps ── */
-    @media (max-width: 359px) {
-      .ld-more { display: none; }
+      .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
+      .marquee { -webkit-mask-image: none; mask-image: none; }
+      .marquee-track { animation: none; width: auto; flex-wrap: wrap; row-gap: var(--space-5); }
+      .marquee-track li[aria-hidden] { display: none; }
+      .marquee-toggle { display: none; }
     }
 
     /* ── 720 and up: desktop spacing, two-up grids ── */
@@ -224,19 +253,12 @@
       .fact:first-child { border-left: 0; }
     }
 
-    /* ── 1080 and up: four-up grids, the diagram with one connector per node ── */
+    /* ── 1080 and up: four-up grids, the horizontal figure ── */
     @media (min-width: 1080px) {
       .grid-4 { grid-template-columns: repeat(4, 1fr); }
-      .ld { --ld-gap: var(--space-10); }
-      .ld-row { display: grid; gap: 0; }
-      .ld-agents { grid-template-columns: repeat(4, 1fr); }
-      .ld-venues { grid-template-columns: repeat(6, 1fr); }
-      .ld-node { position: relative; justify-self: center; display: flex; align-items: center; justify-content: center; width: min(180px, calc(100% - var(--space-4))); height: 40px; padding: 0; }
-      .ld-node::after { content: ""; position: absolute; left: 50%; width: var(--border-w); height: calc(var(--ld-gap) + var(--border-w)); background: var(--hairline); }
-      .ld-agents .ld-node::after { top: 100%; }
-      .ld-venues .ld-node::after { bottom: 100%; }
-      .ld-layer::before, .ld-layer::after { display: none; }
-      .ld-more { display: none; }
+      .streams-desktop { display: block; }
+      .streams-phone { display: none; }
+      .streams-phone ~ .diagram-caption { max-width: none; }
     }
   </style>
 </head>
@@ -262,35 +284,138 @@
   <!-- ── Hero ── -->
   <section class="hero" data-theme="dark">
     <div class="container">
-      <h1 class="display-xl">Agent infrastructure for tokenized assets.</h1>
+      <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
       <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong> An agent connects once and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:founders@promorphic.xyz">Talk to us</a>
         <a class="btn btn-secondary" href="#layer">See the layer</a>
       </div>
 
-      <figure class="diagram reveal">
-        <div class="ld" role="img" aria-label="Four agents connect to one layer, Promorphic, which connects to six venues: Ethereum, Solana, Canton, Arc, Robinhood Chain and Base.">
-          <div class="ld-row ld-agents">
-            <span class="ld-node">Trading agent</span>
-            <span class="ld-node">Treasury agent</span>
-            <span class="ld-node">Wallet agent</span>
-            <span class="ld-node">Collateral agent</span>
-          </div>
-          <div class="ld-layer">
-            <span class="ld-bar-label">Promorphic<span class="ld-more"> · The universal layer</span></span>
-            <div class="ld-bar"></div>
-          </div>
-          <div class="ld-row ld-venues">
-            <span class="ld-node">Ethereum</span>
-            <span class="ld-node">Solana</span>
-            <span class="ld-node">Canton</span>
-            <span class="ld-node">Arc</span>
-            <span class="ld-node">Robinhood Chain</span>
-            <span class="ld-node">Base</span>
-          </div>
-        </div>
-        <figcaption class="label diagram-caption">One connection above the layer. Every issuer, venue and rule below it.</figcaption>
+      <figure class="diagram streams reveal">
+        <div class="streams-desktop"><svg class="ig ig-streams" viewBox="0 0 1200 600" role="img" aria-label="Streams from trading, treasury, wallet and collateral agents converge into Promorphic, the universal layer, and fan out to Ethereum, Solana, Canton, Arc, Robinhood Chain and Base.">
+        <line class="s-rule" x1="0" y1="0" x2="0" y2="600"/>
+        <line class="s-rule" x1="64" y1="0" x2="64" y2="600"/>
+        <line class="s-rule" x1="128" y1="0" x2="128" y2="600"/>
+        <line class="s-rule" x1="192" y1="0" x2="192" y2="600"/>
+        <line class="s-rule" x1="256" y1="0" x2="256" y2="600"/>
+        <line class="s-rule" x1="320" y1="0" x2="320" y2="600"/>
+        <line class="s-rule" x1="384" y1="0" x2="384" y2="600"/>
+        <line class="s-rule" x1="448" y1="0" x2="448" y2="600"/>
+        <line class="s-rule" x1="512" y1="0" x2="512" y2="600"/>
+        <line class="s-rule" x1="576" y1="0" x2="576" y2="600"/>
+        <line class="s-rule" x1="640" y1="0" x2="640" y2="600"/>
+        <line class="s-rule" x1="704" y1="0" x2="704" y2="600"/>
+        <line class="s-rule" x1="768" y1="0" x2="768" y2="600"/>
+        <line class="s-rule" x1="832" y1="0" x2="832" y2="600"/>
+        <line class="s-rule" x1="896" y1="0" x2="896" y2="600"/>
+        <line class="s-rule" x1="960" y1="0" x2="960" y2="600"/>
+        <line class="s-rule" x1="1024" y1="0" x2="1024" y2="600"/>
+        <line class="s-rule" x1="1088" y1="0" x2="1088" y2="600"/>
+        <line class="s-rule" x1="1152" y1="0" x2="1152" y2="600"/>
+        <path class="s-stream" d="M176 84 C282.7 84 323.3 267 430 267"><animate attributeName="d" values="M176 84 C282.7 84 323.3 267 430 267;M176 74 C282.7 74 323.3 267 430 267;M176 84 C282.7 84 323.3 267 430 267" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M176 84 C282.7 84 323.3 267 430 267" style="animation-duration:11s;animation-delay:0s"><animate attributeName="d" values="M176 84 C282.7 84 323.3 267 430 267;M176 74 C282.7 74 323.3 267 430 267;M176 84 C282.7 84 323.3 267 430 267" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M176 228 C282.7 228 323.3 289 430 289"><animate attributeName="d" values="M176 228 C282.7 228 323.3 289 430 289;M176 238 C282.7 238 323.3 289 430 289;M176 228 C282.7 228 323.3 289 430 289" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M176 228 C282.7 228 323.3 289 430 289" style="animation-duration:12.7s;animation-delay:-2.3s"><animate attributeName="d" values="M176 228 C282.7 228 323.3 289 430 289;M176 238 C282.7 238 323.3 289 430 289;M176 228 C282.7 228 323.3 289 430 289" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M176 372 C282.7 372 323.3 311 430 311"><animate attributeName="d" values="M176 372 C282.7 372 323.3 311 430 311;M176 362 C282.7 362 323.3 311 430 311;M176 372 C282.7 372 323.3 311 430 311" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M176 372 C282.7 372 323.3 311 430 311" style="animation-duration:14.4s;animation-delay:-4.6s"><animate attributeName="d" values="M176 372 C282.7 372 323.3 311 430 311;M176 362 C282.7 362 323.3 311 430 311;M176 372 C282.7 372 323.3 311 430 311" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M176 516 C282.7 516 323.3 333 430 333"><animate attributeName="d" values="M176 516 C282.7 516 323.3 333 430 333;M176 526 C282.7 526 323.3 333 430 333;M176 516 C282.7 516 323.3 333 430 333" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M176 516 C282.7 516 323.3 333 430 333" style="animation-duration:16.1s;animation-delay:-6.9s"><animate attributeName="d" values="M176 516 C282.7 516 323.3 333 430 333;M176 526 C282.7 526 323.3 333 430 333;M176 516 C282.7 516 323.3 333 430 333" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M770 255 C876.7 255 917.3 48 1024 48"><animate attributeName="d" values="M770 255 C876.7 255 917.3 48 1024 48;M770 255 C876.7 255 917.3 38 1024 38;M770 255 C876.7 255 917.3 48 1024 48" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M770 255 C876.7 255 917.3 48 1024 48" style="animation-duration:12s;animation-delay:0s"><animate attributeName="d" values="M770 255 C876.7 255 917.3 48 1024 48;M770 255 C876.7 255 917.3 38 1024 38;M770 255 C876.7 255 917.3 48 1024 48" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M770 273 C876.7 273 917.3 148.8 1024 148.8"><animate attributeName="d" values="M770 273 C876.7 273 917.3 148.8 1024 148.8;M770 273 C876.7 273 917.3 158.8 1024 158.8;M770 273 C876.7 273 917.3 148.8 1024 148.8" dur="10.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M770 273 C876.7 273 917.3 148.8 1024 148.8" style="animation-duration:13.1s;animation-delay:-1.9s"><animate attributeName="d" values="M770 273 C876.7 273 917.3 148.8 1024 148.8;M770 273 C876.7 273 917.3 158.8 1024 158.8;M770 273 C876.7 273 917.3 148.8 1024 148.8" dur="10.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M770 291 C876.7 291 917.3 249.6 1024 249.6"><animate attributeName="d" values="M770 291 C876.7 291 917.3 249.6 1024 249.6;M770 291 C876.7 291 917.3 239.6 1024 239.6;M770 291 C876.7 291 917.3 249.6 1024 249.6" dur="11.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M770 291 C876.7 291 917.3 249.6 1024 249.6" style="animation-duration:14.2s;animation-delay:-3.8s"><animate attributeName="d" values="M770 291 C876.7 291 917.3 249.6 1024 249.6;M770 291 C876.7 291 917.3 239.6 1024 239.6;M770 291 C876.7 291 917.3 249.6 1024 249.6" dur="11.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M770 309 C876.7 309 917.3 350.4 1024 350.4"><animate attributeName="d" values="M770 309 C876.7 309 917.3 350.4 1024 350.4;M770 309 C876.7 309 917.3 360.4 1024 360.4;M770 309 C876.7 309 917.3 350.4 1024 350.4" dur="12.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M770 309 C876.7 309 917.3 350.4 1024 350.4" style="animation-duration:15.3s;animation-delay:-5.7s"><animate attributeName="d" values="M770 309 C876.7 309 917.3 350.4 1024 350.4;M770 309 C876.7 309 917.3 360.4 1024 360.4;M770 309 C876.7 309 917.3 350.4 1024 350.4" dur="12.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M770 327 C876.7 327 917.3 451.2 1024 451.2"><animate attributeName="d" values="M770 327 C876.7 327 917.3 451.2 1024 451.2;M770 327 C876.7 327 917.3 441.2 1024 441.2;M770 327 C876.7 327 917.3 451.2 1024 451.2" dur="13.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M770 327 C876.7 327 917.3 451.2 1024 451.2" style="animation-duration:16.4s;animation-delay:-7.6s"><animate attributeName="d" values="M770 327 C876.7 327 917.3 451.2 1024 451.2;M770 327 C876.7 327 917.3 441.2 1024 441.2;M770 327 C876.7 327 917.3 451.2 1024 451.2" dur="13.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M770 345 C876.7 345 917.3 552 1024 552"><animate attributeName="d" values="M770 345 C876.7 345 917.3 552 1024 552;M770 345 C876.7 345 917.3 562 1024 562;M770 345 C876.7 345 917.3 552 1024 552" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M770 345 C876.7 345 917.3 552 1024 552" style="animation-duration:17.5s;animation-delay:-9.5s"><animate attributeName="d" values="M770 345 C876.7 345 917.3 552 1024 552;M770 345 C876.7 345 917.3 562 1024 562;M770 345 C876.7 345 917.3 552 1024 552" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <text class="t-mono t-muted t-sm" x="160" y="88" text-anchor="end">TRADING AGENTS</text>
+        <text class="t-mono t-muted t-sm" x="160" y="232" text-anchor="end">TREASURY AGENTS</text>
+        <text class="t-mono t-muted t-sm" x="160" y="376" text-anchor="end">WALLET AGENTS</text>
+        <text class="t-mono t-muted t-sm" x="160" y="520" text-anchor="end">COLLATERAL AGENTS</text>
+        <text class="t-mono t-muted t-sm" x="1040" y="52">ETHEREUM</text>
+        <text class="t-mono t-muted t-sm" x="1040" y="152.8">SOLANA</text>
+        <text class="t-mono t-muted t-sm" x="1040" y="253.6">CANTON</text>
+        <text class="t-mono t-muted t-sm" x="1040" y="354.4">ARC</text>
+        <text class="t-mono t-muted t-sm" x="1040" y="455.2">ROBINHOOD CHAIN</text>
+        <text class="t-mono t-muted t-sm" x="1040" y="556">BASE</text>
+        <rect class="f-s0 s-hair" x="430" y="225" width="340" height="150" rx="2"/>
+        <rect class="f-brand" x="427" y="264" width="6" height="6"/>
+        <rect class="f-brand" x="427" y="286" width="6" height="6"/>
+        <rect class="f-brand" x="427" y="308" width="6" height="6"/>
+        <rect class="f-brand" x="427" y="330" width="6" height="6"/>
+        <rect class="f-brand" x="767" y="252" width="6" height="6"/>
+        <rect class="f-brand" x="767" y="270" width="6" height="6"/>
+        <rect class="f-brand" x="767" y="288" width="6" height="6"/>
+        <rect class="f-brand" x="767" y="306" width="6" height="6"/>
+        <rect class="f-brand" x="767" y="324" width="6" height="6"/>
+        <rect class="f-brand" x="767" y="342" width="6" height="6"/>
+        <g transform="translate(586 248) scale(0.875)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g>
+        <text class="t-sans t-ink t-name" x="600" y="308" text-anchor="middle">Promorphic</text>
+        <text class="t-mono t-brandink t-sm" x="600" y="340" text-anchor="middle">THE UNIVERSAL LAYER</text>
+        </svg></div>
+        <div class="streams-phone"><svg class="ig ig-streams" viewBox="0 0 600 860" role="img" aria-label="Streams from trading, treasury, wallet and collateral agents converge into Promorphic, the universal layer, and fan out to Ethereum, Solana, Canton, Arc, Robinhood Chain and Base.">
+        <line class="s-rule" x1="0" y1="64" x2="600" y2="64"/>
+        <line class="s-rule" x1="0" y1="128" x2="600" y2="128"/>
+        <line class="s-rule" x1="0" y1="192" x2="600" y2="192"/>
+        <line class="s-rule" x1="0" y1="256" x2="600" y2="256"/>
+        <line class="s-rule" x1="0" y1="320" x2="600" y2="320"/>
+        <line class="s-rule" x1="0" y1="384" x2="600" y2="384"/>
+        <line class="s-rule" x1="0" y1="448" x2="600" y2="448"/>
+        <line class="s-rule" x1="0" y1="512" x2="600" y2="512"/>
+        <line class="s-rule" x1="0" y1="576" x2="600" y2="576"/>
+        <line class="s-rule" x1="0" y1="640" x2="600" y2="640"/>
+        <line class="s-rule" x1="0" y1="704" x2="600" y2="704"/>
+        <line class="s-rule" x1="0" y1="768" x2="600" y2="768"/>
+        <path class="s-stream" d="M84 30 C84 166.5 267 218.5 267 355"><animate attributeName="d" values="M84 30 C84 166.5 267 218.5 267 355;M74 30 C74 166.5 267 218.5 267 355;M84 30 C84 166.5 267 218.5 267 355" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M84 30 C84 166.5 267 218.5 267 355" style="animation-duration:11s;animation-delay:0s"><animate attributeName="d" values="M84 30 C84 166.5 267 218.5 267 355;M74 30 C74 166.5 267 218.5 267 355;M84 30 C84 166.5 267 218.5 267 355" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M228 30 C228 166.5 289 218.5 289 355"><animate attributeName="d" values="M228 30 C228 166.5 289 218.5 289 355;M238 30 C238 166.5 289 218.5 289 355;M228 30 C228 166.5 289 218.5 289 355" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M228 30 C228 166.5 289 218.5 289 355" style="animation-duration:12.7s;animation-delay:-2.3s"><animate attributeName="d" values="M228 30 C228 166.5 289 218.5 289 355;M238 30 C238 166.5 289 218.5 289 355;M228 30 C228 166.5 289 218.5 289 355" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M372 30 C372 166.5 311 218.5 311 355"><animate attributeName="d" values="M372 30 C372 166.5 311 218.5 311 355;M362 30 C362 166.5 311 218.5 311 355;M372 30 C372 166.5 311 218.5 311 355" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M372 30 C372 166.5 311 218.5 311 355" style="animation-duration:14.4s;animation-delay:-4.6s"><animate attributeName="d" values="M372 30 C372 166.5 311 218.5 311 355;M362 30 C362 166.5 311 218.5 311 355;M372 30 C372 166.5 311 218.5 311 355" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M516 30 C516 166.5 333 218.5 333 355"><animate attributeName="d" values="M516 30 C516 166.5 333 218.5 333 355;M526 30 C526 166.5 333 218.5 333 355;M516 30 C516 166.5 333 218.5 333 355" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M516 30 C516 166.5 333 218.5 333 355" style="animation-duration:16.1s;animation-delay:-6.9s"><animate attributeName="d" values="M516 30 C516 166.5 333 218.5 333 355;M526 30 C526 166.5 333 218.5 333 355;M516 30 C516 166.5 333 218.5 333 355" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M255 505 C255 641.5 48 693.5 48 830"><animate attributeName="d" values="M255 505 C255 641.5 48 693.5 48 830;M255 505 C255 641.5 38 693.5 38 830;M255 505 C255 641.5 48 693.5 48 830" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M255 505 C255 641.5 48 693.5 48 830" style="animation-duration:12s;animation-delay:0s"><animate attributeName="d" values="M255 505 C255 641.5 48 693.5 48 830;M255 505 C255 641.5 38 693.5 38 830;M255 505 C255 641.5 48 693.5 48 830" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M273 505 C273 641.5 148.8 693.5 148.8 830"><animate attributeName="d" values="M273 505 C273 641.5 148.8 693.5 148.8 830;M273 505 C273 641.5 158.8 693.5 158.8 830;M273 505 C273 641.5 148.8 693.5 148.8 830" dur="10.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M273 505 C273 641.5 148.8 693.5 148.8 830" style="animation-duration:13.1s;animation-delay:-1.9s"><animate attributeName="d" values="M273 505 C273 641.5 148.8 693.5 148.8 830;M273 505 C273 641.5 158.8 693.5 158.8 830;M273 505 C273 641.5 148.8 693.5 148.8 830" dur="10.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M291 505 C291 641.5 249.6 693.5 249.6 830"><animate attributeName="d" values="M291 505 C291 641.5 249.6 693.5 249.6 830;M291 505 C291 641.5 239.6 693.5 239.6 830;M291 505 C291 641.5 249.6 693.5 249.6 830" dur="11.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M291 505 C291 641.5 249.6 693.5 249.6 830" style="animation-duration:14.2s;animation-delay:-3.8s"><animate attributeName="d" values="M291 505 C291 641.5 249.6 693.5 249.6 830;M291 505 C291 641.5 239.6 693.5 239.6 830;M291 505 C291 641.5 249.6 693.5 249.6 830" dur="11.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M309 505 C309 641.5 350.4 693.5 350.4 830"><animate attributeName="d" values="M309 505 C309 641.5 350.4 693.5 350.4 830;M309 505 C309 641.5 360.4 693.5 360.4 830;M309 505 C309 641.5 350.4 693.5 350.4 830" dur="12.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M309 505 C309 641.5 350.4 693.5 350.4 830" style="animation-duration:15.3s;animation-delay:-5.7s"><animate attributeName="d" values="M309 505 C309 641.5 350.4 693.5 350.4 830;M309 505 C309 641.5 360.4 693.5 360.4 830;M309 505 C309 641.5 350.4 693.5 350.4 830" dur="12.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M327 505 C327 641.5 451.2 693.5 451.2 830"><animate attributeName="d" values="M327 505 C327 641.5 451.2 693.5 451.2 830;M327 505 C327 641.5 441.2 693.5 441.2 830;M327 505 C327 641.5 451.2 693.5 451.2 830" dur="13.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M327 505 C327 641.5 451.2 693.5 451.2 830" style="animation-duration:16.4s;animation-delay:-7.6s"><animate attributeName="d" values="M327 505 C327 641.5 451.2 693.5 451.2 830;M327 505 C327 641.5 441.2 693.5 441.2 830;M327 505 C327 641.5 451.2 693.5 451.2 830" dur="13.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M345 505 C345 641.5 552 693.5 552 830"><animate attributeName="d" values="M345 505 C345 641.5 552 693.5 552 830;M345 505 C345 641.5 562 693.5 562 830;M345 505 C345 641.5 552 693.5 552 830" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M345 505 C345 641.5 552 693.5 552 830" style="animation-duration:17.5s;animation-delay:-9.5s"><animate attributeName="d" values="M345 505 C345 641.5 552 693.5 552 830;M345 505 C345 641.5 562 693.5 562 830;M345 505 C345 641.5 552 693.5 552 830" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <text class="t-mono t-muted t-ph" x="84" y="18" text-anchor="middle">Trading</text>
+        <text class="t-mono t-muted t-ph" x="228" y="18" text-anchor="middle">Treasury</text>
+        <text class="t-mono t-muted t-ph" x="372" y="18" text-anchor="middle">Wallet</text>
+        <text class="t-mono t-muted t-ph" x="516" y="18" text-anchor="middle">Collateral</text>
+        <text class="t-mono t-muted t-ph" x="48" y="852" text-anchor="middle">Ethereum</text>
+        <text class="t-mono t-muted t-ph" x="149" y="852" text-anchor="middle">Solana</text>
+        <text class="t-mono t-muted t-ph" x="250" y="852" text-anchor="middle">Canton</text>
+        <text class="t-mono t-muted t-ph" x="350" y="852" text-anchor="middle">Arc</text>
+        <text class="t-mono t-muted t-ph" x="451" y="852" text-anchor="middle">Robinhood</text>
+        <text class="t-mono t-muted t-ph" x="552" y="852" text-anchor="middle">Base</text>
+        <rect class="f-s0 s-hair" x="150" y="355" width="300" height="150" rx="2"/>
+        <rect class="f-brand" x="264" y="352" width="6" height="6"/>
+        <rect class="f-brand" x="286" y="352" width="6" height="6"/>
+        <rect class="f-brand" x="308" y="352" width="6" height="6"/>
+        <rect class="f-brand" x="330" y="352" width="6" height="6"/>
+        <rect class="f-brand" x="252" y="502" width="6" height="6"/>
+        <rect class="f-brand" x="270" y="502" width="6" height="6"/>
+        <rect class="f-brand" x="288" y="502" width="6" height="6"/>
+        <rect class="f-brand" x="306" y="502" width="6" height="6"/>
+        <rect class="f-brand" x="324" y="502" width="6" height="6"/>
+        <rect class="f-brand" x="342" y="502" width="6" height="6"/>
+        <g transform="translate(286 378) scale(0.875)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g>
+        <text class="t-sans t-ink t-name" x="300" y="438" text-anchor="middle">Promorphic</text>
+        <text class="t-mono t-brandink t-ph-layer" x="300" y="470" text-anchor="middle">THE UNIVERSAL LAYER</text>
+        </svg></div>
+        <figcaption class="label diagram-caption">Agents flow in once. Every venue flows out.</figcaption>
       </figure>
     </div>
   </section>
@@ -387,16 +512,26 @@
   </section>
 
   <!-- ── Venues ── -->
-  <div class="venues" data-theme="light">
+  <div class="venues" data-theme="dark">
     <div class="container">
-      <span class="label vl">Venues</span>
-      <span class="venue">Ethereum</span>
-      <span class="venue">Solana</span>
-      <span class="venue">Canton</span>
-      <span class="venue">Arc</span>
-      <span class="venue">Robinhood Chain</span>
-      <span class="venue">Base</span>
-      <span class="venue more">+ more</span>
+      <span class="label vl" id="venues-label">Venues</span>
+      <div class="marquee">
+        <ul class="marquee-track" aria-labelledby="venues-label">
+          <li><span class="logo-frame" style="width:150px;height:26px"><img src="/brand/venues/ethereum.svg" alt="Ethereum" width="1920" height="1080" decoding="async"></span></li>
+          <li><img src="/brand/venues/solana.svg" alt="Solana" width="134" height="20" decoding="async"></li>
+          <li><img src="/brand/venues/canton.svg" alt="Canton" width="101" height="26" decoding="async"></li>
+          <li><img src="/brand/venues/arc.svg" alt="Arc" width="82" height="28" decoding="async"></li>
+          <li><img src="/brand/venues/robinhood-chain.svg" alt="Robinhood Chain" width="152" height="20" decoding="async"></li>
+          <li><img src="/brand/venues/base.svg" alt="Base" width="87" height="22" decoding="async"></li>
+          <li aria-hidden="true"><span class="logo-frame" style="width:150px;height:26px"><img src="/brand/venues/ethereum.svg" alt="" width="1920" height="1080" decoding="async"></span></li>
+          <li aria-hidden="true"><img src="/brand/venues/solana.svg" alt="" width="134" height="20" decoding="async"></li>
+          <li aria-hidden="true"><img src="/brand/venues/canton.svg" alt="" width="101" height="26" decoding="async"></li>
+          <li aria-hidden="true"><img src="/brand/venues/arc.svg" alt="" width="82" height="28" decoding="async"></li>
+          <li aria-hidden="true"><img src="/brand/venues/robinhood-chain.svg" alt="" width="152" height="20" decoding="async"></li>
+          <li aria-hidden="true"><img src="/brand/venues/base.svg" alt="" width="87" height="22" decoding="async"></li>
+        </ul>
+      </div>
+      <button class="label marquee-toggle" type="button" aria-pressed="false" hidden>Pause</button>
     </div>
   </div>
 
@@ -528,6 +663,35 @@
         });
       }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
       els.forEach(function (el) { io.observe(el); });
+    }
+
+    // Hero figure: no sway under reduced motion, and no work while it is off screen.
+    var figure = document.querySelector('.streams');
+    if (figure) {
+      var svgs = figure.querySelectorAll('svg');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        figure.querySelectorAll('animate').forEach(function (a) { a.parentNode.removeChild(a); });
+      } else if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          var on = entries[entries.length - 1].isIntersecting;
+          figure.classList.toggle('is-paused', !on);
+          svgs.forEach(function (s) {
+            if (s.pauseAnimations) { if (on) s.unpauseAnimations(); else s.pauseAnimations(); }
+          });
+        }).observe(figure);
+      }
+    }
+
+    // Venue strip: a pause control, since the logos keep moving.
+    var strip = document.querySelector('.venues');
+    var toggle = strip && strip.querySelector('.marquee-toggle');
+    if (toggle && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      toggle.hidden = false;
+      toggle.addEventListener('click', function () {
+        var paused = strip.classList.toggle('is-paused');
+        toggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        toggle.textContent = paused ? 'Play' : 'Pause';
+      });
     }
 
     // Header: take the theme of whichever block sits under it, so it never goes grey over paper.

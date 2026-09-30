@@ -1,0 +1,46 @@
+# Promorphic
+
+> Agentic infrastructure for tokenized assets. Promorphic is the universal layer that connects AI agents to tokenized real-world assets: connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every issuer, venue and chain it trades.
+
+Site: https://promorphic.xyz/ · Contact: founders@promorphic.xyz · X: https://x.com/_promorphic
+
+## What Promorphic is
+
+- Promorphic is an AI-first company working at the convergence of the agentic economy (software that acts on behalf of people and companies) and the onchain economy (the world's assets becoming programmable tokens). Promorphic is the connective tissue between the two.
+- The product is a single layer in front of every tokenization issuer and venue. An agent connects once and reaches all of them. Stripe made every bank look the same to a developer; Promorphic makes every tokenized asset look the same to an agent, with correctness and guardrails built in.
+- Promorphic does not run validators or nodes and is not an issuer, exchange or custodian.
+
+## What an agent can do through Promorphic
+
+1. Discover: every tokenized asset, across every issuer and venue, in one catalogue.
+2. Price: net asset value, yield and market price, adjusted for corporate actions and marked with their age.
+3. Hold: positions reconciled across chains.
+4. Move: every transfer checked against the venue's own rules before it is sent.
+5. Redeem: subscriptions and redemptions routed to the right window, inside the cutoff.
+6. Pledge: tokenized funds posted as collateral, at whatever hour the margin call arrives.
+
+## The layer, in three parts
+
+- Universal access: one connection reaches every issuer and venue; routing picks the path.
+- Eligibility simulation: every action is rehearsed against the venue's own rules before it is sent.
+- Truth layer: prices adjusted for corporate actions, valuations marked with their age, halts as they happen, supply reconciled across chains.
+
+## Control
+
+Every agent acts under a mandate its owner sets (size, asset and counterparty limits). One switch stops it. Every action is recorded.
+
+## Where an agent can act
+
+Chains: Ethereum, Solana, Canton, Arc, Robinhood Chain, Base. Issuers and platforms include Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge. Naming a venue says where an agent can act; it does not imply a partnership or customer relationship.
+
+## Who it is for
+
+Agent platforms and wallets; treasuries and trading desks; issuers; institutions on permissioned rails such as Canton.
+
+## Why now
+
+About $40B of tokenized real-world assets on public chains excluding stablecoins (rwa.xyz / Token Terminal, Sept 2026); about $9T a month moving on Canton Network (Canton, 2026); $114T custodied at DTCC, whose tokenization service launches Oct 2026 (DTCC, 2026); 100k+ agentic brokerage accounts opened at Robinhood in two months (Robinhood, Jul 2026).
+
+## Legal
+
+© 2026 Catalysis Protocol Foundation, Panama.

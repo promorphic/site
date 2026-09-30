@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promorphic — Agentic Infrastructure For Tokenized Assets</title>
-  <meta name="description" content="The universal layer that connects agents to assets. Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every venue it trades.">
+  <meta name="description" content="Promorphic is agentic infrastructure for tokenized assets: the universal layer that connects AI agents to tokenized real-world assets. Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every issuer, venue and chain it trades.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://promorphic.xyz/">
   <meta property="og:site_name" content="Promorphic">
   <meta property="og:title" content="Promorphic — Agentic Infrastructure For Tokenized Assets">
@@ -23,6 +24,7 @@
   <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="dark light">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://promorphic.xyz/#org","name":"Promorphic","url":"https://promorphic.xyz/","logo":"https://promorphic.xyz/brand/icon-512.png","email":"founders@promorphic.xyz","sameAs":["https://x.com/_promorphic"],"description":"Agentic infrastructure for tokenized assets. The universal layer that connects AI agents to tokenized real-world assets across every issuer, venue and chain.","knowsAbout":["tokenized assets","real-world asset tokenization","AI agents","agentic infrastructure","onchain finance","Canton Network","Ethereum"]},{"@type":"WebSite","@id":"https://promorphic.xyz/#site","url":"https://promorphic.xyz/","name":"Promorphic","publisher":{"@id":"https://promorphic.xyz/#org"},"inLanguage":"en"},{"@type":"WebPage","@id":"https://promorphic.xyz/#page","url":"https://promorphic.xyz/","name":"Promorphic — Agentic Infrastructure For Tokenized Assets","isPartOf":{"@id":"https://promorphic.xyz/#site"},"about":{"@id":"https://promorphic.xyz/#org"},"primaryImageOfPage":"https://promorphic.xyz/brand/og-image.png","dateModified":"2026-09-30"},{"@type":"FAQPage","@id":"https://promorphic.xyz/#faq","mainEntity":[{"@type":"Question","name":"What is Promorphic?","acceptedAnswer":{"@type":"Answer","text":"Promorphic is agentic infrastructure for tokenized assets: a universal layer that lets AI agents discover, price, hold, move, redeem and pledge tokenized real-world assets (RWAs) across every issuer, venue and chain, through one connection."}},{"@type":"Question","name":"What is a tokenized asset?","acceptedAnswer":{"@type":"Answer","text":"A tokenized asset is a real-world asset, such as a Treasury fund, a money-market fund, private credit or equity, issued as a token on a blockchain, so it can be held, transferred and settled onchain. Promorphic makes every tokenized asset look the same to an agent, whatever its issuer or chain."}},{"@type":"Question","name":"What is agentic infrastructure?","acceptedAnswer":{"@type":"Answer","text":"Infrastructure built with software agents as the user. Every rule, price, eligibility check and venue is exposed in a form an agent can read, check and act on, under limits its owner sets, with every action recorded."}},{"@type":"Question","name":"Which chains and tokenization platforms does Promorphic reach?","acceptedAnswer":{"@type":"Answer","text":"Tokenized assets on Ethereum, Solana, Canton, Arc, Robinhood Chain and Base, from issuers and platforms such as Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge. Naming a venue says where an agent can act; it does not imply a partnership."}},{"@type":"Question","name":"How does Promorphic keep an agent from making a bad trade?","acceptedAnswer":{"@type":"Answer","text":"Every action is rehearsed against the venue's own rules before it is sent, so nothing bounces and nothing goes through by accident. Every agent acts under a mandate its owner sets, one switch stops it, and every action is recorded."}},{"@type":"Question","name":"Who is Promorphic for?","acceptedAnswer":{"@type":"Answer","text":"Agent platforms and wallets, treasuries and trading desks, issuers, and institutions on permissioned rails such as Canton."}}]}]}</script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -353,6 +355,55 @@
     @media (min-width: 960px) { .loop-desktop { display: block; } .loop-phone { display: none; } }
     @media (prefers-reduced-motion: reduce) { .ig-loop .lp-flow { animation: none; stroke-dasharray: none; opacity: .5; } }
 
+    /* What an agent can do: one session, six actions, ticked off in order */
+    .ticket { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; }
+    .ticket-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4); padding: var(--space-4) var(--space-5); border-bottom: var(--border-w) solid var(--hairline); }
+    .ticket-when { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--ink); }
+    .ticket-what { flex: 1 1 260px; font-size: 15px; line-height: 1.5; color: var(--ink-muted); }
+    .ticket-tag { display: inline-flex; align-items: center; gap: var(--space-2); margin-left: auto; font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
+    .ticket-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); animation: pm-pulse 2s ease-in-out infinite; }
+    @keyframes pm-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .ticket-rows { list-style: none; margin: 0; padding: 0; }
+    .trow { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "idx verb stat" "idx line stat"; column-gap: var(--space-4); row-gap: var(--space-1); align-items: baseline; padding: var(--space-4) var(--space-5); border-top: var(--border-w) solid var(--hairline); --on: 0; box-shadow: inset 3px 0 0 color-mix(in srgb, var(--brand) calc(var(--on) * 100%), transparent); animation: pm-on-0 12s linear infinite; }
+    .trow:first-child { border-top: 0; }
+    .tidx { grid-area: idx; font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
+    .tverb { grid-area: verb; font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.015em; color: var(--ink); }
+    .tline { grid-area: line; font-size: 15px; line-height: 1.55; color: var(--ink-muted); max-width: 60ch; }
+    .tstat { grid-area: stat; align-self: center; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+    .tbox { width: 12px; height: 12px; border-radius: 2px; border: var(--border-w) solid color-mix(in srgb, var(--brand) calc(var(--on) * 100%), var(--ink-faint)); background: color-mix(in srgb, var(--brand) calc(var(--on) * 100%), transparent); }
+    .tword { display: grid; }
+    .tword > span { grid-area: 1 / 1; opacity: calc(1 - var(--on)); }
+    .tword > .tw-done { color: var(--ink); opacity: var(--on); }
+    /* one shared 12s cycle: row i lights at second i+1, all six hold, and the ticket clears together at 10.5s */
+    @property --on { syntax: "<number>"; inherits: false; initial-value: 0; }
+    .trow:nth-child(1) { animation-name: pm-on-0; }
+    @keyframes pm-on-0 { 0%, 6.8% { --on: 0; } 8.8%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
+    .trow:nth-child(2) { animation-name: pm-on-1; }
+    @keyframes pm-on-1 { 0%, 15.2% { --on: 0; } 17.2%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
+    .trow:nth-child(3) { animation-name: pm-on-2; }
+    @keyframes pm-on-2 { 0%, 23.5% { --on: 0; } 25.5%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
+    .trow:nth-child(4) { animation-name: pm-on-3; }
+    @keyframes pm-on-3 { 0%, 31.8% { --on: 0; } 33.8%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
+    .trow:nth-child(5) { animation-name: pm-on-4; }
+    @keyframes pm-on-4 { 0%, 40.2% { --on: 0; } 42.2%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
+    .trow:nth-child(6) { animation-name: pm-on-5; }
+    @keyframes pm-on-5 { 0%, 48.5% { --on: 0; } 50.5%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
+    .ticket.is-paused .trow { animation-play-state: paused; }
+    .ticket-foot { padding: var(--space-4) var(--space-5); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.5; color: var(--ink); }
+    @media (max-width: 479px) { .tword { display: none; } }
+    @media (min-width: 720px) {
+      .trow { grid-template-columns: 40px 200px 1fr auto; grid-template-areas: "idx verb line stat"; column-gap: var(--space-5); }
+      .tverb { font-size: 28px; }
+    }
+    /* Questions: plain answers, one per row */
+    .faq { border-top: var(--border-w) solid var(--hairline); }
+    .faq details { border-bottom: var(--border-w) solid var(--hairline); }
+    .faq summary { display: grid; grid-template-columns: 1fr auto; column-gap: var(--space-4); align-items: baseline; padding: var(--space-4) 0; font-size: 19px; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); cursor: pointer; list-style: none; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-family: var(--font-mono); font-size: 19px; color: var(--ink-muted); }
+    .faq details[open] summary::after { content: "\2212"; }
+    .faq summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+    .faq .answer { margin: 0 0 var(--space-5); font-size: 16px; line-height: 1.6; color: var(--ink-muted); max-width: 68ch; }
     /* ── Closing ── */
     .closing { text-align: center; padding: var(--space-9) 0; border-top: var(--border-w) solid var(--hairline); }
     .closing .actions { justify-content: center; }
@@ -376,6 +427,8 @@
       .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
       .pg-flow { animation: none; stroke-dasharray: none; }
       .skyline img { animation: none; }
+      .trow, .ticket-pulse { animation: none; }
+      .trow { --on: 1; }
       .marquee-track { animation: none; width: auto; justify-content: center; padding: 0 var(--gutter); }
       .marquee-set { flex: 0 1 auto; flex-wrap: wrap; justify-content: center; row-gap: var(--space-5); }
       .marquee-set li { padding: 0 var(--space-5); }
@@ -779,37 +832,51 @@
         <div class="eyebrow">What an agent can do</div>
         <h2 class="display-lg measure-wide">What a desk does, an agent can now do.</h2>
       </div>
-      <div class="grid grid-6 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-md">Discover</h3>
-          <p>Every tokenized asset, across every issuer and venue, in one catalogue.</p>
+      <div class="ticket reveal" role="figure" aria-label="One agent session on a Sunday night: a margin call arrives and the agent discovers, prices, holds, moves, redeems and pledges, each action ticked off in turn.">
+        <div class="ticket-head">
+          <span class="ticket-when">Sunday, 03:02</span>
+          <span class="ticket-what">A margin call arrives. The desk is asleep. The agent is not.</span>
+          <span class="ticket-tag"><span class="ticket-pulse" aria-hidden="true"></span>Agent session</span>
         </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-md">Price</h3>
-          <p>Net asset value, yield and market price, adjusted for corporate actions and marked with their age.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-md">Hold</h3>
-          <p>Positions reconciled across chains. The book an agent sees is the book that exists.</p>
-        </div>
-        <div class="card">
-          <div class="idx">04</div>
-          <h3 class="heading-md">Move</h3>
-          <p>Every transfer checked against the venue’s own rules before it is sent.</p>
-        </div>
-        <div class="card">
-          <div class="idx">05</div>
-          <h3 class="heading-md">Redeem</h3>
-          <p>Subscriptions and redemptions routed to the right window, inside the cutoff.</p>
-        </div>
-        <div class="card">
-          <div class="idx">06</div>
-          <h3 class="heading-md">Pledge</h3>
-          <p>Tokenized funds posted as collateral, at whatever hour the margin call arrives.</p>
-        </div>
+        <ol class="ticket-rows">
+          <li class="trow" style="--i:0">
+            <span class="tidx">01</span>
+            <h3 class="tverb">Discover</h3>
+            <p class="tline">Every tokenized asset, across every issuer and venue, in one catalogue.</p>
+            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
+          </li>
+          <li class="trow" style="--i:1">
+            <span class="tidx">02</span>
+            <h3 class="tverb">Price</h3>
+            <p class="tline">Net asset value, yield and market price, adjusted for corporate actions and marked with their age.</p>
+            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
+          </li>
+          <li class="trow" style="--i:2">
+            <span class="tidx">03</span>
+            <h3 class="tverb">Hold</h3>
+            <p class="tline">Positions reconciled across chains. The book an agent sees is the book that exists.</p>
+            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
+          </li>
+          <li class="trow" style="--i:3">
+            <span class="tidx">04</span>
+            <h3 class="tverb">Move</h3>
+            <p class="tline">Every transfer checked against the venue’s own rules before it is sent.</p>
+            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
+          </li>
+          <li class="trow" style="--i:4">
+            <span class="tidx">05</span>
+            <h3 class="tverb">Redeem</h3>
+            <p class="tline">Subscriptions and redemptions routed to the right window, inside the cutoff.</p>
+            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
+          </li>
+          <li class="trow" style="--i:5">
+            <span class="tidx">06</span>
+            <h3 class="tverb">Pledge</h3>
+            <p class="tline">Tokenized funds posted as collateral, at whatever hour the margin call arrives.</p>
+            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
+          </li>
+        </ol>
+        <p class="ticket-foot">One margin call. Six actions. Nobody woken up.</p>
       </div>
     </div>
   </section>
@@ -970,9 +1037,47 @@
         </div>
       </div>
       <figure class="loop reveal">
-        <div class="loop-desktop"><svg class="ig ig-loop" viewBox="0 0 1136 520" role="img" aria-label="A loop of three facts: agents are the user; two economies meet in one layer; the layer is neutral across issuers. Each leads to the next."><line class="s-rule" x1="64" y1="0" x2="64" y2="520"/><line class="s-rule" x1="128" y1="0" x2="128" y2="520"/><line class="s-rule" x1="192" y1="0" x2="192" y2="520"/><line class="s-rule" x1="256" y1="0" x2="256" y2="520"/><line class="s-rule" x1="320" y1="0" x2="320" y2="520"/><line class="s-rule" x1="384" y1="0" x2="384" y2="520"/><line class="s-rule" x1="448" y1="0" x2="448" y2="520"/><line class="s-rule" x1="512" y1="0" x2="512" y2="520"/><line class="s-rule" x1="576" y1="0" x2="576" y2="520"/><line class="s-rule" x1="640" y1="0" x2="640" y2="520"/><line class="s-rule" x1="704" y1="0" x2="704" y2="520"/><line class="s-rule" x1="768" y1="0" x2="768" y2="520"/><line class="s-rule" x1="832" y1="0" x2="832" y2="520"/><line class="s-rule" x1="896" y1="0" x2="896" y2="520"/><line class="s-rule" x1="960" y1="0" x2="960" y2="520"/><line class="s-rule" x1="1024" y1="0" x2="1024" y2="520"/><line class="s-rule" x1="1088" y1="0" x2="1088" y2="520"/><circle class="lp-ring" cx="568" cy="290" r="140"/><circle class="lp-flow" cx="568" cy="290" r="140" pathLength="1000" style="stroke-dasharray:40.9256 959.074;animation-duration:8s"/><rect class="f-brand" x="564" y="146" width="8" height="8"/><rect class="f-brand" x="685.2" y="356" width="8" height="8"/><rect class="f-brand" x="442.8" y="356" width="8" height="8"/><g transform="translate(548 270) scale(1.25)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g><text class="t-mono t-muted t-sm" x="568" y="334" text-anchor="middle">PROMORPHIC</text><path class="lp-leader" d="M568 150 V72 H640"/><path class="lp-leader" d="M689.2 360 H776"/><path class="lp-leader" d="M446.8 360 H360"/><text class="t-mono t-muted t-sm" x="656" y="78" text-anchor="start">01  AI-FIRST</text><text class="t-sans t-ink lp-lead" x="656" y="108" text-anchor="start">Agents are the user.</text><text class="t-sans t-muted lp-body" x="656" y="134" text-anchor="start">Every rule, price and venue is exposed in a</text><text class="t-sans t-muted lp-body" x="656" y="157" text-anchor="start">form software can read, check and act on.</text><text class="t-mono t-muted t-sm" x="792" y="366" text-anchor="start">02  CONVERGENCE</text><text class="t-sans t-ink lp-lead" x="792" y="396" text-anchor="start">Two economies, one layer.</text><text class="t-sans t-muted lp-body" x="792" y="422" text-anchor="start">The agentic economy and the onchain economy</text><text class="t-sans t-muted lp-body" x="792" y="445" text-anchor="start">meet where an agent touches an asset.</text><text class="t-sans t-muted lp-body" x="792" y="468" text-anchor="start">That point is what we build.</text><text class="t-mono t-muted t-sm" x="344" y="366" text-anchor="end">03  POSITION</text><text class="t-sans t-ink lp-lead" x="344" y="396" text-anchor="end">Neutral, cross-issuer, agent-native.</text><text class="t-sans t-muted lp-body" x="344" y="422" text-anchor="end">No issuer will build a layer that eases</text><text class="t-sans t-muted lp-body" x="344" y="445" text-anchor="end">allocation to a competitor. We will.</text></svg></div>
-        <div class="loop-phone"><svg class="ig ig-loop" viewBox="0 0 600 981" role="img" aria-label="A loop of three facts: agents are the user; two economies meet in one layer; the layer is neutral across issuers. Each leads to the next."><line class="s-rule" x1="0" y1="64" x2="600" y2="64"/><line class="s-rule" x1="0" y1="128" x2="600" y2="128"/><line class="s-rule" x1="0" y1="192" x2="600" y2="192"/><line class="s-rule" x1="0" y1="256" x2="600" y2="256"/><line class="s-rule" x1="0" y1="320" x2="600" y2="320"/><line class="s-rule" x1="0" y1="384" x2="600" y2="384"/><line class="s-rule" x1="0" y1="448" x2="600" y2="448"/><circle class="lp-ring" cx="300" cy="250" r="150"/><circle class="lp-flow" cx="300" cy="250" r="150" pathLength="1000" style="stroke-dasharray:38.1972 961.803;animation-duration:8.6s"/><rect class="f-brand" x="296" y="96" width="8" height="8"/><rect class="f-brand" x="425.9" y="321" width="8" height="8"/><rect class="f-brand" x="166.1" y="321" width="8" height="8"/><g transform="translate(280 230) scale(1.25)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g><text class="t-mono t-muted t-sm" x="300" y="294" text-anchor="middle">PROMORPHIC</text><text class="t-mono t-muted t-ph" x="300" y="80" text-anchor="middle">01</text><text class="t-mono t-muted t-ph" x="452.4" y="344" text-anchor="middle">02</text><text class="t-mono t-muted t-ph" x="147.6" y="344" text-anchor="middle">03</text><line class="s-hair" x1="0" y1="494" x2="600" y2="494"/><text class="t-mono t-muted t-ph" x="0" y="520">01  AI-FIRST</text><text class="t-sans t-ink lp-lead-ph" x="0" y="554">Agents are the user.</text><text class="t-sans t-muted lp-body-ph" x="0" y="584">Every rule, price and venue is exposed in a</text><text class="t-sans t-muted lp-body-ph" x="0" y="611">form software can read, check and act on.</text><line class="s-hair" x1="0" y1="652" x2="600" y2="652"/><text class="t-mono t-muted t-ph" x="0" y="678">02  CONVERGENCE</text><text class="t-sans t-ink lp-lead-ph" x="0" y="712">Two economies, one layer.</text><text class="t-sans t-muted lp-body-ph" x="0" y="742">The agentic economy and the onchain economy</text><text class="t-sans t-muted lp-body-ph" x="0" y="769">meet where an agent touches an asset.</text><text class="t-sans t-muted lp-body-ph" x="0" y="796">That point is what we build.</text><line class="s-hair" x1="0" y1="837" x2="600" y2="837"/><text class="t-mono t-muted t-ph" x="0" y="863">03  POSITION</text><text class="t-sans t-ink lp-lead-ph" x="0" y="897">Neutral, cross-issuer, agent-native.</text><text class="t-sans t-muted lp-body-ph" x="0" y="927">No issuer will build a layer that eases</text><text class="t-sans t-muted lp-body-ph" x="0" y="954">allocation to a competitor. We will.</text></svg></div>
+        <div class="loop-desktop"><svg class="ig ig-loop" viewBox="0 0 1136 520" role="img" aria-label="A loop of three facts: agents are the user; two economies meet in one layer; the layer is neutral across issuers. Each leads to the next."><line class="s-rule" x1="64" y1="0" x2="64" y2="520"/><line class="s-rule" x1="128" y1="0" x2="128" y2="520"/><line class="s-rule" x1="192" y1="0" x2="192" y2="520"/><line class="s-rule" x1="256" y1="0" x2="256" y2="520"/><line class="s-rule" x1="320" y1="0" x2="320" y2="520"/><line class="s-rule" x1="384" y1="0" x2="384" y2="520"/><line class="s-rule" x1="448" y1="0" x2="448" y2="520"/><line class="s-rule" x1="512" y1="0" x2="512" y2="520"/><line class="s-rule" x1="576" y1="0" x2="576" y2="520"/><line class="s-rule" x1="640" y1="0" x2="640" y2="520"/><line class="s-rule" x1="704" y1="0" x2="704" y2="520"/><line class="s-rule" x1="768" y1="0" x2="768" y2="520"/><line class="s-rule" x1="832" y1="0" x2="832" y2="520"/><line class="s-rule" x1="896" y1="0" x2="896" y2="520"/><line class="s-rule" x1="960" y1="0" x2="960" y2="520"/><line class="s-rule" x1="1024" y1="0" x2="1024" y2="520"/><line class="s-rule" x1="1088" y1="0" x2="1088" y2="520"/><circle class="lp-ring" cx="568" cy="290" r="140"/><circle class="lp-flow" cx="568" cy="290" r="140" pathLength="1000" style="stroke-dasharray:40.9256 959.074;animation-duration:12.6s"/><rect class="f-brand" x="564" y="146" width="8" height="8"/><rect class="f-brand" x="685.2" y="356" width="8" height="8"/><rect class="f-brand" x="442.8" y="356" width="8" height="8"/><g transform="translate(548 270) scale(1.25)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g><text class="t-mono t-muted t-sm" x="568" y="334" text-anchor="middle">PROMORPHIC</text><path class="lp-leader" d="M568 150 V72 H640"/><path class="lp-leader" d="M689.2 360 H776"/><path class="lp-leader" d="M446.8 360 H360"/><text class="t-mono t-muted t-sm" x="656" y="78" text-anchor="start">01  AI-FIRST</text><text class="t-sans t-ink lp-lead" x="656" y="108" text-anchor="start">Agents are the user.</text><text class="t-sans t-muted lp-body" x="656" y="134" text-anchor="start">Every rule, price and venue is exposed in a</text><text class="t-sans t-muted lp-body" x="656" y="157" text-anchor="start">form software can read, check and act on.</text><text class="t-mono t-muted t-sm" x="792" y="366" text-anchor="start">02  CONVERGENCE</text><text class="t-sans t-ink lp-lead" x="792" y="396" text-anchor="start">Two economies, one layer.</text><text class="t-sans t-muted lp-body" x="792" y="422" text-anchor="start">The agentic economy and the onchain economy</text><text class="t-sans t-muted lp-body" x="792" y="445" text-anchor="start">meet where an agent touches an asset.</text><text class="t-sans t-muted lp-body" x="792" y="468" text-anchor="start">That point is what we build.</text><text class="t-mono t-muted t-sm" x="344" y="366" text-anchor="end">03  POSITION</text><text class="t-sans t-ink lp-lead" x="344" y="396" text-anchor="end">Neutral, cross-issuer, agent-native.</text><text class="t-sans t-muted lp-body" x="344" y="422" text-anchor="end">No issuer will build a layer that eases</text><text class="t-sans t-muted lp-body" x="344" y="445" text-anchor="end">allocation to a competitor. We will.</text></svg></div>
+        <div class="loop-phone"><svg class="ig ig-loop" viewBox="0 0 600 981" role="img" aria-label="A loop of three facts: agents are the user; two economies meet in one layer; the layer is neutral across issuers. Each leads to the next."><line class="s-rule" x1="0" y1="64" x2="600" y2="64"/><line class="s-rule" x1="0" y1="128" x2="600" y2="128"/><line class="s-rule" x1="0" y1="192" x2="600" y2="192"/><line class="s-rule" x1="0" y1="256" x2="600" y2="256"/><line class="s-rule" x1="0" y1="320" x2="600" y2="320"/><line class="s-rule" x1="0" y1="384" x2="600" y2="384"/><line class="s-rule" x1="0" y1="448" x2="600" y2="448"/><circle class="lp-ring" cx="300" cy="250" r="150"/><circle class="lp-flow" cx="300" cy="250" r="150" pathLength="1000" style="stroke-dasharray:38.1972 961.803;animation-duration:13.5s"/><rect class="f-brand" x="296" y="96" width="8" height="8"/><rect class="f-brand" x="425.9" y="321" width="8" height="8"/><rect class="f-brand" x="166.1" y="321" width="8" height="8"/><g transform="translate(280 230) scale(1.25)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g><text class="t-mono t-muted t-sm" x="300" y="294" text-anchor="middle">PROMORPHIC</text><text class="t-mono t-muted t-ph" x="300" y="80" text-anchor="middle">01</text><text class="t-mono t-muted t-ph" x="452.4" y="344" text-anchor="middle">02</text><text class="t-mono t-muted t-ph" x="147.6" y="344" text-anchor="middle">03</text><line class="s-hair" x1="0" y1="494" x2="600" y2="494"/><text class="t-mono t-muted t-ph" x="0" y="520">01  AI-FIRST</text><text class="t-sans t-ink lp-lead-ph" x="0" y="554">Agents are the user.</text><text class="t-sans t-muted lp-body-ph" x="0" y="584">Every rule, price and venue is exposed in a</text><text class="t-sans t-muted lp-body-ph" x="0" y="611">form software can read, check and act on.</text><line class="s-hair" x1="0" y1="652" x2="600" y2="652"/><text class="t-mono t-muted t-ph" x="0" y="678">02  CONVERGENCE</text><text class="t-sans t-ink lp-lead-ph" x="0" y="712">Two economies, one layer.</text><text class="t-sans t-muted lp-body-ph" x="0" y="742">The agentic economy and the onchain economy</text><text class="t-sans t-muted lp-body-ph" x="0" y="769">meet where an agent touches an asset.</text><text class="t-sans t-muted lp-body-ph" x="0" y="796">That point is what we build.</text><line class="s-hair" x1="0" y1="837" x2="600" y2="837"/><text class="t-mono t-muted t-ph" x="0" y="863">03  POSITION</text><text class="t-sans t-ink lp-lead-ph" x="0" y="897">Neutral, cross-issuer, agent-native.</text><text class="t-sans t-muted lp-body-ph" x="0" y="927">No issuer will build a layer that eases</text><text class="t-sans t-muted lp-body-ph" x="0" y="954">allocation to a competitor. We will.</text></svg></div>
       </figure>
+    </div>
+  </section>
+
+  <!-- ── Questions ── -->
+  <section class="section" id="questions">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow">Questions</div>
+          <h2 class="display-lg">Plain answers.</h2>
+        </div>
+        <div class="faq reveal">
+          <details open>
+            <summary>What is Promorphic?</summary>
+            <p class="answer">Promorphic is agentic infrastructure for tokenized assets: a universal layer that lets AI agents discover, price, hold, move, redeem and pledge tokenized real-world assets (RWAs) across every issuer, venue and chain, through one connection.</p>
+          </details>
+          <details>
+            <summary>What is a tokenized asset?</summary>
+            <p class="answer">A tokenized asset is a real-world asset, such as a Treasury fund, a money-market fund, private credit or equity, issued as a token on a blockchain, so it can be held, transferred and settled onchain. Promorphic makes every tokenized asset look the same to an agent, whatever its issuer or chain.</p>
+          </details>
+          <details>
+            <summary>What is agentic infrastructure?</summary>
+            <p class="answer">Infrastructure built with software agents as the user. Every rule, price, eligibility check and venue is exposed in a form an agent can read, check and act on, under limits its owner sets, with every action recorded.</p>
+          </details>
+          <details>
+            <summary>Which chains and tokenization platforms does Promorphic reach?</summary>
+            <p class="answer">Tokenized assets on Ethereum, Solana, Canton, Arc, Robinhood Chain and Base, from issuers and platforms such as Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge. Naming a venue says where an agent can act; it does not imply a partnership.</p>
+          </details>
+          <details>
+            <summary>How does Promorphic keep an agent from making a bad trade?</summary>
+            <p class="answer">Every action is rehearsed against the venue’s own rules before it is sent, so nothing bounces and nothing goes through by accident. Every agent acts under a mandate its owner sets, one switch stops it, and every action is recorded.</p>
+          </details>
+          <details>
+            <summary>Who is Promorphic for?</summary>
+            <p class="answer">Agent platforms and wallets, treasuries and trading desks, issuers, and institutions on permissioned rails such as Canton.</p>
+          </details>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1039,6 +1144,14 @@
       new IntersectionObserver(function (entries) {
         parts.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
       }).observe(parts);
+    }
+
+    // The session ticket: no work while it is off screen.
+    var ticket = document.querySelector('.ticket');
+    if (ticket && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        ticket.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
+      }).observe(ticket);
     }
 
     // Theme toggle: on is the dark version. The choice is remembered.

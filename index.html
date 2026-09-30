@@ -97,6 +97,7 @@
     body { background: var(--surface-0); color: var(--ink); transition: background-color 150ms var(--ease), color 150ms var(--ease); font-family: var(--font-sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; }
     strong { font-weight: 500; }
+    strong.u { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
     h1, h2, h3 { text-wrap: balance; }
     p { text-wrap: pretty; }
     :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
@@ -234,10 +235,6 @@
     .panel .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
     .panel h3 { color: var(--ink); }
     .panel p { grid-column: 2; font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
-    /* Bento: four audiences at two sizes on a twelve-column grid */
-    .bento { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
-    .bento .card { justify-content: flex-end; min-height: 220px; }
-    .bento .card .idx { margin-bottom: auto; }
     .footnote { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .footnote strong { color: var(--ink); }
     /* The analogy: a raised slab like every card, larger type, one highlighted phrase */
@@ -299,6 +296,32 @@
     .fact p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .fact p strong { color: var(--ink); }
 
+    /* Why Promorphic: three facts on one loop */
+    .loop { margin-top: var(--space-7); }
+    .loop-desktop { display: none; }
+    .loop-phone { max-width: 480px; margin: 0 auto; }
+    .ig-loop .lp-ring { fill: none; stroke: var(--hairline); stroke-width: 1.5; }
+    .ig-loop .lp-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; animation: pm-loop 14s linear infinite; }
+    @keyframes pm-loop { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -880; } }
+    .ig-loop .lp-arrow { fill: var(--ink-faint); }
+    .ig-loop .lp-leader { fill: none; stroke: var(--hairline); stroke-width: 1; }
+    .ig-loop .s-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
+    .ig-loop .s-hair { stroke: var(--hairline); stroke-width: 1; }
+    .ig-loop .t-mono { font-family: var(--font-mono); letter-spacing: .02em; }
+    .ig-loop .t-sm { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
+    .ig-loop .t-ph { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
+    .ig-loop .t-sans { font-family: var(--font-sans); }
+    .ig-loop .lp-lead { font-size: 19px; font-weight: 500; letter-spacing: -.01em; }
+    .ig-loop .lp-body { font-size: 15px; }
+    .ig-loop .lp-lead-ph { font-size: 26px; font-weight: 500; letter-spacing: -.01em; }
+    .ig-loop .lp-body-ph { font-size: 20px; }
+    .ig-loop .t-ink { fill: var(--ink); }
+    .ig-loop .t-muted { fill: var(--ink-muted); }
+    .ig-loop .f-ink { fill: var(--ink); }
+    .ig-loop .f-brand { fill: var(--brand); }
+    @media (min-width: 960px) { .loop-desktop { display: block; } .loop-phone { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .ig-loop .lp-flow { animation: none; stroke-dasharray: none; opacity: .5; } }
+
     /* ── Closing ── */
     .closing { text-align: center; padding: var(--space-9) 0; border-top: var(--border-w) solid var(--hairline); }
     .closing .actions { justify-content: center; }
@@ -333,8 +356,7 @@
       .heading-md { font-size: 28px; }
       .hero { padding: var(--space-10) 0 var(--space-9); }
       .grid { gap: var(--space-5); }
-      .grid-4, .grid-6 { grid-template-columns: repeat(2, 1fr); }
-      .bento { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+      .grid-2, .grid-4, .grid-6 { grid-template-columns: repeat(2, 1fr); }
       .panel .row { padding: var(--space-5) var(--space-6); }
       .card, .stat, .part-text { padding: var(--space-6); }
       .analogy { margin-top: var(--space-8); padding: var(--space-7) var(--space-8); font-size: 28px; }
@@ -352,10 +374,6 @@
       .nav { gap: var(--space-6); }
       .grid-3, .grid-6 { grid-template-columns: repeat(3, 1fr); }
       .parts-grid { grid-template-columns: repeat(3, 1fr); }
-      .bento { grid-template-columns: repeat(12, 1fr); }
-      .bento .card { min-height: 260px; }
-      .bento-a, .bento-d { grid-column: span 7; }
-      .bento-b, .bento-c { grid-column: span 5; }
       .part { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
       .part:first-child { border-left: 0; }
       .split { gap: var(--space-8); }
@@ -468,7 +486,7 @@
           <h2 class="display-lg">One economy, seen from two sides.</h2>
         </div>
         <div class="reveal">
-          <p class="lead vision-lines">Two economies are being built at once.<br>The <span class="hl-inline">agentic economy</span>: software that acts on behalf of people and companies.<br>The <span class="hl-inline">onchain economy</span>: the world’s assets becoming programmable tokens.</p>
+          <p class="lead vision-lines">Two economies are being built at once.<br>The <strong class="u">agentic economy</strong>: software that acts on behalf of people and companies.<br>The <strong class="u">onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
           <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides.</p>
           <p class="lead"><span class="hl-inline">Promorphic is the connective tissue.</span></p>
         </div>
@@ -563,8 +581,8 @@
         <path class="s-flow" d="M770 257 C851.5 257 882.5 332 964 332" style="animation-duration:16.4s;animation-delay:-7.6s"><animate attributeName="d" values="M770 257 C851.5 257 882.5 332 964 332;M770 257 C851.5 257 882.5 322 964 322;M770 257 C851.5 257 882.5 332 964 332" dur="13.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
         <path class="s-stream" d="M770 275 C851.5 275 882.5 400 964 400"><animate attributeName="d" values="M770 275 C851.5 275 882.5 400 964 400;M770 275 C851.5 275 882.5 410 964 410;M770 275 C851.5 275 882.5 400 964 400" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
         <path class="s-flow" d="M770 275 C851.5 275 882.5 400 964 400" style="animation-duration:17.5s;animation-delay:-9.5s"><animate attributeName="d" values="M770 275 C851.5 275 882.5 400 964 400;M770 275 C851.5 275 882.5 410 964 410;M770 275 C851.5 275 882.5 400 964 400" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <rect class="f-brand" x="120" y="11.7" width="100.1" height="24" rx="2"/>
-        <text class="t-mono t-onbrand t-sm" x="130" y="28">AI AGENTS</text>
+        <rect class="f-brand" x="89.9" y="11.7" width="100.1" height="24" rx="2"/>
+        <text class="t-mono t-onbrand t-sm" x="140" y="28" text-anchor="middle">AI AGENTS</text>
         <rect class="f-brand" x="980" y="11.7" width="215.8" height="24" rx="2"/>
         <text class="t-mono t-onbrand t-sm" x="990" y="28">TOKENIZATION PLATFORMS</text>
         <image class="agent-mark" href="/brand/agents/claude.svg" x="120" y="40" width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
@@ -812,25 +830,25 @@
         <div class="eyebrow">Who it’s for</div>
         <h2 class="display-lg">Built for the people who put agents to work.</h2>
       </div>
-      <div class="bento reveal">
-        <div class="card bento-a">
+      <div class="grid grid-4 reveal">
+        <div class="card">
           <div class="idx">01</div>
-          <h3 class="heading-md">Agent platforms and wallets</h3>
+          <h3 class="heading-sm">Agent platforms and wallets</h3>
           <p>Give every agent you host tokenized assets it can actually use.</p>
         </div>
-        <div class="card bento-b">
+        <div class="card">
           <div class="idx">02</div>
-          <h3 class="heading-md">Treasuries and trading desks</h3>
+          <h3 class="heading-sm">Treasuries and trading desks</h3>
           <p>Put idle balances to work and meet weekend margin calls without staffing them.</p>
         </div>
-        <div class="card bento-c">
+        <div class="card">
           <div class="idx">03</div>
-          <h3 class="heading-md">Issuers</h3>
+          <h3 class="heading-sm">Issuers</h3>
           <p>Reach every agent through one listing instead of one integration per platform.</p>
         </div>
-        <div class="card bento-d">
+        <div class="card">
           <div class="idx">04</div>
-          <h3 class="heading-md">Institutions on permissioned rails</h3>
+          <h3 class="heading-sm">Institutions on permissioned rails</h3>
           <p>Let agents operate on Canton and its peers, with the venue’s own rules enforced before every action.</p>
         </div>
       </div>
@@ -844,7 +862,7 @@
         <div class="eyebrow">Why now</div>
         <h2 class="display-lg measure-wide">Both sides of the market have arrived.</h2>
       </div>
-      <div class="grid grid-4 reveal">
+      <div class="grid grid-2 reveal">
         <div class="stat">
           <div class="value">$38–46B</div>
           <div class="caption">tokenized real-world assets on public chains, excluding stablecoins</div>
@@ -882,20 +900,10 @@
           <p class="muted">We are building the layer we would want to use: neutral across issuers, native to agents, and correct by construction.</p>
         </div>
       </div>
-      <div class="facts reveal">
-        <div class="fact">
-          <div class="k">AI-first</div>
-          <p><strong>Agents are the user.</strong> Every rule, price and venue is exposed in a form software can read, check and act on.</p>
-        </div>
-        <div class="fact">
-          <div class="k">Convergence</div>
-          <p><strong>Two economies, one layer.</strong> The agentic economy and the onchain economy meet where an agent touches an asset. That point is what we build.</p>
-        </div>
-        <div class="fact">
-          <div class="k">Position</div>
-          <p><strong>Neutral, cross-issuer, agent-native.</strong> No issuer will build a layer that eases allocation to a competitor. We will.</p>
-        </div>
-      </div>
+      <figure class="loop reveal">
+        <div class="loop-desktop"><svg class="ig ig-loop" viewBox="0 0 1136 520" role="img" aria-label="A loop of three facts: agents are the user; two economies meet in one layer; the layer is neutral across issuers. Each leads to the next."><line class="s-rule" x1="64" y1="0" x2="64" y2="520"/><line class="s-rule" x1="128" y1="0" x2="128" y2="520"/><line class="s-rule" x1="192" y1="0" x2="192" y2="520"/><line class="s-rule" x1="256" y1="0" x2="256" y2="520"/><line class="s-rule" x1="320" y1="0" x2="320" y2="520"/><line class="s-rule" x1="384" y1="0" x2="384" y2="520"/><line class="s-rule" x1="448" y1="0" x2="448" y2="520"/><line class="s-rule" x1="512" y1="0" x2="512" y2="520"/><line class="s-rule" x1="576" y1="0" x2="576" y2="520"/><line class="s-rule" x1="640" y1="0" x2="640" y2="520"/><line class="s-rule" x1="704" y1="0" x2="704" y2="520"/><line class="s-rule" x1="768" y1="0" x2="768" y2="520"/><line class="s-rule" x1="832" y1="0" x2="832" y2="520"/><line class="s-rule" x1="896" y1="0" x2="896" y2="520"/><line class="s-rule" x1="960" y1="0" x2="960" y2="520"/><line class="s-rule" x1="1024" y1="0" x2="1024" y2="520"/><line class="s-rule" x1="1088" y1="0" x2="1088" y2="520"/><circle class="lp-ring" cx="568" cy="290" r="140"/><circle class="lp-flow" cx="568" cy="290" r="140" style="stroke-dasharray:36 843.6;animation-duration:11.6s"/><rect class="f-brand" x="564" y="146" width="8" height="8"/><rect class="f-brand" x="685.2" y="356" width="8" height="8"/><rect class="f-brand" x="442.8" y="356" width="8" height="8"/><g transform="translate(548 270) scale(1.25)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g><text class="t-mono t-muted t-sm" x="568" y="334" text-anchor="middle">PROMORPHIC</text><path class="lp-leader" d="M568 150 V72 H640"/><path class="lp-leader" d="M689.2 360 H776"/><path class="lp-leader" d="M446.8 360 H360"/><text class="t-mono t-muted t-sm" x="656" y="78" text-anchor="start">01  AI-FIRST</text><text class="t-sans t-ink lp-lead" x="656" y="108" text-anchor="start">Agents are the user.</text><text class="t-sans t-muted lp-body" x="656" y="134" text-anchor="start">Every rule, price and venue is exposed in a</text><text class="t-sans t-muted lp-body" x="656" y="157" text-anchor="start">form software can read, check and act on.</text><text class="t-mono t-muted t-sm" x="792" y="366" text-anchor="start">02  CONVERGENCE</text><text class="t-sans t-ink lp-lead" x="792" y="396" text-anchor="start">Two economies, one layer.</text><text class="t-sans t-muted lp-body" x="792" y="422" text-anchor="start">The agentic economy and the onchain economy</text><text class="t-sans t-muted lp-body" x="792" y="445" text-anchor="start">meet where an agent touches an asset.</text><text class="t-sans t-muted lp-body" x="792" y="468" text-anchor="start">That point is what we build.</text><text class="t-mono t-muted t-sm" x="344" y="366" text-anchor="end">03  POSITION</text><text class="t-sans t-ink lp-lead" x="344" y="396" text-anchor="end">Neutral, cross-issuer, agent-native.</text><text class="t-sans t-muted lp-body" x="344" y="422" text-anchor="end">No issuer will build a layer that eases</text><text class="t-sans t-muted lp-body" x="344" y="445" text-anchor="end">allocation to a competitor. We will.</text></svg></div>
+        <div class="loop-phone"><svg class="ig ig-loop" viewBox="0 0 600 981" role="img" aria-label="A loop of three facts: agents are the user; two economies meet in one layer; the layer is neutral across issuers. Each leads to the next."><line class="s-rule" x1="0" y1="64" x2="600" y2="64"/><line class="s-rule" x1="0" y1="128" x2="600" y2="128"/><line class="s-rule" x1="0" y1="192" x2="600" y2="192"/><line class="s-rule" x1="0" y1="256" x2="600" y2="256"/><line class="s-rule" x1="0" y1="320" x2="600" y2="320"/><line class="s-rule" x1="0" y1="384" x2="600" y2="384"/><line class="s-rule" x1="0" y1="448" x2="600" y2="448"/><circle class="lp-ring" cx="300" cy="250" r="150"/><circle class="lp-flow" cx="300" cy="250" r="150" style="stroke-dasharray:36 906.5;animation-duration:12.4s"/><rect class="f-brand" x="296" y="96" width="8" height="8"/><rect class="f-brand" x="425.9" y="321" width="8" height="8"/><rect class="f-brand" x="166.1" y="321" width="8" height="8"/><g transform="translate(280 230) scale(1.25)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g><text class="t-mono t-muted t-sm" x="300" y="294" text-anchor="middle">PROMORPHIC</text><text class="t-mono t-muted t-ph" x="300" y="80" text-anchor="middle">01</text><text class="t-mono t-muted t-ph" x="452.4" y="344" text-anchor="middle">02</text><text class="t-mono t-muted t-ph" x="147.6" y="344" text-anchor="middle">03</text><line class="s-hair" x1="0" y1="494" x2="600" y2="494"/><text class="t-mono t-muted t-ph" x="0" y="520">01  AI-FIRST</text><text class="t-sans t-ink lp-lead-ph" x="0" y="554">Agents are the user.</text><text class="t-sans t-muted lp-body-ph" x="0" y="584">Every rule, price and venue is exposed in a</text><text class="t-sans t-muted lp-body-ph" x="0" y="611">form software can read, check and act on.</text><line class="s-hair" x1="0" y1="652" x2="600" y2="652"/><text class="t-mono t-muted t-ph" x="0" y="678">02  CONVERGENCE</text><text class="t-sans t-ink lp-lead-ph" x="0" y="712">Two economies, one layer.</text><text class="t-sans t-muted lp-body-ph" x="0" y="742">The agentic economy and the onchain economy</text><text class="t-sans t-muted lp-body-ph" x="0" y="769">meet where an agent touches an asset.</text><text class="t-sans t-muted lp-body-ph" x="0" y="796">That point is what we build.</text><line class="s-hair" x1="0" y1="837" x2="600" y2="837"/><text class="t-mono t-muted t-ph" x="0" y="863">03  POSITION</text><text class="t-sans t-ink lp-lead-ph" x="0" y="897">Neutral, cross-issuer, agent-native.</text><text class="t-sans t-muted lp-body-ph" x="0" y="927">No issuer will build a layer that eases</text><text class="t-sans t-muted lp-body-ph" x="0" y="954">allocation to a competitor. We will.</text></svg></div>
+      </figure>
     </div>
   </section>
 

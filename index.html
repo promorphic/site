@@ -223,6 +223,19 @@
     .stat .caption { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .stat .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); margin-top: var(--space-1); }
     .section-head { margin-bottom: var(--space-6); }
+    /* Why now: a ledger with two sides, the assets and the agents, and the layer between them */
+    .sides { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+    .side { display: flex; flex-direction: column; }
+    .side-head { align-self: flex-start; font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-brand); background: var(--brand); padding: var(--space-1) var(--space-3); border-radius: var(--radius-sm); margin-bottom: var(--space-3); }
+    .entry { padding: var(--space-5) 0; border-top: var(--border-w) solid var(--hairline); display: flex; flex-direction: column; gap: var(--space-2); }
+    .side-head + .entry { border-top: 0; }
+    .entry .value { font-family: var(--font-mono); font-size: 40px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
+    .entry .caption { font-size: 15px; line-height: 1.55; color: var(--ink-muted); max-width: 36ch; }
+    .entry .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); margin-top: var(--space-1); }
+    .entry-lg { flex: 1; justify-content: center; }
+    .entry-lg .value { font-size: 72px; }
+    .side-mid { display: none; flex-direction: column; align-items: center; gap: var(--space-4); }
+    .side-mid::before, .side-mid::after { content: ""; flex: 1; width: var(--border-w); background: var(--hairline); }
     .section-head .lead { margin-top: var(--space-4); }
     .split { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
     .split-head { margin-bottom: var(--space-6); }
@@ -373,6 +386,9 @@
       .display-lg { line-height: 1.05; }
       .nav { gap: var(--space-6); }
       .grid-3, .grid-6 { grid-template-columns: repeat(3, 1fr); }
+      .sides { grid-template-columns: 5fr auto 5fr; gap: var(--space-8); }
+      .side-mid { display: flex; }
+      .entry-lg .value { font-size: 96px; }
       .parts-grid { grid-template-columns: repeat(3, 1fr); }
       .part { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
       .part:first-child { border-left: 0; }
@@ -862,26 +878,33 @@
         <div class="eyebrow">Why now</div>
         <h2 class="display-lg measure-wide">Both sides of the market have arrived.</h2>
       </div>
-      <div class="grid grid-2 reveal">
-        <div class="stat">
-          <div class="value">$38–46B</div>
-          <div class="caption">tokenized real-world assets on public chains, excluding stablecoins</div>
-          <div class="source">rwa.xyz / Token Terminal, Sept 2026</div>
+      <div class="sides reveal">
+        <div class="side">
+          <div class="side-head">Assets onchain</div>
+          <div class="entry">
+            <div class="value">$38–46B</div>
+            <div class="caption">tokenized real-world assets on public chains, excluding stablecoins</div>
+            <div class="source">rwa.xyz / Token Terminal, Sept 2026</div>
+          </div>
+          <div class="entry">
+            <div class="value">~$9T/mo</div>
+            <div class="caption">value moving on Canton Network</div>
+            <div class="source">Canton self-reported, 2026</div>
+          </div>
+          <div class="entry">
+            <div class="value">$114T</div>
+            <div class="caption">assets custodied at DTCC, whose tokenization service launches Oct 2026</div>
+            <div class="source">DTCC, 2026</div>
+          </div>
         </div>
-        <div class="stat">
-          <div class="value">~$9T/mo</div>
-          <div class="caption">value moving on Canton Network</div>
-          <div class="source">Canton self-reported, 2026</div>
-        </div>
-        <div class="stat">
-          <div class="value">$114T</div>
-          <div class="caption">assets custodied at DTCC, whose tokenization service launches Oct 2026</div>
-          <div class="source">DTCC, 2026</div>
-        </div>
-        <div class="stat">
-          <div class="value">100k+</div>
-          <div class="caption">agentic brokerage accounts opened at Robinhood in two months</div>
-          <div class="source">Robinhood, Jul 2026</div>
+        <div class="side-mid" aria-hidden="true"><svg class="mark" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg></div>
+        <div class="side side-agents">
+          <div class="side-head">Agents at work</div>
+          <div class="entry entry-lg">
+            <div class="value">100k+</div>
+            <div class="caption">agentic brokerage accounts opened at Robinhood in two months</div>
+            <div class="source">Robinhood, Jul 2026</div>
+          </div>
         </div>
       </div>
     </div>

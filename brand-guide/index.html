@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promorphic Brand Guide</title>
+  <meta name="description" content="Promorphic's brand guide: logo, colour, type, emphasis, figures, voice and downloads.">
+  <link rel="canonical" href="https://promorphic.xyz/brand-guide/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:site_name" content="Promorphic">
+  <meta property="og:title" content="Promorphic Brand Guide">
+  <meta property="og:description" content="Logo, colour, type, emphasis, figures, voice and downloads.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://promorphic.xyz/brand-guide/">
+  <meta property="og:image" content="https://promorphic.xyz/brand/og-image.png?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    // The visitor's saved choice, else their system setting. Set before first paint.
+    (function () {
+      var root = document.documentElement, theme = null;
+      root.className = 'js';
+      try { theme = localStorage.getItem('pm-theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <style>
+    /* ── Tokens (Promorphic design system, tokens.json v2: amber has three jobs, text is always neutral) ──
+       The page is one theme at a time, set on <html data-theme>: the visitor's choice, else their system setting. Without JavaScript it follows the system setting. */
+    :root, [data-theme="dark"] {
+      --surface-0: #0b0c0e; --surface-1: #14161a; --surface-2: #1c1f24; --hairline: #2a2e35;
+      --ink: #f2efe8; --ink-muted: #a8a49b; --ink-faint: #8a867e;
+      --brand: #f2b135; --brand-strong: #ffc85a; --on-brand: #14110a;
+      --focus: var(--ink); --overlay: #0b0c0ecc;
+      color-scheme: dark;
+    }
+    [data-theme="light"] {
+      --surface-0: #f7f5f0; --surface-1: #ffffff; --surface-2: #ede9e1; --hairline: #d9d4ca;
+      --ink: #14130f; --ink-muted: #5c5950; --ink-faint: #6e6a60;
+      --brand: #f2b135; --brand-strong: #e0a020; --on-brand: #14110a;
+      --focus: var(--ink); --overlay: #f7f5f0cc;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme]) {
+        --surface-0: #f7f5f0; --surface-1: #ffffff; --surface-2: #ede9e1; --hairline: #d9d4ca;
+        --ink: #14130f; --ink-muted: #5c5950; --ink-faint: #6e6a60;
+        --brand-strong: #e0a020;
+        --focus: var(--ink); --overlay: #f7f5f0cc;
+        color-scheme: light;
+      }
+    }
+    :root {
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+      --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+      --radius-none: 0; --radius-sm: 2px; --radius-md: 4px; --radius-pill: 999px;
+      --measure: 640px; --container: 1200px; --control-h: 48px; --control-h-sm: 36px; --border-w: 1px;
+      --font-sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "Geist Mono", "SF Mono", Menlo, Consolas, monospace;
+      --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+      /* Page-level lengths derived from the tokens above */
+      --header-h: var(--space-8); --gutter: var(--space-4); --section-pad: var(--space-7);
+    }
+
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body { background: var(--surface-0); color: var(--ink); transition: background-color 150ms var(--ease), color 150ms var(--ease); font-family: var(--font-sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; }
+    strong { font-weight: 500; }
+    strong.b { font-weight: 700; }
+    strong.u { font-weight: 700; color: var(--ink); text-decoration: underline; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-skip-ink: none; }
+    /* the amber underline: a claim marked in the brand colour, text stays ink */
+    .u-brand { color: var(--ink); text-decoration: underline; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-skip-ink: none; }
+    .display-lg .u-brand { text-decoration-thickness: 0.06em; text-underline-offset: 0.12em; }
+    /* box headings carry the amber underline too: problem rows, the three parts, the who-it's-for and control cards */
+    .panel h3, .card h3, .part-text h3 { width: -moz-fit-content; width: fit-content; text-decoration: underline; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-skip-ink: none; }
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+    .section { padding: var(--section-pad) 0; border-top: var(--border-w) solid var(--hairline); scroll-margin-top: calc(var(--header-h) + var(--space-6) - var(--section-pad)); }
+    .section-flush { padding-top: 0; border-top: 0; scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+    .section-rule { border-top: var(--border-w) solid var(--hairline); }
+    .measure { max-width: var(--measure); }
+    .measure-wide { max-width: 760px; }
+    .lead { font-size: 20px; line-height: 1.5; letter-spacing: -0.005em; }
+    .muted { color: var(--ink-muted); }
+    p + p { margin-top: var(--space-4); }
+    .skip { position: absolute; left: var(--gutter); top: -100px; z-index: 20; }
+    .skip:focus { top: var(--space-2); }
+
+    /* ── Type ── */
+    .display-xl { font-size: clamp(44px, 7.5vw, 72px); line-height: 1.02; font-weight: 500; letter-spacing: -0.03em; }
+    .display-lg { font-size: clamp(32px, 5vw, 48px); line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; }
+    .heading-md { font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.015em; }
+    .heading-sm { font-size: 20px; line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
+    .eyebrow { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--ink-muted); margin-bottom: var(--space-4); }
+    .eyebrow::after { content: ""; display: inline-block; width: var(--space-6); height: var(--border-w); background: var(--hairline); }
+    .label { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; }
+
+    /* ── Header ── */
+    .header { position: sticky; top: 0; z-index: 10; background: var(--overlay); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: var(--border-w) solid var(--hairline); transition: background-color 150ms var(--ease), border-color 150ms var(--ease), color 150ms var(--ease); }
+    .header .container { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); gap: var(--space-4); }
+    .wordmark { display: inline-flex; align-items: center; gap: var(--space-2); text-decoration: none; font-size: 20px; line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
+    .mark { flex: none; display: block; }
+    .mark .mark-block { fill: var(--ink); transition: fill 150ms var(--ease); }
+    .mark .mark-bar { fill: var(--brand); }
+    .nav { display: none; gap: var(--space-5); }
+    .nav a { text-decoration: none; font-size: 15px; color: var(--ink-muted); transition: color 150ms var(--ease); }
+    .nav a:hover { color: var(--ink); }
+    .header-actions { display: flex; align-items: center; gap: var(--space-4); }
+    /* Theme toggle: a switch, off for the light version and on for the dark one */
+    .theme-switch { flex: none; position: relative; width: 44px; height: 24px; padding: 0; background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-pill); cursor: pointer; transition: background-color 150ms var(--ease), border-color 150ms var(--ease); }
+    .theme-switch:hover { border-color: var(--ink-faint); }
+    .theme-switch-knob { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-pill); background: var(--ink); color: var(--surface-0); transition: transform 150ms var(--ease), background-color 150ms var(--ease), color 150ms var(--ease); }
+    .theme-switch-knob svg { display: block; width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .theme-switch .icon-moon { display: none; }
+    [data-theme="dark"] .theme-switch-knob { transform: translateX(20px); }
+    [data-theme="dark"] .theme-switch .icon-sun { display: none; }
+    [data-theme="dark"] .theme-switch .icon-moon { display: block; }
+
+    /* ── Buttons ── */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); height: var(--control-h); padding: 0 var(--space-5); font-family: var(--font-sans); font-size: 15px; line-height: 1; font-weight: 500; text-decoration: none; border-radius: var(--radius-sm); border: var(--border-w) solid transparent; white-space: nowrap; cursor: pointer; transition: background-color 150ms var(--ease), border-color 150ms var(--ease), color 150ms var(--ease); }
+    .btn-primary { background: var(--brand); color: var(--on-brand); border-color: var(--brand); }
+    .btn-primary:hover { background: var(--brand-strong); border-color: var(--brand-strong); }
+    .btn-secondary { background: transparent; color: var(--ink); border-color: var(--hairline); }
+    .btn-secondary:hover { border-color: var(--ink-faint); background: var(--surface-1); }
+    .btn-sm { height: var(--control-h-sm); padding: 0 var(--space-4); font-size: 14px; }
+    .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+    /* ── Hero: the skyline behind the headline, drifting slowly and fading into the page ── */
+    .hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(600px, calc(100svh - var(--header-h))); padding: var(--space-8) 0 var(--space-7); }
+    .hero .container { position: relative; z-index: 1; }
+    .skyline { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+    .skyline img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: grayscale(1) brightness(.9); transform-origin: 50% 70%; animation: pm-skyline-in 2.4s var(--ease) both, pm-skyline-drift 24s ease-in-out infinite alternate; }
+    [data-theme="light"] .skyline img { filter: grayscale(1) invert(1) brightness(1.04) contrast(.8); }
+    @media (prefers-color-scheme: light) { :root:not([data-theme]) .skyline img { filter: grayscale(1) invert(1) brightness(1.04) contrast(.8); } }
+    /* the photo fades into the page ground at its edges, so it never has a hard edge */
+    .skyline::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, color-mix(in srgb, var(--surface-0) 60%, transparent) 0%, color-mix(in srgb, var(--surface-0) 45%, transparent) 42%, transparent 68%), linear-gradient(to bottom, color-mix(in srgb, var(--surface-0) 40%, transparent) 0%, transparent 35%, transparent 55%, var(--surface-0) 100%); }
+    /* Phones: the photo is taller than the hero and pinned to its top, so the skyline sits down beside the buttons rather than mid-frame */
+    @media (max-width: 719px) {
+      .skyline img { height: 145%; object-position: 50% 0; }
+      .skyline::after { background: linear-gradient(to bottom, color-mix(in srgb, var(--surface-0) 62%, transparent) 0%, color-mix(in srgb, var(--surface-0) 55%, transparent) 45%, color-mix(in srgb, var(--surface-0) 30%, transparent) 78%, var(--surface-0) 100%); }
+    }
+    @keyframes pm-skyline-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pm-skyline-drift { from { transform: scale(1.04) translate(2%, 0); } to { transform: scale(1.14) translate(-2%, -2%); } }
+    /* Headline highlight: one block, so every band is the same length; a band per line, 0.1em apart */
+    .hero h1 { line-height: 1.3; }
+    .hl { display: block; width: -moz-fit-content; width: fit-content; max-width: 100%; padding: 0 0.16em; color: var(--on-brand); background: linear-gradient(to bottom, transparent 0.05em, var(--brand) 0.05em, var(--brand) calc(100% - 0.05em), transparent calc(100% - 0.05em)) 0 0 / 100% 1.3em repeat-y; }
+    .hl br { display: none; }
+    @media (min-width: 480px) { .hl br { display: inline; } }
+    @media (max-width: 479px) {
+      .hero h1 { font-size: min(44px, 10.5vw); line-height: 1.4; }
+      /* on a phone the headline wraps where it must, so each line gets a band of its own width, with a sliver of ground between bands as on desktop */
+      .hl { display: inline; padding: 0 0.16em; background: var(--brand); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    }
+    .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
+    .hero .sub strong { display: block; color: var(--ink); }
+    .hero .sub strong + br { display: none; }
+
+    /* ── Hero figure: streams converge on the layer and fan out to the venues ── */
+    .diagram { margin-top: var(--space-6); padding-top: var(--space-4); }
+    #layer .diagram { margin-top: var(--space-6); }
+    .ig { display: block; width: 100%; height: auto; max-width: 100%; }
+    .ig-streams .s-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
+    .ig-streams .s-stream { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
+    .ig-streams .s-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 28 260; animation: pm-flow 12s linear infinite; }
+    @keyframes pm-flow { from { stroke-dashoffset: 576; } to { stroke-dashoffset: 0; } }
+    .streams.is-paused .s-flow { animation-play-state: paused; }
+    .ig-streams .s-hair { stroke: var(--hairline); stroke-width: 1; }
+    .ig-streams .f-s0 { fill: var(--surface-0); }
+    .ig-streams .f-ink { fill: var(--ink); }
+    .ig-streams .f-brand { fill: var(--brand); }
+    .ig-streams .t-mono { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; }
+    .ig-streams .t-sans { font-family: var(--font-sans); }
+    .ig-streams .t-name { font-size: 30px; font-weight: 500; letter-spacing: -.02em; }
+    .ig-streams .t-sm { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
+    .ig-streams .t-ph { font-size: 17px; letter-spacing: .04em; }
+    .ig-streams .t-ph-layer { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
+    .ig-streams .t-ink { fill: var(--ink); }
+    .ig-streams .t-muted { fill: var(--ink-muted); }
+    .ig-streams .t-brandink { fill: var(--ink-muted); }
+    /* Streams v4 additions: the layer's box is raised (surface-1); waypoints are hollow; tier headings are captions */
+    .ig-streams .f-s1 { fill: var(--surface-1); }
+    .ig-streams .s-node { fill: var(--surface-0); stroke: var(--ink-faint); stroke-width: 1; }
+    .ig-streams .s-rail { stroke: var(--hairline); stroke-width: 1; }
+    .ig-streams .t-faint { fill: var(--ink-faint); }
+    .ig-streams .s-hair-line { stroke: var(--hairline); stroke-width: 1; }
+    .ig-streams .t-onbrand { fill: var(--on-brand); }
+    .ig-streams .agent-mark.on-dark { display: none; }
+    [data-theme="dark"] .ig-streams .agent-mark.on-light { display: none; }
+    [data-theme="dark"] .ig-streams .agent-mark.on-dark { display: inline; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme]) .ig-streams .agent-mark.on-light { display: none; } :root:not([data-theme]) .ig-streams .agent-mark.on-dark { display: inline; } }
+    .ig-streams .agent { cursor: default; }
+    .ig-streams .agent-tip { opacity: 0; transition: opacity 150ms cubic-bezier(0.2,0.7,0.2,1); pointer-events: none; }
+    .ig-streams .agent:hover .agent-tip, .ig-streams .agent:focus .agent-tip { opacity: 1; }
+    [data-theme="dark"] .ig-streams .agent-mark.on-light { display: none; }
+    [data-theme="dark"] .ig-streams .agent-mark.on-dark { display: inline; }
+    .streams-desktop { display: none; }
+    .streams-phone, .streams-phone ~ .diagram-caption { max-width: 480px; margin-left: auto; margin-right: auto; }
+    .diagram-caption { margin-top: var(--space-4); color: var(--ink-faint); text-align: center; }
+
+    /* ── Grids & cards ── */
+    .grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+    .card { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; transition: background-color 150ms var(--ease), border-color 150ms var(--ease); }
+    .card:hover { background: var(--surface-2); border-color: var(--ink-faint); }
+    .card .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
+    .card h3 { color: var(--ink); }
+    .card p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .stat { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+    .stat .value { font-family: var(--font-mono); font-size: 40px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
+    .stat .caption { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .stat .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); margin-top: var(--space-1); }
+    .section-head { margin-bottom: var(--space-5); }
+    /* Why now: a ledger with two sides, the assets and the agents, and the layer between them */
+    .sides { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+    .side { display: flex; flex-direction: column; }
+    .side-head { align-self: flex-start; font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-brand); background: var(--brand); padding: var(--space-1) var(--space-3); border-radius: var(--radius-sm); margin-bottom: var(--space-3); }
+    .entry { padding: var(--space-4) 0; border-top: var(--border-w) solid var(--hairline); display: grid; grid-template-columns: 1fr; row-gap: var(--space-1); }
+    .side-head + .entry { border-top: 0; }
+    .entry .value { font-family: var(--font-mono); font-size: 36px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); margin-bottom: var(--space-1); }
+    .entry .caption { font-size: 15px; line-height: 1.5; color: var(--ink-muted); max-width: 38ch; }
+    .entry .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); }
+    .entry-lg { flex: 1; align-content: center; }
+    .entry-lg .value { font-size: 64px; }
+    /* from 600px each entry is one row: the number on the left, its caption and source beside it */
+    @media (min-width: 600px) {
+      .entry { grid-template-columns: 200px 1fr; column-gap: var(--space-5); align-items: center; }
+      .entry .value { grid-row: 1 / span 2; margin-bottom: 0; }
+      .entry-lg { grid-template-columns: max-content 1fr; }
+    }
+    .side-mid { display: none; flex-direction: column; align-items: center; gap: var(--space-4); }
+    .side-mid::before, .side-mid::after { content: ""; flex: 1; width: var(--border-w); background: var(--hairline); }
+    .section-head .lead { margin-top: var(--space-4); }
+    .split { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+    .split-head { margin-bottom: var(--space-6); }
+    .split .lead + .lead, .split .muted + .lead { margin-top: var(--space-5); }
+    .split h2 + .lead { margin-top: var(--space-4); }
+    /* One panel, three rows: the problem's cases beside its copy rather than beneath it */
+    .panel { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); }
+    .panel .row { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); row-gap: var(--space-2); align-items: baseline; padding: var(--space-5); border-top: var(--border-w) solid var(--hairline); }
+    .panel .row:first-child { border-top: 0; }
+    .panel .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
+    .panel h3 { color: var(--ink); }
+    .panel p { grid-column: 2; font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .footnote { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .footnote strong { color: var(--ink); }
+    /* The analogy: a raised slab like every card, larger type, one highlighted phrase */
+    .analogy { max-width: 920px; margin: var(--space-6) auto 0; padding: var(--space-5); background: var(--surface-1); color: var(--ink); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); text-align: center; text-wrap: balance; font-size: 22px; line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; }
+    /* Highlight, inline: the marker band on a phrase; a band per line when it wraps */
+    .hl-inline { color: var(--on-brand); background: var(--brand); padding: 0.02em 0.16em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+    /* ── The three parts: one figure, three cells, the action's path drawn through all of them ── */
+    .parts-grid { display: grid; grid-template-columns: 1fr; background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; }
+    .part { min-width: 0; border-top: var(--border-w) solid var(--hairline); }
+    .part:first-child { border-top: 0; }
+    .part-glyph { display: block; width: 100%; height: auto; border-bottom: var(--border-w) solid var(--hairline); }
+    .part-text { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5); }
+    .part .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
+    .part p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .pg-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
+    .pg-faint { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
+    .pg-track { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
+    .pg-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 28 260; animation: pg-flow 6s linear infinite; }
+    @keyframes pg-flow { from { stroke-dashoffset: 288; } to { stroke-dashoffset: 0; } }
+    .parts.is-paused .pg-flow { animation-play-state: paused; }
+    .pg-dry { fill: none; stroke: var(--ink-muted); stroke-width: 1.25; stroke-dasharray: 4 6; }
+    .pg-gate { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; }
+    .pg-tick { fill: none; stroke: var(--ink-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pg-src { fill: none; stroke: var(--ink-muted); stroke-width: 2; }
+    .pg-node { fill: var(--brand); }
+    .pg-end { fill: var(--surface-1); stroke: var(--ink-faint); stroke-width: 1; }
+    .pg-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; fill: var(--ink-muted); }
+    .parts .diagram-caption { max-width: none; }
+    @media (min-width: 600px) and (max-width: 959px) {
+      .part { display: grid; grid-template-columns: 300px 1fr; align-items: stretch; }
+      .part-glyph { align-self: center; border-bottom: 0; }
+      .part-text { justify-content: center; border-left: var(--border-w) solid var(--hairline); }
+    }
+
+    /* ── Venue strip: official wordmarks, unmodified, one continuous band on the raised surface, drifting right to left ── */
+    .venues { margin-top: var(--space-6); background: var(--surface-1); border-top: var(--border-w) solid var(--hairline); border-bottom: var(--border-w) solid var(--hairline); padding: var(--space-5) 0; }
+    .marquee { overflow: hidden; }
+    /* six identical sets; the track moves left by exactly one set, so the loop has no seam up to a 5400px window */
+    .marquee-track { display: flex; width: max-content; animation: pm-marquee 40s linear infinite; }
+    .marquee-set { flex: none; display: flex; align-items: center; list-style: none; }
+    .marquee-set li { flex: none; display: flex; align-items: center; padding-right: var(--space-8); }
+    .marquee-set img { display: block; }
+    /* each owner's black wordmark on the light page, its light wordmark on the dark page */
+    .marquee-set .on-dark { display: none; }
+    [data-theme="dark"] .marquee-set .on-light { display: none; }
+    [data-theme="dark"] .marquee-set .on-dark { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) .marquee-set .on-light { display: none; }
+      :root:not([data-theme]) .marquee-set .on-dark { display: block; }
+    }
+    .logo-frame { position: relative; display: block; overflow: hidden; }
+    .logo-frame img { position: absolute; left: -50%; top: 50%; width: 200%; height: auto; transform: translateY(-50%); }
+    @keyframes pm-marquee { from { transform: translateX(0); } to { transform: translateX(calc(-100% / 6)); } }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+
+    /* ── Why ── */
+    .facts { display: grid; grid-template-columns: 1fr; gap: 0; border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); margin-top: var(--space-6); }
+    .fact { padding: var(--space-5); border-top: var(--border-w) solid var(--hairline); }
+    .fact:first-child { border-top: 0; }
+    .fact .k { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-2); }
+    .fact p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    .fact p strong { color: var(--ink); }
+
+    /* Why Promorphic: three facts on one loop */
+    .loop { margin-top: var(--space-6); }
+    .loop-desktop { display: none; }
+    .loop-phone { max-width: 560px; }
+    .loop-cards { gap: var(--space-4); }
+    .ig-loop .lp-ring { fill: none; stroke: var(--ink-faint); stroke-width: 2.5; }
+    .ig-loop .lp-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; animation: pm-loop 14s linear infinite; }
+    @keyframes pm-loop { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1000; } }
+    .ig-loop .lp-arrow { fill: var(--ink-faint); }
+    .ig-loop .lp-leader { fill: none; stroke: var(--ink-faint); stroke-width: 1; }
+    .ig-loop .s-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
+    .ig-loop .s-hair { stroke: var(--hairline); stroke-width: 1; }
+    .ig-loop .t-mono { font-family: var(--font-mono); letter-spacing: .02em; }
+    .ig-loop .t-sm { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
+    .ig-loop .t-ph { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
+    .ig-loop .t-sans { font-family: var(--font-sans); }
+    .ig-loop .lp-lead { font-size: 19px; font-weight: 500; letter-spacing: -.01em; }
+    .ig-loop .lp-body { font-size: 15px; }
+    .ig-loop .lp-lead-ph { font-size: 26px; font-weight: 500; letter-spacing: -.01em; }
+    .ig-loop .lp-body-ph { font-size: 20px; }
+    .ig-loop .t-ink { fill: var(--ink); }
+    .ig-loop .t-muted { fill: var(--ink-muted); }
+    .ig-loop .f-ink { fill: var(--ink); }
+    .ig-loop .f-brand { fill: var(--brand); }
+    @media (min-width: 960px) { .loop-desktop { display: block; } .loop-phone { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .ig-loop .lp-flow { animation: none; stroke-dasharray: none; opacity: .5; } }
+
+    /* Questions: plain answers, one per row */
+    .faq { border-top: var(--border-w) solid var(--hairline); }
+    .faq details { border-bottom: var(--border-w) solid var(--hairline); }
+    .faq summary { display: grid; grid-template-columns: 1fr auto; column-gap: var(--space-4); align-items: baseline; padding: var(--space-4) 0; font-size: 19px; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); cursor: pointer; list-style: none; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-family: var(--font-mono); font-size: 19px; color: var(--ink-muted); }
+    .faq details[open] summary::after { content: "\2212"; }
+    .faq summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+    .faq .answer { margin: 0 0 var(--space-5); font-size: 16px; line-height: 1.6; color: var(--ink-muted); max-width: 68ch; }
+    /* Who it's for as four glyph cells */
+    .pg-shade { fill: var(--ink-faint); opacity: .16; }
+    .pg-block { fill: var(--surface-1); stroke: var(--ink-faint); stroke-width: 1; }
+    .pg-src-fill { fill: var(--brand); animation: pg-blink 4.2s steps(1, end) infinite; }
+    @keyframes pg-blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+    .parts.is-paused .pg-src-fill { animation-play-state: paused; }
+    .pg-slot { fill: none; stroke: var(--ink-faint); stroke-width: 1; }
+    .pg-label-tight { letter-spacing: .06em; }
+    .pg-tag { fill: var(--brand); }
+    .pg-onbrand { fill: var(--on-brand); }
+    .pg-node-c { fill: var(--brand); }
+    .pg-mark.on-dark { display: none; }
+    [data-theme="dark"] .pg-mark.on-light { display: none; }
+    [data-theme="dark"] .pg-mark.on-dark { display: inline; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme]) .pg-mark.on-light { display: none; } :root:not([data-theme]) .pg-mark.on-dark { display: inline; } }
+    /* one agent lit at a time, in order, round and round */
+    .pg-lit { fill: var(--brand); opacity: 0; animation: pg-lit-0 7.5s steps(1, end) infinite; }
+    .pg-lit-frame { fill: none; stroke: var(--brand); stroke-width: 2; }
+    @keyframes pg-lit-0 { 0% { opacity: 1; } 0% { opacity: 1; } 20% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes pg-lit-1 { 0% { opacity: 0; } 20% { opacity: 1; } 40% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes pg-lit-2 { 0% { opacity: 0; } 40% { opacity: 1; } 60% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes pg-lit-3 { 0% { opacity: 0; } 60% { opacity: 1; } 80% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes pg-lit-4 { 0% { opacity: 0; } 80% { opacity: 1; } 100% { opacity: 0; } 100% { opacity: 0; } }
+    .parts.is-paused .pg-lit { animation-play-state: paused; }
+    .pg-hand { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+    .pg-big { font-family: var(--font-mono); font-size: 20px; font-weight: 500; letter-spacing: -.02em; fill: var(--ink); }
+    .pg-ring-flow { animation: pg-ring 14s linear infinite; }
+    @keyframes pg-ring { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1000; } }
+    .parts.is-paused .pg-ring-flow { animation-play-state: paused; }
+    .pg-slot-fill { fill: var(--brand); opacity: 0; animation: pg-fill-0 7s linear infinite; }
+    /* the slots fill one after another and the wallet clears in one go */
+    @keyframes pg-fill-0 { 0%, 12% { opacity: 0; } 15%, 88% { opacity: 1; } 91%, 100% { opacity: 0; } }
+    @keyframes pg-fill-1 { 0%, 34% { opacity: 0; } 37%, 88% { opacity: 1; } 91%, 100% { opacity: 0; } }
+    @keyframes pg-fill-2 { 0%, 56% { opacity: 0; } 59%, 88% { opacity: 1; } 91%, 100% { opacity: 0; } }
+    .parts.is-paused .pg-slot-fill { animation-play-state: paused; }
+    .who-grid .part { display: flex; flex-direction: column; }
+    .who-br { display: none; }
+    @media (min-width: 720px) { .who-br { display: inline; } }
+    .who-grid .part-text { order: 0; border-bottom: var(--border-w) solid var(--hairline); }
+    .who-grid .part-glyph { order: 1; border-bottom: 0; }
+    @media (min-width: 720px) { .parts-grid.who-grid { grid-template-columns: repeat(2, 1fr); } .who-grid .part { display: block; border-left: 0; border-top: var(--border-w) solid var(--hairline); } .who-grid .part:nth-child(-n+2) { border-top: 0; } .who-grid .part:nth-child(2n) { border-left: var(--border-w) solid var(--hairline); } .who-grid .part-glyph { border-bottom: var(--border-w) solid var(--hairline); } .who-grid .part-text { border-left: 0; border-bottom: 0; } }
+    @media (min-width: 960px) { .parts-grid.who-grid { grid-template-columns: repeat(4, 1fr); } .parts-grid.who-grid .part { display: block; border-top: 0; border-left: var(--border-w) solid var(--hairline); } .parts-grid.who-grid .part:first-child { border-left: 0; } }
+    /* ── Closing ── */
+    .closing { text-align: center; padding: var(--space-8) 0; border-top: var(--border-w) solid var(--hairline); }
+    .closing .actions { justify-content: center; }
+    .closing .sub { margin-top: var(--space-4); color: var(--ink-muted); }
+
+    /* ── Footer ── */
+    .footer { border-top: var(--border-w) solid var(--hairline); padding: var(--space-6) 0; }
+    .footer .container { display: flex; flex-direction: column; gap: var(--space-4); }
+    .footer .links { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+    .footer .links a { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-muted); text-decoration: none; transition: color 150ms var(--ease); }
+    .footer .links a:hover { color: var(--ink); }
+    .footer .legal { color: var(--ink-faint); }
+    /* footnotes: one quiet line above the footer row, in the same faint mono as the copyright */
+    .footer .container.footnotes { display: block; padding-bottom: var(--space-5); margin-bottom: var(--space-5); border-bottom: var(--border-w) solid var(--hairline); }
+    .footer .footnote { margin: 0; padding: 0; border: 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; letter-spacing: 0.02em; color: var(--ink-faint); max-width: none; scroll-margin-top: var(--header-h); }
+    .fn-ref { color: var(--brand); text-decoration: none; margin-left: 2px; }
+
+    /* ── Reveal: a 300ms fade, nothing moves. Content stays visible without JavaScript. ── */
+    .js .reveal { opacity: 0; transition: opacity 300ms var(--ease); }
+    .js .reveal.in { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transition: none; }
+      body, .header, .mark .mark-block, .theme-switch, .theme-switch-knob { transition: none; }
+      .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
+      .pg-flow { animation: none; stroke-dasharray: none; }
+      .skyline img { animation: none; }
+      .marquee-track { animation: none; width: auto; justify-content: center; padding: 0 var(--gutter); }
+      .marquee-set { flex: 0 1 auto; flex-wrap: wrap; justify-content: center; row-gap: var(--space-5); }
+      .marquee-set li { padding: 0 var(--space-5); }
+      .marquee-set[aria-hidden] { display: none; }
+    }
+
+    /* ── 720 and up: desktop spacing, two-up grids ── */
+    @media (min-width: 720px) {
+      :root { --gutter: var(--space-6); --section-pad: var(--space-8); }
+      .heading-md { font-size: 28px; }
+      .hero { padding: var(--space-9) 0 var(--space-8); }
+      .grid { gap: var(--space-5); }
+      .grid-2, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .panel .row { padding: var(--space-5) var(--space-6); }
+      .card, .stat, .part-text { padding: var(--space-6); }
+      .analogy { margin-top: var(--space-7); padding: var(--space-6) var(--space-7); font-size: 28px; }
+      .split { grid-template-columns: 5fr 7fr; gap: var(--space-7); align-items: start; }
+      /* the right column starts level with the headline, not with the eyebrow above it */
+      .split > .reveal:last-child { padding-top: 40px; }
+      .split > .panel:last-child { padding-top: 0; margin-top: 40px; }
+      .footer .container { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+    @media (min-width: 768px) {
+      .nav { display: flex; }
+    }
+
+    /* ── 960 and up: full type scale, three-up grids ── */
+    @media (min-width: 960px) {
+      .display-xl { line-height: 1; }
+      .display-lg { line-height: 1.05; }
+      .nav { gap: var(--space-6); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .sides { grid-template-columns: 5fr auto 5fr; gap: var(--space-7); }
+      .side-mid { display: flex; }
+      .entry-lg .value { font-size: 72px; }
+      .parts-grid { grid-template-columns: repeat(3, 1fr); }
+      .part { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
+      .part:first-child { border-left: 0; }
+      .split { gap: var(--space-8); }
+      .facts { grid-template-columns: repeat(3, 1fr); }
+      .fact { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
+      .fact:first-child { border-left: 0; }
+    }
+
+    /* ── 1080 and up: four-up grids, the horizontal figure ── */
+    @media (min-width: 1080px) {
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+      .streams-desktop { display: block; }
+      .streams-phone { display: none; }
+      .streams-phone ~ .diagram-caption { max-width: none; }
+    }
+  </style>
+  <style>
+    /* ── Brand guide page ── */
+    .bg-cover { height: 220px; overflow: hidden; position: relative; border-bottom: var(--border-w) solid var(--hairline); }
+    .bg-cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: grayscale(1) brightness(.9); }
+    [data-theme="light"] .bg-cover img { filter: grayscale(1) invert(1) contrast(.8) brightness(1.05); }
+    @media (prefers-color-scheme: light) { :root:not([data-theme]) .bg-cover img { filter: grayscale(1) invert(1) contrast(.8) brightness(1.05); } }
+    .bg-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--surface-0)); }
+    .bg { max-width: 880px; margin: 0 auto; padding: 0 var(--gutter); }
+    .bg-intro { display: grid; grid-template-columns: 1fr; gap: var(--space-6); padding: var(--space-7) 0; align-items: center; }
+    .bg-tile { aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; border: var(--border-w) solid var(--hairline); }
+    .bg-tile svg { width: 40%; height: auto; }
+    .bg-tile.t-dark { background: #0b0c0e; } .bg-tile.t-dark .mark-block { fill: #f2efe8; }
+    .bg-tile.t-light { background: #f7f5f0; } .bg-tile.t-light .mark-block { fill: #14130f; }
+    .bg-tile.t-amber { background: #f2b135; border-color: #f2b135; } .bg-tile.t-amber .mark-block, .bg-tile.t-amber .mark-bar { fill: #14110a; }
+    .bg-tile.t-white { background: #ffffff; } .bg-tile.t-white .mark-block, .bg-tile.t-white .mark-bar { fill: #000000; }
+    .bg-tile.t-black { background: #000000; } .bg-tile.t-black .mark-block, .bg-tile.t-black .mark-bar { fill: #ffffff; }
+    .bg-tile.wide { aspect-ratio: 2.4; }
+    .bg-tile.wide img { width: 62%; height: auto; display: block; }
+    .bg-section { padding: var(--space-7) 0; border-top: var(--border-w) solid var(--hairline); }
+    .bg-section > h2 { margin-bottom: var(--space-4); }
+    .bg-section > .lead { margin-bottom: var(--space-6); max-width: 64ch; }
+    .bg-section h3 { margin: var(--space-6) 0 var(--space-3); }
+    .bg-section ul { padding-left: 1.2em; color: var(--ink-muted); }
+    .bg-section li + li { margin-top: var(--space-2); }
+    .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+    .dl { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-5); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); margin-top: var(--space-5); }
+    .dl:hover { background: var(--surface-2); border-color: var(--ink-faint); }
+    .dl .dl-name { font-weight: 500; }
+    .dl .dl-meta { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); margin-left: auto; white-space: nowrap; }
+    .sw-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+    .sw { border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; background: var(--surface-1); }
+    .sw-chip { height: 72px; border-bottom: var(--border-w) solid var(--hairline); }
+    .sw-name { font-family: var(--font-mono); font-size: 13px; padding: var(--space-3) var(--space-4) 0; color: var(--ink); }
+    .sw-hex { font-family: var(--font-mono); font-size: 12px; padding: 2px var(--space-4) 0; color: var(--ink-muted); }
+    .sw-job { font-size: 14px; line-height: 1.45; padding: var(--space-2) var(--space-4) var(--space-4); color: var(--ink-muted); }
+    .spec { display: grid; grid-template-columns: 1fr; border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; background: var(--surface-1); }
+    .spec + .spec { margin-top: var(--space-4); }
+    .spec-about { padding: var(--space-5); }
+    .spec-about .idx { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); }
+    .spec-about h3 { margin: var(--space-2) 0 var(--space-3); }
+    .spec-about p { font-size: 15px; color: var(--ink-muted); }
+    .spec-sample { padding: var(--space-5); background: var(--surface-2); border-top: var(--border-w) solid var(--hairline); }
+    .spec-sample .big { font-size: 64px; line-height: 1; letter-spacing: -.03em; font-weight: 500; }
+    .spec-sample .abc { margin-top: var(--space-4); font-size: 18px; line-height: 1.5; word-break: break-word; }
+    .spec-sample.mono { font-family: var(--font-mono); }
+    .spec-sample.mono .big { font-size: 48px; letter-spacing: -.02em; }
+    .scale { width: 100%; border-collapse: collapse; font-size: 15px; }
+    .scale td, .scale th { text-align: left; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-top: var(--border-w) solid var(--hairline); vertical-align: top; }
+    .scale th { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); font-weight: 500; }
+    .scale td:first-child { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); white-space: nowrap; }
+    .demo { padding: var(--space-5); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); }
+    .demo + .demo { margin-top: var(--space-4); }
+    .demo .cap { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-3); }
+    .demo .hl { font-size: 32px; line-height: 1.3; letter-spacing: -.02em; font-weight: 500; }
+    .voice { width: 100%; border-collapse: collapse; font-size: 15px; }
+    .voice th { text-align: left; font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); font-weight: 500; padding: 0 var(--space-4) var(--space-3) 0; }
+    .voice td { padding: var(--space-3) var(--space-4) var(--space-3) 0; border-top: var(--border-w) solid var(--hairline); color: var(--ink-muted); vertical-align: top; width: 50%; }
+    .voice td:first-child { color: var(--ink); }
+    .fig-demo .parts-grid { grid-template-columns: repeat(2, 1fr); }
+    .fig-demo .part { display: block; border-top: 0; border-left: var(--border-w) solid var(--hairline); }
+    .fig-demo .part:first-child { border-left: 0; }
+    .fig-demo .part-glyph { border-bottom: 0; }
+    .links-row { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+    .toc { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-5); }
+    .toc a { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--ink-muted); text-decoration: none; }
+    .toc a:hover { color: var(--ink); }
+    @media (min-width: 720px) {
+      .bg-cover { height: 320px; }
+      .bg-intro { grid-template-columns: 1fr 280px; }
+      .tiles { grid-template-columns: repeat(3, 1fr); }
+      .sw-grid { grid-template-columns: repeat(3, 1fr); }
+      .spec { grid-template-columns: 1fr 1fr; }
+      .spec-sample { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
+    }
+    @media print {
+      .header, .footer, .theme-switch, .toc, .links-row { display: none !important; }
+      .bg-cover { height: 160px; }
+      .bg-section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip btn btn-secondary btn-sm" href="#main">Skip to content</a>
+<header class="header">
+  <div class="container">
+    <a class="wordmark" href="/" aria-label="Promorphic, home"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg><span>Promorphic</span></a>
+    <div class="links-row" style="margin:0;align-items:center">
+      <a class="btn btn-secondary btn-sm" href="/">Site</a>
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Dark version" hidden>
+        <span class="theme-switch-knob" aria-hidden="true">
+          <svg class="icon-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.75"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.05 1.05M11.55 11.55l1.05 1.05M3.4 12.6l1.05-1.05M11.55 4.45l1.05-1.05"/></svg>
+          <svg class="icon-moon" viewBox="0 0 16 16"><path d="M13.25 9.6A5.6 5.6 0 0 1 6.4 2.75a5.6 5.6 0 1 0 6.85 6.85z"/></svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="bg-cover" aria-hidden="true"><img src="/brand/skyline-2400.jpg" alt="" width="2400" height="1350"></div>
+  <div class="bg">
+    <div class="bg-intro">
+      <div>
+        <h1 class="display-lg">Promorphic brand guide</h1>
+        <p class="lead" style="margin-top:var(--space-4)">Promorphic is agentic infrastructure for tokenized assets: one layer that makes many different things look the same to an agent. The brand works the same way. Very few materials, used the same way everywhere, so nobody has to work out what a colour or a weight means.</p>
+        <nav class="toc" aria-label="On this page">
+          <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Typography</a><a href="#emphasis">Emphasis</a><a href="#figures">Figures</a><a href="#voice">Voice</a><a href="#marks">Third-party marks</a><a href="#downloads">Downloads</a>
+        </nav>
+      </div>
+      <div class="bg-tile t-dark"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg></div>
+    </div>
+
+    <section class="bg-section" id="logo">
+      <h2 class="display-lg">Logo</h2>
+      <p class="lead">Two blocks and a bar. The blocks are ink, the colour of text on that ground; the bar is amber and is the only part that never changes. The wordmark sets the name in Schibsted Grotesk 500 beside the mark, at cap height.</p>
+      <div class="tiles"><div class="bg-tile t-light"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg></div><div class="bg-tile t-dark"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg></div><div class="bg-tile t-amber"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg></div><div class="bg-tile wide t-light"><img src="/brand/logo/promorphic-wordmark-on-light.svg" alt="Promorphic wordmark, dark on light"></div><div class="bg-tile wide t-dark"><img src="/brand/logo/promorphic-wordmark-on-dark.svg" alt="Promorphic wordmark, light on dark"></div><div class="bg-tile wide t-white"><img src="/brand/logo/promorphic-wordmark-mono-black.svg" alt="Promorphic wordmark, one ink"></div></div>
+      <h3 class="heading-sm">Rules</h3>
+      <ul>
+        <li>Use the files. Never redraw the mark, and never set the name in a different face.</li>
+        <li>Clear space of one bar-height on every side. Minimum size: 16px for the mark, 96px for the wordmark; below that use the tile.</li>
+        <li>On light grounds the blocks are <span class="label">#14130f</span>; on dark grounds <span class="label">#f2efe8</span>. The bar stays <span class="label">#f2b135</span>.</li>
+        <li>Where only one ink is allowed (print, embossing, third-party listings), use the mono black or mono white files: the bar takes the ink too.</li>
+        <li>Never recolour the bar, add a shadow, an outline, a gradient or a glow, rotate the mark, or place it on a photograph without the tile behind it.</li>
+      </ul>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · 38 KB</span></a>
+    </section>
+
+    <section class="bg-section" id="colour">
+      <h2 class="display-lg">Colour</h2>
+      <p class="lead">One hue. Amber <span class="label">#f2b135</span> is the layer: it means Promorphic and the way to reach it. Everything else is neutral, and the neutrals flip between a light and a dark version of the same page. Text is never coloured.</p>
+      <h3 class="heading-sm">Amber, the one colour</h3><div class="sw-grid"><div class="sw"><div class="sw-chip" style="background:#f2b135"></div><div class="sw-name">brand</div><div class="sw-hex">#f2b135</div><div class="sw-job">the mark's bar, the primary button, the highlight band, the amber underline, the flow in every figure</div></div><div class="sw"><div class="sw-chip" style="background:#e0a020"></div><div class="sw-name">brand-strong</div><div class="sw-hex">#e0a020 / #ffc85a</div><div class="sw-job">primary button hover (light / dark)</div></div><div class="sw"><div class="sw-chip" style="background:#14110a"></div><div class="sw-name">on-brand</div><div class="sw-hex">#14110a</div><div class="sw-job">text on amber</div></div></div><h3 class="heading-sm">Light neutrals</h3><div class="sw-grid"><div class="sw"><div class="sw-chip" style="background:#f7f5f0"></div><div class="sw-name">surface-0</div><div class="sw-hex">#f7f5f0</div><div class="sw-job">the page</div></div><div class="sw"><div class="sw-chip" style="background:#ffffff"></div><div class="sw-name">surface-1</div><div class="sw-hex">#ffffff</div><div class="sw-job">anything raised</div></div><div class="sw"><div class="sw-chip" style="background:#ede9e1"></div><div class="sw-name">surface-2</div><div class="sw-hex">#ede9e1</div><div class="sw-job">hover, insets</div></div><div class="sw"><div class="sw-chip" style="background:#d9d4ca"></div><div class="sw-name">hairline</div><div class="sw-hex">#d9d4ca</div><div class="sw-job">every border and rule</div></div><div class="sw"><div class="sw-chip" style="background:#14130f"></div><div class="sw-name">ink</div><div class="sw-hex">#14130f</div><div class="sw-job">headlines, body, emphasis</div></div><div class="sw"><div class="sw-chip" style="background:#5c5950"></div><div class="sw-name">ink-muted</div><div class="sw-hex">#5c5950</div><div class="sw-job">supporting copy, labels</div></div><div class="sw"><div class="sw-chip" style="background:#6e6a60"></div><div class="sw-name">ink-faint</div><div class="sw-hex">#6e6a60</div><div class="sw-job">captions, legal, figure lines</div></div></div><h3 class="heading-sm">Dark neutrals</h3><div class="sw-grid"><div class="sw"><div class="sw-chip" style="background:#0b0c0e"></div><div class="sw-name">surface-0</div><div class="sw-hex">#0b0c0e</div><div class="sw-job">the page</div></div><div class="sw"><div class="sw-chip" style="background:#14161a"></div><div class="sw-name">surface-1</div><div class="sw-hex">#14161a</div><div class="sw-job">anything raised</div></div><div class="sw"><div class="sw-chip" style="background:#1c1f24"></div><div class="sw-name">surface-2</div><div class="sw-hex">#1c1f24</div><div class="sw-job">hover, insets</div></div><div class="sw"><div class="sw-chip" style="background:#2a2e35"></div><div class="sw-name">hairline</div><div class="sw-hex">#2a2e35</div><div class="sw-job">every border and rule</div></div><div class="sw"><div class="sw-chip" style="background:#f2efe8"></div><div class="sw-name">ink</div><div class="sw-hex">#f2efe8</div><div class="sw-job">headlines, body, emphasis</div></div><div class="sw"><div class="sw-chip" style="background:#a8a49b"></div><div class="sw-name">ink-muted</div><div class="sw-hex">#a8a49b</div><div class="sw-job">supporting copy, labels</div></div><div class="sw"><div class="sw-chip" style="background:#8a867e"></div><div class="sw-name">ink-faint</div><div class="sw-hex">#8a867e</div><div class="sw-job">captions, legal, figure lines</div></div></div>
+      <h3 class="heading-sm">Where amber goes</h3>
+      <ul>
+        <li>The bar in the mark, and the same bar in motion as the flow through every figure.</li>
+        <li>The primary button, one per view.</li>
+        <li>The highlight band behind one phrase, and the amber underline under one claim.</li>
+        <li>Nowhere else: never text, never a border, never a tinted background, never a hover colour, never decoration.</li>
+      </ul>
+    </section>
+
+    <section class="bg-section" id="type">
+      <h2 class="display-lg">Typography</h2>
+      <p class="lead">Two faces, both open source. Schibsted Grotesk for everything a person reads; Geist Mono for everything a machine would.</p>
+      <div class="spec">
+        <div class="spec-about"><div class="idx">Primary type</div><h3 class="heading-md">Schibsted Grotesk</h3><p>Headlines at weight 500 with tight tracking; body at 400, 17px, on a 640px measure. Weight 700 is reserved for the bold claims that carry the amber underline. Sentence case everywhere except card headings, which take title case.</p></div>
+        <div class="spec-sample"><div class="big">Aa</div><div class="abc">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>0 1 2 3 4 5 6 7 8 9</div></div>
+      </div>
+      <div class="spec">
+        <div class="spec-about"><div class="idx">Secondary type</div><h3 class="heading-md">Geist Mono</h3><p>Eyebrows, labels, indices, stat values, figure labels, code and the legal line. Uppercase lives only here, at 12px with 0.14em tracking, always in ink-muted. Stat values use tabular figures.</p></div>
+        <div class="spec-sample mono"><div class="big">Aa</div><div class="abc">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>0 1 2 3 4 5 6 7 8 9</div></div>
+      </div>
+      <h3 class="heading-sm">Scale</h3>
+      <table class="scale">
+        <tr><th>Token</th><th>Size</th><th>Use</th></tr>
+        <tr><td>display-xl</td><td>44 to 72px, 500, −0.03em</td><td>the hero headline</td></tr>
+        <tr><td>display-lg</td><td>32 to 48px, 500, −0.025em</td><td>section headlines</td></tr>
+        <tr><td>heading-md</td><td>24 to 28px, 500</td><td>card and cell headings</td></tr>
+        <tr><td>lead</td><td>20px, 400</td><td>the first paragraph of a section</td></tr>
+        <tr><td>body</td><td>17px, 400, 1.6</td><td>running copy</td></tr>
+        <tr><td>eyebrow / label</td><td>12 to 13px mono</td><td>section labels, indices, captions, legal</td></tr>
+      </table>
+      <div class="links-row">
+        <a class="btn btn-secondary btn-sm" href="https://fonts.google.com/specimen/Schibsted+Grotesk" target="_blank" rel="noopener noreferrer">Schibsted Grotesk on Google Fonts</a>
+        <a class="btn btn-secondary btn-sm" href="https://fonts.google.com/specimen/Geist+Mono" target="_blank" rel="noopener noreferrer">Geist Mono on Google Fonts</a>
+      </div>
+    </section>
+
+    <section class="bg-section" id="emphasis">
+      <h2 class="display-lg">Emphasis</h2>
+      <p class="lead">A ladder with three rungs and nothing above it. Everything you might once have set in coloured text, italics or a tinted box uses one of these.</p>
+      <div class="demo"><div class="cap">1 · The highlight band, for the one phrase a section hinges on</div><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></div>
+      <div class="demo"><div class="cap">2 · The amber underline, bold, for the claim a section makes</div><p class="lead"><strong class="b u-brand">Promorphic is the connective tissue.</strong></p></div>
+      <div class="demo"><div class="cap">3 · Weight, for the words a sentence hinges on</div><p class="lead muted"><strong>The universal layer that connects agents to assets.</strong> Connect once and an agent can act on any tokenized asset.</p></div>
+      <ul style="margin-top:var(--space-5)">
+        <li>At most one band and one underline per section. Never both in the same paragraph.</li>
+        <li>Box headings carry the amber underline at their own weight, as the one mark that says "this is a heading".</li>
+        <li>Tags, the amber blocks with dark uppercase text, name a tier or a side of a figure: "AI agents", "Assets onchain". Never a button.</li>
+      </ul>
+    </section>
+
+    <section class="bg-section" id="figures">
+      <h2 class="display-lg">Figures</h2>
+      <p class="lead">No icons and no illustrations. Every figure is drawn from one kit: a ruled hairline ground, ink-faint lines for everything that is possible, one amber line for what actually happens, small amber squares where it enters or leaves, and mono labels in ink-muted.</p>
+      <figure class="parts fig-demo"><div class="parts-grid"><div class="part"><svg class="part-glyph" viewBox="0 0 360 200" role="img" aria-label="A 24-hour ring with an hour hand turning: onchain markets and 24/7 agents."><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><circle class="pg-track" cx="180" cy="100" r="66"/><circle class="pg-flow pg-ring-flow" cx="180" cy="100" r="66" pathLength="1000" style="stroke-dasharray:70 430"/><path class="pg-gate" d="M180.0 34.0 L180.0 41.0"/><path class="pg-gate" d="M197.1 36.2 L196.0 40.1"/><path class="pg-gate" d="M213.0 42.8 L211.0 46.3"/><path class="pg-gate" d="M226.7 53.3 L223.8 56.2"/><path class="pg-gate" d="M237.2 67.0 L233.7 69.0"/><path class="pg-gate" d="M243.8 82.9 L239.9 84.0"/><path class="pg-gate" d="M246.0 100.0 L239.0 100.0"/><path class="pg-gate" d="M243.8 117.1 L239.9 116.0"/><path class="pg-gate" d="M237.2 133.0 L233.7 131.0"/><path class="pg-gate" d="M226.7 146.7 L223.8 143.8"/><path class="pg-gate" d="M213.0 157.2 L211.0 153.7"/><path class="pg-gate" d="M197.1 163.8 L196.0 159.9"/><path class="pg-gate" d="M180.0 166.0 L180.0 159.0"/><path class="pg-gate" d="M162.9 163.8 L164.0 159.9"/><path class="pg-gate" d="M147.0 157.2 L149.0 153.7"/><path class="pg-gate" d="M133.3 146.7 L136.2 143.8"/><path class="pg-gate" d="M122.8 133.0 L126.3 131.0"/><path class="pg-gate" d="M116.2 117.1 L120.1 116.0"/><path class="pg-gate" d="M114.0 100.0 L121.0 100.0"/><path class="pg-gate" d="M116.2 82.9 L120.1 84.0"/><path class="pg-gate" d="M122.8 67.0 L126.3 69.0"/><path class="pg-gate" d="M133.3 53.3 L136.2 56.2"/><path class="pg-gate" d="M147.0 42.8 L149.0 46.3"/><path class="pg-gate" d="M162.9 36.2 L164.0 40.1"/><text class="pg-label" x="180.0" y="23.0" text-anchor="middle">00</text><text class="pg-label" x="261.0" y="104.0" text-anchor="middle">06</text><text class="pg-label" x="180.0" y="185.0" text-anchor="middle">12</text><text class="pg-label" x="99.0" y="104.0" text-anchor="middle">18</text><line class="pg-hand" x1="180" y1="70" x2="180" y2="43"><animateTransform attributeName="transform" type="rotate" from="102.6 180 100" to="462.6 180 100" dur="14s" repeatCount="indefinite"/></line><text class="pg-big" x="180" y="107" text-anchor="middle">24/7</text><text class="pg-label" x="16" y="24">ONCHAIN MARKETS</text><text class="pg-label" x="344" y="186" text-anchor="end">24/7 AGENTS</text></svg><div class="part-text"><div class="idx">Example</div><h3 class="heading-md">Around the clock</h3><p>From the "Who it's for" figure: the market as a 24-hour ring, the amber traffic never stopping, an ink hour hand keeping time with it.</p></div></div><div class="part"><svg class="part-glyph" viewBox="0 0 360 200" role="img" aria-label="Three tokenized assets, OUSG, BUIDL and ACRED, stream into an agentic wallet and fill it, one slot at a time."><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-track" d="M100 60 C160.7 60 183.7 100 244 100"><animate attributeName="d" values="M100 60 C160.7 60 183.7 100 244 100;M100 60 C160.7 44 183.7 100 244 100;M100 60 C160.7 60 183.7 100 244 100" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path><path class="pg-flow" d="M100 60 C160.7 60 183.7 100 244 100" style="animation-delay:0.0s"><animate attributeName="d" values="M100 60 C160.7 60 183.7 100 244 100;M100 60 C160.7 44 183.7 100 244 100;M100 60 C160.7 60 183.7 100 244 100" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path><path class="pg-track" d="M100 100 C160.7 100 183.7 100 244 100"></path><path class="pg-flow" d="M100 100 C160.7 100 183.7 100 244 100" style="animation-delay:-2.1s"></path><path class="pg-track" d="M100 140 C160.7 140 183.7 100 244 100"><animate attributeName="d" values="M100 140 C160.7 140 183.7 100 244 100;M100 140 C160.7 156 183.7 100 244 100;M100 140 C160.7 140 183.7 100 244 100" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path><path class="pg-flow" d="M100 140 C160.7 140 183.7 100 244 100" style="animation-delay:0.0s"><animate attributeName="d" values="M100 140 C160.7 140 183.7 100 244 100;M100 140 C160.7 156 183.7 100 244 100;M100 140 C160.7 140 183.7 100 244 100" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path><rect class="pg-src" x="28" y="54" width="12" height="12"/><rect class="pg-src-fill" x="28" y="54" width="12" height="12" style="animation-delay:0.0s"/><text class="pg-label" x="48" y="64">$OUSG</text><rect class="pg-src" x="28" y="94" width="12" height="12"/><rect class="pg-src-fill" x="28" y="94" width="12" height="12" style="animation-delay:-1.4s"/><text class="pg-label" x="48" y="104">$BUIDL</text><rect class="pg-src" x="28" y="134" width="12" height="12"/><rect class="pg-src-fill" x="28" y="134" width="12" height="12" style="animation-delay:-2.8s"/><text class="pg-label" x="48" y="144">$ACRED</text><rect class="pg-block" x="244" y="44" width="100" height="110" rx="4"/><path class="pg-gate" d="M244 62 H344"/><text class="pg-label pg-label-tight" x="294" y="57" text-anchor="middle">AGENTIC WALLET</text><rect class="pg-node" x="240" y="96" width="8" height="8"/><rect class="pg-slot" x="256" y="74" width="76" height="14" rx="1"/><rect class="pg-slot-fill" x="256" y="74" width="76" height="14" rx="1" style="animation-name:pg-fill-0"/><rect class="pg-slot" x="256" y="98" width="76" height="14" rx="1"/><rect class="pg-slot-fill" x="256" y="98" width="76" height="14" rx="1" style="animation-name:pg-fill-1"/><rect class="pg-slot" x="256" y="122" width="76" height="14" rx="1"/><rect class="pg-slot-fill" x="256" y="122" width="76" height="14" rx="1" style="animation-name:pg-fill-2"/></svg><div class="part-text"><div class="idx">Example</div><h3 class="heading-md">The agentic wallet</h3><p>Three tokens stream into a wallet on the hero figure's swaying curves; the slots fill in turn. Real names, no icons.</p></div></div></div></figure>
+      <ul style="margin-top:var(--space-5)">
+        <li>Motion is the layer at work: amber flow along a path, a gentle sway of the lines, a dash travelling a ring. Nothing else moves, and everything stops under reduced motion.</li>
+        <li>Third-party marks appear only where they say where an agent can act: agent marks in their own colours on small tiles, platform and chain wordmarks as their owners publish them.</li>
+        <li>The one photograph is the Lower Manhattan skyline behind the hero, treated as ink: greyscale, faded into the page, inverted in the light version.</li>
+      </ul>
+    </section>
+
+    <section class="bg-section" id="voice">
+      <h2 class="display-lg">Voice</h2>
+      <p class="lead">Wall Street restraint, with one idea per section that makes a reader lean in. State it. Verbs carry the page: discover, hold, move, redeem. Continuity, not disruption: we are not replacing markets, we are letting software take part in them.</p>
+      <div class="demo"><div class="cap">Tagline</div><p class="heading-md" style="font-size:28px">Agentic Infrastructure For Tokenized Assets.</p><p class="muted" style="margin-top:var(--space-3)">Title case, with the full stop. Beneath it, always: <strong>The universal layer that connects agents to assets.</strong></p></div>
+      <h3 class="heading-sm">Words</h3>
+      <table class="voice"><tr><th>Use</th><th>Avoid</th></tr><tr><td>onchain, tokenized asset, venue, issuer</td><td>crypto, web3, DeFi, token (alone)</td></tr><tr><td>agent, owner, mandate, limits</td><td>bot, AI-powered, autonomous (without a control next to it)</td></tr><tr><td>desk, book, collateral, cutoff, settlement</td><td>ecosystem, solution, platform, suite</td></tr><tr><td>connects, reaches, clears, settles</td><td>unlock, seamless, revolutionary, next-generation, empower</td></tr></table>
+      <ul style="margin-top:var(--space-5)">
+        <li>Write "onchain" as one word. Say "the agentic and onchain economies", never "the tokenization economy": the vision is the whole onchain economy.</li>
+        <li>Every line that says what an agent can do is a claim about the product. It has to be true on the day a reader tests it.</li>
+        <li>Numbers are other people's, with a source and a date, and they sit near the end of the page, never at the top.</li>
+      </ul>
+    </section>
+
+    <section class="bg-section" id="marks">
+      <h2 class="display-lg">Third-party marks</h2>
+      <p class="lead">Logos and names of agents, platforms, chains, institutions and tokens identify where an agent can act through Promorphic. They do not imply a partnership, an endorsement or a live integration, and they remain the property of their owners.</p>
+      <ul>
+        <li>Use each owner's own files, unaltered beyond the light/dark pair they publish. Sources and dates are recorded beside every file in the site repository.</li>
+        <li>Never put a third-party mark in amber, in a tag or next to the word "partner".</li>
+        <li>Every page that shows them carries the footnote above in its footer.</li>
+      </ul>
+    </section>
+
+    <section class="bg-section" id="downloads">
+      <h2 class="display-lg">Downloads</h2>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · 38 KB</span></a>
+      <a class="dl" href="/brand-guide/promorphic-brand-guide.pdf"><span aria-hidden="true">↓</span><span class="dl-name">Promorphic brand guide (.pdf)</span><span class="dl-meta">this page, printed</span></a>
+      <a class="dl" href="/brand/og-image.png"><span aria-hidden="true">↓</span><span class="dl-name">Share card (1200 × 630)</span><span class="dl-meta">PNG</span></a>
+      <div class="links-row">
+        <a class="btn btn-primary" href="/">Landing page</a>
+        <a class="btn btn-secondary" href="mailto:founders@promorphic.xyz">Ask about usage</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a class="wordmark" href="/" aria-label="Promorphic, home"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg><span>Promorphic</span></a>
+    <div class="links">
+      <a href="mailto:founders@promorphic.xyz">founders@promorphic.xyz</a>
+      <a href="https://x.com/_promorphic" target="_blank" rel="noopener noreferrer">@_promorphic</a>
+    </div>
+    <p class="label legal">&copy; 2026 Promorphic Inc, Panama.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // Reveal: fade each block in once as it enters the viewport.
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (el) { el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+      els.forEach(function (el) { io.observe(el); });
+    }
+
+    // Hero figure: no sway under reduced motion, and no work while it is off screen.
+    var figure = document.querySelector('.streams');
+    if (figure) {
+      var svgs = figure.querySelectorAll('svg');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        figure.querySelectorAll('animate').forEach(function (a) { a.parentNode.removeChild(a); });
+      } else if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          var on = entries[entries.length - 1].isIntersecting;
+          figure.classList.toggle('is-paused', !on);
+          svgs.forEach(function (s) {
+            if (s.pauseAnimations) { if (on) s.unpauseAnimations(); else s.pauseAnimations(); }
+          });
+        }).observe(figure);
+      }
+    }
+
+    // The three-part figure: no work while it is off screen.
+    document.querySelectorAll('.parts').forEach(function (parts) {
+      if (!('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        parts.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
+      }).observe(parts);
+    });
+
+    // Theme toggle: on is the dark version. The choice is remembered.
+    var root = document.documentElement;
+    var themeSwitch = document.querySelector('.theme-switch');
+    var themeColor = document.querySelectorAll('meta[name="theme-color"]');
+    function paint() {
+      var dark = root.getAttribute('data-theme') !== 'light';
+      themeSwitch.setAttribute('aria-checked', dark ? 'true' : 'false');
+      themeColor.forEach(function (m) { m.removeAttribute('media'); m.setAttribute('content', dark ? '#0b0c0e' : '#f7f5f0'); });
+    }
+    themeSwitch.hidden = false;
+    themeSwitch.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('pm-theme', next); } catch (e) {}
+      paint();
+    });
+    paint();
+  })();
+</script>
+</body>
+</html>

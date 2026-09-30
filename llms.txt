@@ -35,7 +35,7 @@ Chains: Ethereum, Solana, Canton, Arc, Robinhood Chain, Base. Issuers and platfo
 
 ## Who it is for
 
-Agent platforms and wallets; treasuries and trading desks; issuers; institutions on permissioned rails such as Canton.
+Agent platforms and wallets; treasuries and trading desks; asset issuers; financial institutions on permissioned rails.
 
 ## Why now
 

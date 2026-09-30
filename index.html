@@ -181,7 +181,11 @@
     .hl { display: block; width: -moz-fit-content; width: fit-content; max-width: 100%; padding: 0 0.16em; color: var(--on-brand); background: linear-gradient(to bottom, transparent 0.05em, var(--brand) 0.05em, var(--brand) calc(100% - 0.05em), transparent calc(100% - 0.05em)) 0 0 / 100% 1.3em repeat-y; }
     .hl br { display: none; }
     @media (min-width: 480px) { .hl br { display: inline; } }
-    @media (max-width: 479px) { .hero h1 { font-size: min(44px, 10.5vw); } }
+    @media (max-width: 479px) {
+      .hero h1 { font-size: min(44px, 10.5vw); line-height: 1.4; }
+      /* on a phone the headline wraps where it must, so each line gets a band of its own width, with a sliver of ground between bands as on desktop */
+      .hl { display: inline; padding: 0 0.16em; background: var(--brand); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
     .hero .sub strong { display: block; color: var(--ink); }
     .hero .sub strong + br { display: none; }

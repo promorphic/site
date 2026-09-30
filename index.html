@@ -104,6 +104,8 @@
     /* the amber underline: a claim marked in the brand colour, text stays ink */
     .u-brand { color: var(--ink); text-decoration: underline; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-skip-ink: none; }
     .display-lg .u-brand { text-decoration-thickness: 0.06em; text-underline-offset: 0.12em; }
+    /* box headings carry the amber underline too: problem rows, the three parts, the who-it's-for and control cards */
+    .panel h3, .card h3, .part-text h3 { width: -moz-fit-content; width: fit-content; text-decoration: underline; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-skip-ink: none; }
     h1, h2, h3 { text-wrap: balance; }
     p { text-wrap: pretty; }
     :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
@@ -479,7 +481,7 @@
     </div>
     <div class="container">
       <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
-      <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong><br>Connect once and an agent can act on any tokenized asset<br><strong class="b u-brand">Wherever it trades.</strong></p>
+      <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong><br>Connect once and an agent can act on any tokenized asset.<br><strong class="b u-brand">Wherever it trades.</strong></p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:founders@promorphic.xyz">Talk to us</a>
         <a class="btn btn-secondary" href="#layer">See the layer</a>

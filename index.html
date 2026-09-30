@@ -422,9 +422,10 @@
     .footer .links a { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-muted); text-decoration: none; transition: color 150ms var(--ease); }
     .footer .links a:hover { color: var(--ink); }
     .footer .legal { color: var(--ink-faint); }
-    .footer .footnote { margin-top: var(--space-4); color: var(--ink-faint); max-width: 72ch; }
+    /* footnotes: one quiet line above the footer row, in the same faint mono as the copyright */
+    .footer .container.footnotes { display: block; padding-bottom: var(--space-5); margin-bottom: var(--space-5); border-bottom: var(--border-w) solid var(--hairline); }
+    .footer .footnote { margin: 0; padding: 0; border: 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; letter-spacing: 0.02em; color: var(--ink-faint); max-width: none; scroll-margin-top: var(--header-h); }
     .fn-ref { color: var(--brand); text-decoration: none; margin-left: 2px; }
-    .footnote { scroll-margin-top: var(--header-h); }
 
     /* ── Reveal: a 300ms fade, nothing moves. Content stays visible without JavaScript. ── */
     .js .reveal { opacity: 0; transition: opacity 300ms var(--ease); }
@@ -933,7 +934,7 @@
             </div>
           </div>
           <div class="part">
-            <svg class="part-glyph" viewBox="0 0 360 200" role="img" aria-label="A 24-hour ring with an hour hand turning: onchain markets and 24/7 agents."><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><circle class="pg-track" cx="180" cy="100" r="56"/><circle class="pg-flow pg-ring-flow" cx="180" cy="100" r="56" pathLength="1000" style="stroke-dasharray:70 430"/><path class="pg-gate" d="M180.0 44.0 L180.0 51.0"/><path class="pg-gate" d="M194.5 45.9 L193.5 49.8"/><path class="pg-gate" d="M208.0 51.5 L206.0 55.0"/><path class="pg-gate" d="M219.6 60.4 L216.8 63.2"/><path class="pg-gate" d="M228.5 72.0 L225.0 74.0"/><path class="pg-gate" d="M234.1 85.5 L230.2 86.5"/><path class="pg-gate" d="M236.0 100.0 L229.0 100.0"/><path class="pg-gate" d="M234.1 114.5 L230.2 113.5"/><path class="pg-gate" d="M228.5 128.0 L225.0 126.0"/><path class="pg-gate" d="M219.6 139.6 L216.8 136.8"/><path class="pg-gate" d="M208.0 148.5 L206.0 145.0"/><path class="pg-gate" d="M194.5 154.1 L193.5 150.2"/><path class="pg-gate" d="M180.0 156.0 L180.0 149.0"/><path class="pg-gate" d="M165.5 154.1 L166.5 150.2"/><path class="pg-gate" d="M152.0 148.5 L154.0 145.0"/><path class="pg-gate" d="M140.4 139.6 L143.2 136.8"/><path class="pg-gate" d="M131.5 128.0 L135.0 126.0"/><path class="pg-gate" d="M125.9 114.5 L129.8 113.5"/><path class="pg-gate" d="M124.0 100.0 L131.0 100.0"/><path class="pg-gate" d="M125.9 85.5 L129.8 86.5"/><path class="pg-gate" d="M131.5 72.0 L135.0 74.0"/><path class="pg-gate" d="M140.4 60.4 L143.2 63.2"/><path class="pg-gate" d="M152.0 51.5 L154.0 55.0"/><path class="pg-gate" d="M165.5 45.9 L166.5 49.8"/><text class="pg-label" x="180.0" y="33.0" text-anchor="middle">00</text><text class="pg-label" x="251.0" y="104.0" text-anchor="middle">06</text><text class="pg-label" x="180.0" y="175.0" text-anchor="middle">12</text><text class="pg-label" x="109.0" y="104.0" text-anchor="middle">18</text><line class="pg-hand" x1="180" y1="70" x2="180" y2="53"><animateTransform attributeName="transform" type="rotate" from="102.6 180 100" to="462.6 180 100" dur="14s" repeatCount="indefinite"/></line><text class="pg-big" x="180" y="107" text-anchor="middle">24/7</text><text class="pg-label" x="16" y="24">ONCHAIN MARKETS</text><text class="pg-label" x="344" y="186" text-anchor="end">24/7 AGENTS</text></svg>
+            <svg class="part-glyph" viewBox="0 0 360 200" role="img" aria-label="A 24-hour ring with an hour hand turning: onchain markets and 24/7 agents."><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><circle class="pg-track" cx="180" cy="100" r="66"/><circle class="pg-flow pg-ring-flow" cx="180" cy="100" r="66" pathLength="1000" style="stroke-dasharray:70 430"/><path class="pg-gate" d="M180.0 34.0 L180.0 41.0"/><path class="pg-gate" d="M197.1 36.2 L196.0 40.1"/><path class="pg-gate" d="M213.0 42.8 L211.0 46.3"/><path class="pg-gate" d="M226.7 53.3 L223.8 56.2"/><path class="pg-gate" d="M237.2 67.0 L233.7 69.0"/><path class="pg-gate" d="M243.8 82.9 L239.9 84.0"/><path class="pg-gate" d="M246.0 100.0 L239.0 100.0"/><path class="pg-gate" d="M243.8 117.1 L239.9 116.0"/><path class="pg-gate" d="M237.2 133.0 L233.7 131.0"/><path class="pg-gate" d="M226.7 146.7 L223.8 143.8"/><path class="pg-gate" d="M213.0 157.2 L211.0 153.7"/><path class="pg-gate" d="M197.1 163.8 L196.0 159.9"/><path class="pg-gate" d="M180.0 166.0 L180.0 159.0"/><path class="pg-gate" d="M162.9 163.8 L164.0 159.9"/><path class="pg-gate" d="M147.0 157.2 L149.0 153.7"/><path class="pg-gate" d="M133.3 146.7 L136.2 143.8"/><path class="pg-gate" d="M122.8 133.0 L126.3 131.0"/><path class="pg-gate" d="M116.2 117.1 L120.1 116.0"/><path class="pg-gate" d="M114.0 100.0 L121.0 100.0"/><path class="pg-gate" d="M116.2 82.9 L120.1 84.0"/><path class="pg-gate" d="M122.8 67.0 L126.3 69.0"/><path class="pg-gate" d="M133.3 53.3 L136.2 56.2"/><path class="pg-gate" d="M147.0 42.8 L149.0 46.3"/><path class="pg-gate" d="M162.9 36.2 L164.0 40.1"/><text class="pg-label" x="180.0" y="23.0" text-anchor="middle">00</text><text class="pg-label" x="261.0" y="104.0" text-anchor="middle">06</text><text class="pg-label" x="180.0" y="185.0" text-anchor="middle">12</text><text class="pg-label" x="99.0" y="104.0" text-anchor="middle">18</text><line class="pg-hand" x1="180" y1="70" x2="180" y2="43"><animateTransform attributeName="transform" type="rotate" from="102.6 180 100" to="462.6 180 100" dur="14s" repeatCount="indefinite"/></line><text class="pg-big" x="180" y="107" text-anchor="middle">24/7</text><text class="pg-label" x="16" y="24">ONCHAIN MARKETS</text><text class="pg-label" x="344" y="186" text-anchor="end">24/7 AGENTS</text></svg>
             <div class="part-text">
               <div class="idx">02</div>
               <h3 class="heading-md">Treasuries and Trading Desks</h3>
@@ -1073,6 +1074,9 @@
 </main>
 
 <footer class="footer">
+  <div class="container footnotes">
+    <p id="fn-logos" class="footnote">* Logos and names identify platforms, chains and institutions an agent can reach through Promorphic. They do not imply a partnership, an endorsement or a live integration, and remain the property of their owners.</p>
+  </div>
   <div class="container">
     <a class="wordmark" href="#top" aria-label="Promorphic, back to top"><svg class="mark" viewBox="0 0 32 32" width="18" height="18" aria-hidden="true"><rect class="mark-block" x="0" y="0" width="18" height="11"/><rect class="mark-bar" x="0" y="13" width="32" height="6"/><rect class="mark-block" x="14" y="21" width="18" height="11"/></svg>Promorphic</a>
     <div class="links">
@@ -1080,9 +1084,6 @@
       <a href="https://x.com/_promorphic" target="_blank" rel="noopener noreferrer">@_promorphic</a>
     </div>
     <p class="label legal">&copy; 2026 Promorphic Inc, Panama.</p>
-  </div>
-  <div class="container">
-    <p id="fn-logos" class="label footnote">* Logos and names identify platforms, chains and institutions an agent can reach through Promorphic. They do not imply a partnership, an endorsement or a live integration, and remain the property of their owners.</p>
   </div>
 </footer>
 

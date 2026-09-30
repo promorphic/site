@@ -139,8 +139,17 @@
     .btn-sm { height: var(--control-h-sm); padding: 0 var(--space-4); font-size: 14px; }
     .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
 
-    /* ── Hero ── */
-    .hero { padding: var(--space-8) 0 var(--space-7); }
+    /* ── Hero: the skyline behind the headline, drifting slowly and fading into the page ── */
+    .hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(720px, calc(100svh - var(--header-h))); padding: var(--space-9) 0 var(--space-8); }
+    .hero .container { position: relative; z-index: 1; }
+    .skyline { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+    .skyline img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: grayscale(1) brightness(.9); transform-origin: 50% 70%; animation: pm-skyline-in 2.4s var(--ease) both, pm-skyline-drift 60s ease-in-out infinite alternate; }
+    [data-theme="light"] .skyline img { filter: grayscale(1) invert(1) brightness(1.04) contrast(.8); }
+    /* the photo fades into the page ground at its edges, so it never has a hard edge */
+    .skyline::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, color-mix(in srgb, var(--surface-0) 60%, transparent) 0%, color-mix(in srgb, var(--surface-0) 45%, transparent) 42%, transparent 68%), linear-gradient(to bottom, color-mix(in srgb, var(--surface-0) 40%, transparent) 0%, transparent 35%, transparent 55%, var(--surface-0) 100%); }
+    @media (max-width: 719px) { .skyline img { object-position: 50% 12%; } .skyline::after { background: linear-gradient(to bottom, color-mix(in srgb, var(--surface-0) 60%, transparent) 0%, color-mix(in srgb, var(--surface-0) 60%, transparent) 55%, var(--surface-0) 100%); } }
+    @keyframes pm-skyline-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pm-skyline-drift { from { transform: scale(1.06) translateX(1.5%); } to { transform: scale(1) translateX(-1.5%); } }
     /* Headline highlight: one block, so every band is the same length; a band per line, 0.1em apart */
     .hero h1 { line-height: 1.3; }
     .hl { display: block; width: -moz-fit-content; width: fit-content; max-width: 100%; padding: 0 0.16em; color: var(--on-brand); background: linear-gradient(to bottom, transparent 0.05em, var(--brand) 0.05em, var(--brand) calc(100% - 0.05em), transparent calc(100% - 0.05em)) 0 0 / 100% 1.3em repeat-y; }
@@ -152,6 +161,7 @@
 
     /* ── Hero figure: streams converge on the layer and fan out to the venues ── */
     .diagram { margin-top: var(--space-8); padding-top: var(--space-4); }
+    #layer .diagram { margin-top: var(--space-7); }
     .ig { display: block; width: 100%; height: auto; max-width: 100%; }
     .ig-streams .s-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
     .ig-streams .s-stream { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
@@ -270,6 +280,7 @@
       .js .reveal { opacity: 1; transition: none; }
       body, .header, .mark .mark-block, .theme-switch, .theme-switch-knob { transition: none; }
       .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
+      .skyline img { animation: none; }
       .marquee-track { animation: none; width: auto; justify-content: center; padding: 0 var(--gutter); }
       .marquee-set { flex: 0 1 auto; flex-wrap: wrap; justify-content: center; row-gap: var(--space-5); }
       .marquee-set li { padding: 0 var(--space-5); }
@@ -280,7 +291,7 @@
     @media (min-width: 720px) {
       :root { --gutter: var(--space-6); --section-pad: var(--space-9); }
       .heading-md { font-size: 28px; }
-      .hero { padding: var(--space-10) 0 var(--space-8); }
+      .hero { padding: var(--space-10) 0 var(--space-9); }
       .grid { gap: var(--space-5); }
       .grid-4, .grid-6 { grid-template-columns: repeat(2, 1fr); }
       .card, .stat, .part-text { padding: var(--space-6); }
@@ -345,6 +356,10 @@
 
   <!-- ── Hero ── -->
   <section class="hero">
+    <div class="skyline" aria-hidden="true">
+      <!-- Lower Manhattan at night. Photo by Mike Chavarri on Unsplash (unsplash.com/photos/y5zF0NwnJ7M), Unsplash licence. -->
+      <img src="/brand/skyline-2400.jpg" srcset="/brand/skyline-1200.jpg 1200w, /brand/skyline-2400.jpg 2400w" sizes="100vw" width="2400" height="1600" alt="" fetchpriority="high" decoding="async">
+    </div>
     <div class="container">
       <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
       <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong> Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every venue it trades.</p>
@@ -353,6 +368,108 @@
         <a class="btn btn-secondary" href="#layer">See the layer</a>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ── What an agent can do ── -->
+  <section class="section" id="can">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">What an agent can do</div>
+        <h2 class="display-lg measure-wide">What a desk does, an agent can now do.</h2>
+      </div>
+      <div class="grid grid-6 reveal">
+        <div class="card">
+          <div class="idx">01</div>
+          <h3 class="heading-md">Discover</h3>
+          <p>Every tokenized asset, across every issuer and venue, in one catalogue.</p>
+        </div>
+        <div class="card">
+          <div class="idx">02</div>
+          <h3 class="heading-md">Price</h3>
+          <p>Net asset value, yield and market price, adjusted for corporate actions and marked with their age.</p>
+        </div>
+        <div class="card">
+          <div class="idx">03</div>
+          <h3 class="heading-md">Hold</h3>
+          <p>Positions reconciled across chains. The book an agent sees is the book that exists.</p>
+        </div>
+        <div class="card">
+          <div class="idx">04</div>
+          <h3 class="heading-md">Move</h3>
+          <p>Every transfer checked against the venue’s own rules before it is sent.</p>
+        </div>
+        <div class="card">
+          <div class="idx">05</div>
+          <h3 class="heading-md">Redeem</h3>
+          <p>Subscriptions and redemptions routed to the right window, inside the cutoff.</p>
+        </div>
+        <div class="card">
+          <div class="idx">06</div>
+          <h3 class="heading-md">Pledge</h3>
+          <p>Tokenized funds posted as collateral, at whatever hour the margin call arrives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Two economies ── -->
+  <section class="section" id="vision">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow">The vision</div>
+          <h2 class="display-lg">One economy, seen from two sides.</h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">Two economies are being built at once. The <strong>agentic economy</strong>: software that acts on behalf of people and companies. The <strong>onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
+          <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides. <span class="hl-inline">Promorphic is the connective tissue.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Problem ── -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">The problem</div>
+        <h2 class="display-lg measure-wide">Agents can read tokenized markets. They cannot act in them without a human.</h2>
+        <p class="lead muted measure">Every issuer and venue keeps its own rules, rhythms and rails. The markets now run around the clock. The people who could click “confirm” do not.</p>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="card">
+          <div class="idx">01</div>
+          <h3 class="heading-md">Read-only</h3>
+          <p>An agent can look up any tokenized fund in seconds. It cannot put a single dollar into one until a person steps in.</p>
+        </div>
+        <div class="card">
+          <div class="idx">02</div>
+          <h3 class="heading-md">Fragmented</h3>
+          <p>One fund, six chains, six rulebooks. Subscription paths, transfer rules, valuation times and redemption windows differ on every venue.</p>
+        </div>
+        <div class="card">
+          <div class="idx">03</div>
+          <h3 class="heading-md">Always on</h3>
+          <p>Tokenized collateral trades through the weekend. A margin call at 3am on a Sunday needs an answer, and the desk is asleep.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The universal layer ── -->
+  <section class="section" id="layer">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow">The universal layer</div>
+          <h2 class="display-lg">Connect once. Reach every tokenized asset.</h2>
+        </div>
+        <div class="reveal">
+          <p class="lead">Tokenized assets live across dozens of issuers and venues, each with its own rules, rhythms, and rails. Promorphic sits in front of all of them as one universal layer: an agent connects once, and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
+          <p class="muted">Ethereum, Solana, Canton, Arc, Robinhood Chain, Base, and beyond.</p>
+        </div>
+      </div>
       <figure class="diagram streams reveal">
         <div class="streams-desktop"><svg class="ig ig-streams" viewBox="0 0 1200 600" role="img" aria-label="Streams from trading, treasury, wallet and collateral agents converge into Promorphic, the universal layer, and fan out to Ethereum, Solana, Canton, Arc, Robinhood Chain and Base.">
         <line class="s-rule" x1="0" y1="0" x2="0" y2="600"/>
@@ -479,108 +596,6 @@
         </svg></div>
         <figcaption class="label diagram-caption">One connection in. Every venue out.</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <!-- ── What an agent can do ── -->
-  <section class="section" id="can">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">What an agent can do</div>
-        <h2 class="display-lg measure-wide">What a desk does, an agent can now do.</h2>
-      </div>
-      <div class="grid grid-6 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-md">Discover</h3>
-          <p>Every tokenized asset, across every issuer and venue, in one catalogue.</p>
-        </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-md">Price</h3>
-          <p>Net asset value, yield and market price, adjusted for corporate actions and marked with their age.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-md">Hold</h3>
-          <p>Positions reconciled across chains. The book an agent sees is the book that exists.</p>
-        </div>
-        <div class="card">
-          <div class="idx">04</div>
-          <h3 class="heading-md">Move</h3>
-          <p>Every transfer checked against the venue’s own rules before it is sent.</p>
-        </div>
-        <div class="card">
-          <div class="idx">05</div>
-          <h3 class="heading-md">Redeem</h3>
-          <p>Subscriptions and redemptions routed to the right window, inside the cutoff.</p>
-        </div>
-        <div class="card">
-          <div class="idx">06</div>
-          <h3 class="heading-md">Pledge</h3>
-          <p>Tokenized funds posted as collateral, at whatever hour the margin call arrives.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Two economies ── -->
-  <section class="section" id="vision">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <div class="eyebrow">The vision</div>
-          <h2 class="display-lg">One economy, seen from two sides.</h2>
-        </div>
-        <div class="reveal">
-          <p class="lead">Two economies are being built at once. The <strong>agentic economy</strong>: software that acts on behalf of people and companies. The <strong>onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
-          <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides. Promorphic is the connective tissue.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Problem ── -->
-  <section class="section" id="problem">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">The problem</div>
-        <h2 class="display-lg measure-wide">Agents can read tokenized markets. They cannot act in them without a human.</h2>
-        <p class="lead muted measure">Every issuer and venue keeps its own rules, rhythms and rails. The markets now run around the clock. The people who could click “confirm” do not.</p>
-      </div>
-      <div class="grid grid-3 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-md">Read-only</h3>
-          <p>An agent can look up any tokenized fund in seconds. It cannot put a single dollar into one until a person steps in.</p>
-        </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-md">Fragmented</h3>
-          <p>One fund, six chains, six rulebooks. Subscription paths, transfer rules, valuation times and redemption windows differ on every venue.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-md">Always on</h3>
-          <p>Tokenized collateral trades through the weekend. A margin call at 3am on a Sunday needs an answer, and the desk is asleep.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── The universal layer ── -->
-  <section class="section" id="layer">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <div class="eyebrow">The universal layer</div>
-          <h2 class="display-lg">Connect once. Reach every tokenized asset.</h2>
-        </div>
-        <div class="reveal">
-          <p class="lead">Tokenized assets live across dozens of issuers and venues, each with its own rules, rhythms, and rails. Promorphic sits in front of all of them as one universal layer: an agent connects once, and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
-          <p class="muted">Ethereum, Solana, Canton, Arc, Robinhood Chain, Base, and beyond.</p>
-        </div>
-      </div>
       <p class="analogy reveal">Stripe made every bank look the same to a developer. <span class="hl-inline">Promorphic makes every tokenized asset look the same to an agent</span>, with correctness and guardrails built in.</p>
     </div>
   </section>

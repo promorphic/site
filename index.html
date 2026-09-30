@@ -355,46 +355,6 @@
     @media (min-width: 960px) { .loop-desktop { display: block; } .loop-phone { display: none; } }
     @media (prefers-reduced-motion: reduce) { .ig-loop .lp-flow { animation: none; stroke-dasharray: none; opacity: .5; } }
 
-    /* What an agent can do: one session, six actions, ticked off in order */
-    .ticket { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; }
-    .ticket-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4); padding: var(--space-4) var(--space-5); border-bottom: var(--border-w) solid var(--hairline); }
-    .ticket-when { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--ink); }
-    .ticket-what { flex: 1 1 260px; font-size: 15px; line-height: 1.5; color: var(--ink-muted); }
-    .ticket-tag { display: inline-flex; align-items: center; gap: var(--space-2); margin-left: auto; font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
-    .ticket-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); animation: pm-pulse 2s ease-in-out infinite; }
-    @keyframes pm-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-    .ticket-rows { list-style: none; margin: 0; padding: 0; }
-    .trow { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "idx verb stat" "idx line stat"; column-gap: var(--space-4); row-gap: var(--space-1); align-items: baseline; padding: var(--space-4) var(--space-5); border-top: var(--border-w) solid var(--hairline); --on: 0; box-shadow: inset 3px 0 0 color-mix(in srgb, var(--brand) calc(var(--on) * 100%), transparent); animation: pm-on-0 12s linear infinite; }
-    .trow:first-child { border-top: 0; }
-    .tidx { grid-area: idx; font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
-    .tverb { grid-area: verb; font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.015em; color: var(--ink); }
-    .tline { grid-area: line; font-size: 15px; line-height: 1.55; color: var(--ink-muted); max-width: 60ch; }
-    .tstat { grid-area: stat; align-self: center; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-    .tbox { width: 12px; height: 12px; border-radius: 2px; border: var(--border-w) solid color-mix(in srgb, var(--brand) calc(var(--on) * 100%), var(--ink-faint)); background: color-mix(in srgb, var(--brand) calc(var(--on) * 100%), transparent); }
-    .tword { display: grid; }
-    .tword > span { grid-area: 1 / 1; opacity: calc(1 - var(--on)); }
-    .tword > .tw-done { color: var(--ink); opacity: var(--on); }
-    /* one shared 12s cycle: row i lights at second i+1, all six hold, and the ticket clears together at 10.5s */
-    @property --on { syntax: "<number>"; inherits: false; initial-value: 0; }
-    .trow:nth-child(1) { animation-name: pm-on-0; }
-    @keyframes pm-on-0 { 0%, 6.8% { --on: 0; } 8.8%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
-    .trow:nth-child(2) { animation-name: pm-on-1; }
-    @keyframes pm-on-1 { 0%, 15.2% { --on: 0; } 17.2%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
-    .trow:nth-child(3) { animation-name: pm-on-2; }
-    @keyframes pm-on-2 { 0%, 23.5% { --on: 0; } 25.5%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
-    .trow:nth-child(4) { animation-name: pm-on-3; }
-    @keyframes pm-on-3 { 0%, 31.8% { --on: 0; } 33.8%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
-    .trow:nth-child(5) { animation-name: pm-on-4; }
-    @keyframes pm-on-4 { 0%, 40.2% { --on: 0; } 42.2%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
-    .trow:nth-child(6) { animation-name: pm-on-5; }
-    @keyframes pm-on-5 { 0%, 48.5% { --on: 0; } 50.5%, 86% { --on: 1; } 88%, 100% { --on: 0; } }
-    .ticket.is-paused .trow { animation-play-state: paused; }
-    .ticket-foot { padding: var(--space-4) var(--space-5); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.5; color: var(--ink); }
-    @media (max-width: 479px) { .tword { display: none; } }
-    @media (min-width: 720px) {
-      .trow { grid-template-columns: 40px 200px 1fr auto; grid-template-areas: "idx verb line stat"; column-gap: var(--space-5); }
-      .tverb { font-size: 28px; }
-    }
     /* Questions: plain answers, one per row */
     .faq { border-top: var(--border-w) solid var(--hairline); }
     .faq details { border-bottom: var(--border-w) solid var(--hairline); }
@@ -427,8 +387,6 @@
       .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
       .pg-flow { animation: none; stroke-dasharray: none; }
       .skyline img { animation: none; }
-      .trow, .ticket-pulse { animation: none; }
-      .trow { --on: 1; }
       .marquee-track { animation: none; width: auto; justify-content: center; padding: 0 var(--gutter); }
       .marquee-set { flex: 0 1 auto; flex-wrap: wrap; justify-content: center; row-gap: var(--space-5); }
       .marquee-set li { padding: 0 var(--space-5); }
@@ -441,7 +399,7 @@
       .heading-md { font-size: 28px; }
       .hero { padding: var(--space-10) 0 var(--space-9); }
       .grid { gap: var(--space-5); }
-      .grid-2, .grid-4, .grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .grid-2, .grid-4 { grid-template-columns: repeat(2, 1fr); }
       .panel .row { padding: var(--space-5) var(--space-6); }
       .card, .stat, .part-text { padding: var(--space-6); }
       .analogy { margin-top: var(--space-8); padding: var(--space-7) var(--space-8); font-size: 28px; }
@@ -460,7 +418,7 @@
       .display-xl { line-height: 1; }
       .display-lg { line-height: 1.05; }
       .nav { gap: var(--space-6); }
-      .grid-3, .grid-6 { grid-template-columns: repeat(3, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
       .sides { grid-template-columns: 5fr auto 5fr; gap: var(--space-7); }
       .side-mid { display: flex; }
       .entry-lg .value { font-size: 72px; }
@@ -825,62 +783,6 @@
     </div>
   </section>
 
-  <!-- ── What an agent can do ── -->
-  <section class="section" id="can">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">What an agent can do</div>
-        <h2 class="display-lg measure-wide">What a desk does, an agent can now do.</h2>
-      </div>
-      <div class="ticket reveal" role="figure" aria-label="One agent session on a Sunday night: a margin call arrives and the agent discovers, prices, holds, moves, redeems and pledges, each action ticked off in turn.">
-        <div class="ticket-head">
-          <span class="ticket-when">Sunday, 03:02</span>
-          <span class="ticket-what">A margin call arrives. The desk is asleep. The agent is not.</span>
-          <span class="ticket-tag"><span class="ticket-pulse" aria-hidden="true"></span>Agent session</span>
-        </div>
-        <ol class="ticket-rows">
-          <li class="trow" style="--i:0">
-            <span class="tidx">01</span>
-            <h3 class="tverb">Discover</h3>
-            <p class="tline">Every tokenized asset, across every issuer and venue, in one catalogue.</p>
-            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
-          </li>
-          <li class="trow" style="--i:1">
-            <span class="tidx">02</span>
-            <h3 class="tverb">Price</h3>
-            <p class="tline">Net asset value, yield and market price, adjusted for corporate actions and marked with their age.</p>
-            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
-          </li>
-          <li class="trow" style="--i:2">
-            <span class="tidx">03</span>
-            <h3 class="tverb">Hold</h3>
-            <p class="tline">Positions reconciled across chains. The book an agent sees is the book that exists.</p>
-            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
-          </li>
-          <li class="trow" style="--i:3">
-            <span class="tidx">04</span>
-            <h3 class="tverb">Move</h3>
-            <p class="tline">Every transfer checked against the venue’s own rules before it is sent.</p>
-            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
-          </li>
-          <li class="trow" style="--i:4">
-            <span class="tidx">05</span>
-            <h3 class="tverb">Redeem</h3>
-            <p class="tline">Subscriptions and redemptions routed to the right window, inside the cutoff.</p>
-            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
-          </li>
-          <li class="trow" style="--i:5">
-            <span class="tidx">06</span>
-            <h3 class="tverb">Pledge</h3>
-            <p class="tline">Tokenized funds posted as collateral, at whatever hour the margin call arrives.</p>
-            <span class="tstat" aria-hidden="true"><span class="tbox"></span><span class="tword"><span class="tw-open">Open</span><span class="tw-done">Done</span></span></span>
-          </li>
-        </ol>
-        <p class="ticket-foot">One margin call. Six actions. Nobody woken up.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ── Features ── -->
   <section class="section" id="features">
     <div class="container">
@@ -1144,14 +1046,6 @@
       new IntersectionObserver(function (entries) {
         parts.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
       }).observe(parts);
-    }
-
-    // The session ticket: no work while it is off screen.
-    var ticket = document.querySelector('.ticket');
-    if (ticket && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        ticket.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
-      }).observe(ticket);
     }
 
     // Theme toggle: on is the dark version. The choice is remembered.

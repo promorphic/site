@@ -265,7 +265,10 @@
     .part p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .pg-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
     .pg-faint { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
-    .pg-line { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: butt; }
+    .pg-track { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; opacity: .7; }
+    .pg-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 28 260; animation: pg-flow 6s linear infinite; }
+    @keyframes pg-flow { from { stroke-dashoffset: 288; } to { stroke-dashoffset: 0; } }
+    .parts.is-paused .pg-flow { animation-play-state: paused; }
     .pg-dry { fill: none; stroke: var(--ink-muted); stroke-width: 1.25; stroke-dasharray: 4 6; }
     .pg-gate { fill: none; stroke: var(--ink-faint); stroke-width: 1.25; }
     .pg-tick { fill: none; stroke: var(--ink-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
@@ -356,6 +359,7 @@
       .js .reveal { opacity: 1; transition: none; }
       body, .header, .mark .mark-block, .theme-switch, .theme-switch-knob { transition: none; }
       .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
+      .pg-flow { animation: none; stroke-dasharray: none; }
       .skyline img { animation: none; }
       .marquee-track { animation: none; width: auto; justify-content: center; padding: 0 var(--gutter); }
       .marquee-set { flex: 0 1 auto; flex-wrap: wrap; justify-content: center; row-gap: var(--space-5); }
@@ -599,8 +603,8 @@
         <path class="s-flow" d="M770 275 C851.5 275 882.5 400 964 400" style="animation-duration:17.5s;animation-delay:-9.5s"><animate attributeName="d" values="M770 275 C851.5 275 882.5 400 964 400;M770 275 C851.5 275 882.5 410 964 410;M770 275 C851.5 275 882.5 400 964 400" dur="14.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
         <rect class="f-brand" x="89.9" y="11.7" width="100.1" height="24" rx="2"/>
         <text class="t-mono t-onbrand t-sm" x="140" y="28" text-anchor="middle">AI AGENTS</text>
-        <rect class="f-brand" x="980" y="11.7" width="215.8" height="24" rx="2"/>
-        <text class="t-mono t-onbrand t-sm" x="990" y="28">TOKENIZATION PLATFORMS</text>
+        <rect class="f-brand" x="952.1" y="11.7" width="215.8" height="24" rx="2"/>
+        <text class="t-mono t-onbrand t-sm" x="1060" y="28" text-anchor="middle">TOKENIZATION PLATFORMS</text>
         <image class="agent-mark" href="/brand/agents/claude.svg" x="120" y="40" width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="980" y="64">SECURITIZE</text>
         <image class="agent-mark" href="/brand/agents/chatgpt.png" x="120" y="108" width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
@@ -778,7 +782,7 @@
       <figure class="parts reveal">
         <div class="parts-grid">
           <div class="part">
-            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-faint" d="M96 100 C170 100 190 25 264 25"/><path class="pg-faint" d="M96 100 C170 100 190 55 264 55"/><path class="pg-faint" d="M96 100 C170 100 190 115 264 115"/><path class="pg-faint" d="M96 100 C170 100 190 145 264 145"/><path class="pg-faint" d="M96 100 C170 100 190 175 264 175"/><path class="pg-line" d="M0 100 H96 C170 100 190 85 264 85 C306 85 318 100 360 100"/><rect class="pg-end" x="260" y="21" width="8" height="8"/><rect class="pg-end" x="260" y="51" width="8" height="8"/><rect class="pg-node" x="260" y="81" width="8" height="8"/><rect class="pg-end" x="260" y="111" width="8" height="8"/><rect class="pg-end" x="260" y="141" width="8" height="8"/><rect class="pg-end" x="260" y="171" width="8" height="8"/><rect class="pg-node" x="93" y="97" width="6" height="6"/><text class="pg-label" x="16" y="86">AGENT</text></svg>
+            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-faint" d="M96 100 C170 100 190 25 264 25"/><path class="pg-faint" d="M96 100 C170 100 190 55 264 55"/><path class="pg-faint" d="M96 100 C170 100 190 115 264 115"/><path class="pg-faint" d="M96 100 C170 100 190 145 264 145"/><path class="pg-faint" d="M96 100 C170 100 190 175 264 175"/><path class="pg-track" d="M0 100 H96 C170 100 190 85 264 85 C306 85 318 100 360 100"/><path class="pg-flow" d="M0 100 H96 C170 100 190 85 264 85 C306 85 318 100 360 100" style="animation-delay:-0.00s"/><rect class="pg-end" x="260" y="21" width="8" height="8"/><rect class="pg-end" x="260" y="51" width="8" height="8"/><rect class="pg-node" x="260" y="81" width="8" height="8"/><rect class="pg-end" x="260" y="111" width="8" height="8"/><rect class="pg-end" x="260" y="141" width="8" height="8"/><rect class="pg-end" x="260" y="171" width="8" height="8"/><rect class="pg-node" x="93" y="97" width="6" height="6"/><text class="pg-label" x="16" y="86">AGENT</text></svg>
             <div class="part-text">
               <div class="idx">01</div>
               <h3 class="heading-md">Universal access</h3>
@@ -786,7 +790,7 @@
             </div>
           </div>
           <div class="part">
-            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-dry" d="M76 84 H320"/><path class="pg-line" d="M0 100 H360"/><path class="pg-gate" d="M90 36 V74 M90 126 V164"/><path class="pg-tick" d="M84 21 l4 4 l8 -9"/><text class="pg-label" x="90" y="186" text-anchor="middle">ALLOWLIST</text><path class="pg-gate" d="M180 36 V74 M180 126 V164"/><path class="pg-tick" d="M174 21 l4 4 l8 -9"/><text class="pg-label" x="180" y="186" text-anchor="middle">RULES</text><path class="pg-gate" d="M270 36 V74 M270 126 V164"/><path class="pg-tick" d="M264 21 l4 4 l8 -9"/><text class="pg-label" x="270" y="186" text-anchor="middle">WINDOW</text><text class="pg-label" x="16" y="88">DRY RUN</text></svg>
+            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-dry" d="M76 84 H320"/><path class="pg-track" d="M0 100 H360"/><path class="pg-flow" d="M0 100 H360" style="animation-delay:-4.25s"/><path class="pg-gate" d="M90 36 V74 M90 126 V164"/><path class="pg-tick" d="M84 21 l4 4 l8 -9"/><text class="pg-label" x="90" y="186" text-anchor="middle">ALLOWLIST</text><path class="pg-gate" d="M180 36 V74 M180 126 V164"/><path class="pg-tick" d="M174 21 l4 4 l8 -9"/><text class="pg-label" x="180" y="186" text-anchor="middle">RULES</text><path class="pg-gate" d="M270 36 V74 M270 126 V164"/><path class="pg-tick" d="M264 21 l4 4 l8 -9"/><text class="pg-label" x="270" y="186" text-anchor="middle">WINDOW</text><text class="pg-label" x="16" y="88">DRY RUN</text></svg>
             <div class="part-text">
               <div class="idx">02</div>
               <h3 class="heading-md">Eligibility simulation</h3>
@@ -794,7 +798,7 @@
             </div>
           </div>
           <div class="part">
-            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-faint" d="M64 30 C150 30 160 100 228 100"/><path class="pg-src" d="M46 30 H64"/><path class="pg-faint" d="M64 52 C150 52 160 100 228 100"/><path class="pg-src" d="M34 52 H64"/><path class="pg-faint" d="M64 80 C150 80 160 100 228 100"/><path class="pg-src" d="M52 80 H64"/><path class="pg-faint" d="M64 122 C150 122 160 100 228 100"/><path class="pg-src" d="M38 122 H64"/><path class="pg-faint" d="M64 146 C150 146 160 100 228 100"/><path class="pg-src" d="M48 146 H64"/><path class="pg-faint" d="M64 172 C150 172 160 100 228 100"/><path class="pg-src" d="M32 172 H64"/><path class="pg-line" d="M0 100 H360"/><rect class="pg-node" x="225" y="97" width="6" height="6"/><text class="pg-label" x="344" y="86" text-anchor="end">VENUE</text></svg>
+            <svg class="part-glyph" viewBox="0 0 360 200" aria-hidden="true" focusable="false"><line class="pg-rule" x1="60" y1="0" x2="60" y2="200"/><line class="pg-rule" x1="120" y1="0" x2="120" y2="200"/><line class="pg-rule" x1="180" y1="0" x2="180" y2="200"/><line class="pg-rule" x1="240" y1="0" x2="240" y2="200"/><line class="pg-rule" x1="300" y1="0" x2="300" y2="200"/><path class="pg-faint" d="M64 30 C150 30 160 100 228 100"/><path class="pg-src" d="M46 30 H64"/><path class="pg-faint" d="M64 52 C150 52 160 100 228 100"/><path class="pg-src" d="M34 52 H64"/><path class="pg-faint" d="M64 80 C150 80 160 100 228 100"/><path class="pg-src" d="M52 80 H64"/><path class="pg-faint" d="M64 122 C150 122 160 100 228 100"/><path class="pg-src" d="M38 122 H64"/><path class="pg-faint" d="M64 146 C150 146 160 100 228 100"/><path class="pg-src" d="M48 146 H64"/><path class="pg-faint" d="M64 172 C150 172 160 100 228 100"/><path class="pg-src" d="M32 172 H64"/><path class="pg-track" d="M0 100 H360"/><path class="pg-flow" d="M0 100 H360" style="animation-delay:-2.75s"/><rect class="pg-node" x="225" y="97" width="6" height="6"/><text class="pg-label" x="344" y="86" text-anchor="end">VENUE</text></svg>
             <div class="part-text">
               <div class="idx">03</div>
               <h3 class="heading-md">Truth layer</h3>
@@ -985,6 +989,14 @@
           });
         }).observe(figure);
       }
+    }
+
+    // The three-part figure: no work while it is off screen.
+    var parts = document.querySelector('.parts');
+    if (parts && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        parts.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
+      }).observe(parts);
     }
 
     // Theme toggle: on is the dark version. The choice is remembered.

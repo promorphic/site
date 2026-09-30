@@ -219,6 +219,19 @@
     .section-head .lead { margin-top: var(--space-4); }
     .split { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
     .split-head { margin-bottom: var(--space-6); }
+    .split .lead + .lead, .split .muted + .lead { margin-top: var(--space-5); }
+    .split h2 + .lead { margin-top: var(--space-4); }
+    /* One panel, three rows: the problem's cases beside its copy rather than beneath it */
+    .panel { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); }
+    .panel .row { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); row-gap: var(--space-2); align-items: baseline; padding: var(--space-5); border-top: var(--border-w) solid var(--hairline); }
+    .panel .row:first-child { border-top: 0; }
+    .panel .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
+    .panel h3 { color: var(--ink); }
+    .panel p { grid-column: 2; font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
+    /* Bento: four audiences at two sizes on a twelve-column grid */
+    .bento { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+    .bento .card { justify-content: flex-end; min-height: 220px; }
+    .bento .card .idx { margin-bottom: auto; }
     .footnote { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .footnote strong { color: var(--ink); }
     /* The analogy: a raised slab like every card, larger type, one highlighted phrase */
@@ -315,6 +328,8 @@
       .hero { padding: var(--space-10) 0 var(--space-9); }
       .grid { gap: var(--space-5); }
       .grid-4, .grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .bento { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+      .panel .row { padding: var(--space-5) var(--space-6); }
       .card, .stat, .part-text { padding: var(--space-6); }
       .analogy { margin-top: var(--space-8); padding: var(--space-7) var(--space-8); font-size: 28px; }
       .split { grid-template-columns: 5fr 7fr; gap: var(--space-7); align-items: start; }
@@ -331,6 +346,10 @@
       .nav { gap: var(--space-6); }
       .grid-3, .grid-6 { grid-template-columns: repeat(3, 1fr); }
       .parts-grid { grid-template-columns: repeat(3, 1fr); }
+      .bento { grid-template-columns: repeat(12, 1fr); }
+      .bento .card { min-height: 260px; }
+      .bento-a, .bento-d { grid-column: span 7; }
+      .bento-b, .bento-c { grid-column: span 5; }
       .part { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
       .part:first-child { border-left: 0; }
       .split { gap: var(--space-8); }
@@ -443,8 +462,9 @@
           <h2 class="display-lg">One economy, seen from two sides.</h2>
         </div>
         <div class="reveal">
-          <p class="lead">Two economies are being built at once. The <strong>agentic economy</strong>: software that acts on behalf of people and companies. The <strong>onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
-          <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides. <span class="hl-inline">Promorphic is the connective tissue.</span></p>
+          <p class="lead vision-lines">Two economies are being built at once.<br>The <strong>agentic economy</strong>: software that acts on behalf of people and companies.<br>The <strong>onchain economy</strong>: the world’s assets becoming programmable tokens.</p>
+          <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides.</p>
+          <p class="lead"><span class="hl-inline">Promorphic is the connective tissue.</span></p>
         </div>
       </div>
     </div>
@@ -453,26 +473,28 @@
   <!-- ── Problem ── -->
   <section class="section" id="problem">
     <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">The problem</div>
-        <h2 class="display-lg measure-wide">Agents can read tokenized markets. They cannot act in them without a human.</h2>
-        <p class="lead muted measure">Every issuer and venue keeps its own rules, rhythms and rails. The markets now run around the clock. The people who could click “confirm” do not.</p>
-      </div>
-      <div class="grid grid-3 reveal">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3 class="heading-md">Read-only</h3>
-          <p>An agent can look up any tokenized fund in seconds. It cannot put a single dollar into one until a person steps in.</p>
+      <div class="split">
+        <div class="reveal">
+          <div class="eyebrow">The problem</div>
+          <h2 class="display-lg">Agents can read tokenized markets. They cannot act in them without a human.</h2>
+          <p class="lead muted">Every issuer and venue keeps its own rules, rhythms and rails. The markets now run around the clock. The people who could click “confirm” do not.</p>
         </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3 class="heading-md">Fragmented</h3>
-          <p>One fund, six chains, six rulebooks. Subscription paths, transfer rules, valuation times and redemption windows differ on every venue.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3 class="heading-md">Always on</h3>
-          <p>Tokenized collateral trades through the weekend. A margin call at 3am on a Sunday needs an answer, and the desk is asleep.</p>
+        <div class="panel reveal">
+          <div class="row">
+            <div class="idx">01</div>
+            <h3 class="heading-md">Read-only</h3>
+            <p>An agent can look up any tokenized fund in seconds. It cannot put a single dollar into one until a person steps in.</p>
+          </div>
+          <div class="row">
+            <div class="idx">02</div>
+            <h3 class="heading-md">Fragmented</h3>
+            <p>One fund, six chains, six rulebooks. Subscription paths, transfer rules, valuation times and redemption windows differ on every venue.</p>
+          </div>
+          <div class="row">
+            <div class="idx">03</div>
+            <h3 class="heading-md">Always on</h3>
+            <p>Tokenized collateral trades through the weekend. A margin call at 3am on a Sunday needs an answer, and the desk is asleep.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -491,7 +513,7 @@
         </div>
       </div>
       <figure class="diagram streams reveal">
-        <div class="streams-desktop"><svg class="ig ig-streams" viewBox="0 0 1200 460" role="img" aria-label="Streams from Claude, ChatGPT, Gemini, Kimi, OpenClaw and Hermes converge into Promorphic, the universal layer, and fan out to Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge.">
+        <div class="streams-desktop"><svg class="ig ig-streams" viewBox="0 0 1200 460" role="img" aria-label="Streams from six AI agents, Claude, ChatGPT, Gemini, Kimi, OpenClaw and Hermes, shown by their marks, converge into Promorphic, the universal layer, and fan out to Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge.">
         <line class="s-rule" x1="0" y1="0" x2="0" y2="460"/>
         <line class="s-rule" x1="64" y1="0" x2="64" y2="460"/>
         <line class="s-rule" x1="128" y1="0" x2="128" y2="460"/>
@@ -539,17 +561,20 @@
         <text class="t-mono t-muted t-sm" x="150" y="28" text-anchor="end">AI AGENTS</text>
         <rect class="f-s1 s-hair" x="984.2" y="11.7" width="215.8" height="24" rx="2"/>
         <text class="t-mono t-muted t-sm" x="1190" y="28" text-anchor="end">TOKENIZATION PLATFORMS</text>
-        <text class="t-mono t-muted t-sm" x="160" y="64" text-anchor="end">CLAUDE</text>
+        <image class="agent-mark" href="/brand/agents/claude.svg" x="120" y="40" width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="990" y="64">SECURITIZE</text>
-        <text class="t-mono t-muted t-sm" x="160" y="132" text-anchor="end">CHATGPT</text>
+        <image class="agent-mark" href="/brand/agents/chatgpt.png" x="120" y="108" width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="990" y="132">ONDO</text>
-        <text class="t-mono t-muted t-sm" x="160" y="200" text-anchor="end">GEMINI</text>
+        <rect class="f-s1 s-hair" x="120" y="176" width="40" height="40" rx="3"/>
+        <image class="agent-mark" href="/brand/agents/gemini.svg" x="127.2" y="183.2" width="25.6" height="25.6" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="990" y="200">SUPERSTATE</text>
-        <text class="t-mono t-muted t-sm" x="160" y="268" text-anchor="end">KIMI</text>
+        <rect class="f-s1 s-hair" x="120" y="244" width="40" height="40" rx="3"/>
+        <image class="agent-mark" href="/brand/agents/kimi.svg" x="127.2" y="251.2" width="25.6" height="25.6" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="990" y="268">FRANKLIN TEMPLETON</text>
-        <text class="t-mono t-muted t-sm" x="160" y="336" text-anchor="end">OPENCLAW</text>
+        <rect class="f-s1 s-hair" x="120" y="312" width="40" height="40" rx="3"/>
+        <image class="agent-mark" href="/brand/agents/openclaw.svg" x="127.2" y="319.2" width="25.6" height="25.6" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="990" y="336">BLACKROCK BUIDL</text>
-        <text class="t-mono t-muted t-sm" x="160" y="404" text-anchor="end">HERMES</text>
+        <image class="agent-mark" href="/brand/agents/hermes.svg" x="120" y="380" width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-sm" x="990" y="404">CENTRIFUGE</text>
         <rect class="f-s1 s-hair" x="430" y="155" width="340" height="150" rx="2"/>
         <g transform="translate(586 178) scale(0.875)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g>
@@ -568,7 +593,7 @@
         <rect class="f-brand" x="427" y="282" width="6" height="6"/>
         <rect class="f-brand" x="767" y="272" width="6" height="6"/>
         </svg></div>
-        <div class="streams-phone"><svg class="ig ig-streams" viewBox="0 0 600 668" role="img" aria-label="Streams from Claude, ChatGPT, Gemini, Kimi, OpenClaw and Hermes converge into Promorphic, the universal layer, and fan out to Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge.">
+        <div class="streams-phone"><svg class="ig ig-streams" viewBox="0 0 600 668" role="img" aria-label="Streams from six AI agents, Claude, ChatGPT, Gemini, Kimi, OpenClaw and Hermes, shown by their marks, converge into Promorphic, the universal layer, and fan out to Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge.">
         <line class="s-rule" x1="0" y1="64" x2="600" y2="64"/>
         <line class="s-rule" x1="0" y1="128" x2="600" y2="128"/>
         <line class="s-rule" x1="0" y1="192" x2="600" y2="192"/>
@@ -579,18 +604,18 @@
         <line class="s-rule" x1="0" y1="512" x2="600" y2="512"/>
         <line class="s-rule" x1="0" y1="576" x2="600" y2="576"/>
         <line class="s-rule" x1="0" y1="640" x2="600" y2="640"/>
-        <path class="s-stream" d="M70 58 C70 138.6 245 169.4 245 250"><animate attributeName="d" values="M70 58 C70 138.6 245 169.4 245 250;M60 58 C60 138.6 245 169.4 245 250;M70 58 C70 138.6 245 169.4 245 250" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-flow" d="M70 58 C70 138.6 245 169.4 245 250" style="animation-duration:11s;animation-delay:0s"><animate attributeName="d" values="M70 58 C70 138.6 245 169.4 245 250;M60 58 C60 138.6 245 169.4 245 250;M70 58 C70 138.6 245 169.4 245 250" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-stream" d="M162 58 C162 138.6 267 169.4 267 250"><animate attributeName="d" values="M162 58 C162 138.6 267 169.4 267 250;M172 58 C172 138.6 267 169.4 267 250;M162 58 C162 138.6 267 169.4 267 250" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-flow" d="M162 58 C162 138.6 267 169.4 267 250" style="animation-duration:12.7s;animation-delay:-2.3s"><animate attributeName="d" values="M162 58 C162 138.6 267 169.4 267 250;M172 58 C172 138.6 267 169.4 267 250;M162 58 C162 138.6 267 169.4 267 250" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-stream" d="M254 58 C254 138.6 289 169.4 289 250"><animate attributeName="d" values="M254 58 C254 138.6 289 169.4 289 250;M244 58 C244 138.6 289 169.4 289 250;M254 58 C254 138.6 289 169.4 289 250" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-flow" d="M254 58 C254 138.6 289 169.4 289 250" style="animation-duration:14.4s;animation-delay:-4.6s"><animate attributeName="d" values="M254 58 C254 138.6 289 169.4 289 250;M244 58 C244 138.6 289 169.4 289 250;M254 58 C254 138.6 289 169.4 289 250" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-stream" d="M346 58 C346 138.6 311 169.4 311 250"><animate attributeName="d" values="M346 58 C346 138.6 311 169.4 311 250;M356 58 C356 138.6 311 169.4 311 250;M346 58 C346 138.6 311 169.4 311 250" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-flow" d="M346 58 C346 138.6 311 169.4 311 250" style="animation-duration:16.1s;animation-delay:-6.9s"><animate attributeName="d" values="M346 58 C346 138.6 311 169.4 311 250;M356 58 C356 138.6 311 169.4 311 250;M346 58 C346 138.6 311 169.4 311 250" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-stream" d="M438 58 C438 138.6 333 169.4 333 250"><animate attributeName="d" values="M438 58 C438 138.6 333 169.4 333 250;M428 58 C428 138.6 333 169.4 333 250;M438 58 C438 138.6 333 169.4 333 250" dur="14.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-flow" d="M438 58 C438 138.6 333 169.4 333 250" style="animation-duration:17.8s;animation-delay:-9.2s"><animate attributeName="d" values="M438 58 C438 138.6 333 169.4 333 250;M428 58 C428 138.6 333 169.4 333 250;M438 58 C438 138.6 333 169.4 333 250" dur="14.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-stream" d="M530 58 C530 138.6 355 169.4 355 250"><animate attributeName="d" values="M530 58 C530 138.6 355 169.4 355 250;M540 58 C540 138.6 355 169.4 355 250;M530 58 C530 138.6 355 169.4 355 250" dur="15.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
-        <path class="s-flow" d="M530 58 C530 138.6 355 169.4 355 250" style="animation-duration:19.5s;animation-delay:-11.5s"><animate attributeName="d" values="M530 58 C530 138.6 355 169.4 355 250;M540 58 C540 138.6 355 169.4 355 250;M530 58 C530 138.6 355 169.4 355 250" dur="15.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M70 96 C70 160.7 245 185.3 245 250"><animate attributeName="d" values="M70 96 C70 160.7 245 185.3 245 250;M60 96 C60 160.7 245 185.3 245 250;M70 96 C70 160.7 245 185.3 245 250" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M70 96 C70 160.7 245 185.3 245 250" style="animation-duration:11s;animation-delay:0s"><animate attributeName="d" values="M70 96 C70 160.7 245 185.3 245 250;M60 96 C60 160.7 245 185.3 245 250;M70 96 C70 160.7 245 185.3 245 250" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M162 96 C162 160.7 267 185.3 267 250"><animate attributeName="d" values="M162 96 C162 160.7 267 185.3 267 250;M172 96 C172 160.7 267 185.3 267 250;M162 96 C162 160.7 267 185.3 267 250" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M162 96 C162 160.7 267 185.3 267 250" style="animation-duration:12.7s;animation-delay:-2.3s"><animate attributeName="d" values="M162 96 C162 160.7 267 185.3 267 250;M172 96 C172 160.7 267 185.3 267 250;M162 96 C162 160.7 267 185.3 267 250" dur="10.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M254 96 C254 160.7 289 185.3 289 250"><animate attributeName="d" values="M254 96 C254 160.7 289 185.3 289 250;M244 96 C244 160.7 289 185.3 289 250;M254 96 C254 160.7 289 185.3 289 250" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M254 96 C254 160.7 289 185.3 289 250" style="animation-duration:14.4s;animation-delay:-4.6s"><animate attributeName="d" values="M254 96 C254 160.7 289 185.3 289 250;M244 96 C244 160.7 289 185.3 289 250;M254 96 C254 160.7 289 185.3 289 250" dur="11.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M346 96 C346 160.7 311 185.3 311 250"><animate attributeName="d" values="M346 96 C346 160.7 311 185.3 311 250;M356 96 C356 160.7 311 185.3 311 250;M346 96 C346 160.7 311 185.3 311 250" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M346 96 C346 160.7 311 185.3 311 250" style="animation-duration:16.1s;animation-delay:-6.9s"><animate attributeName="d" values="M346 96 C346 160.7 311 185.3 311 250;M356 96 C356 160.7 311 185.3 311 250;M346 96 C346 160.7 311 185.3 311 250" dur="12.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M438 96 C438 160.7 333 185.3 333 250"><animate attributeName="d" values="M438 96 C438 160.7 333 185.3 333 250;M428 96 C428 160.7 333 185.3 333 250;M438 96 C438 160.7 333 185.3 333 250" dur="14.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M438 96 C438 160.7 333 185.3 333 250" style="animation-duration:17.8s;animation-delay:-9.2s"><animate attributeName="d" values="M438 96 C438 160.7 333 185.3 333 250;M428 96 C428 160.7 333 185.3 333 250;M438 96 C438 160.7 333 185.3 333 250" dur="14.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-stream" d="M530 96 C530 160.7 355 185.3 355 250"><animate attributeName="d" values="M530 96 C530 160.7 355 185.3 355 250;M540 96 C540 160.7 355 185.3 355 250;M530 96 C530 160.7 355 185.3 355 250" dur="15.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
+        <path class="s-flow" d="M530 96 C530 160.7 355 185.3 355 250" style="animation-duration:19.5s;animation-delay:-11.5s"><animate attributeName="d" values="M530 96 C530 160.7 355 185.3 355 250;M540 96 C540 160.7 355 185.3 355 250;M530 96 C530 160.7 355 185.3 355 250" dur="15.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
         <path class="s-stream" d="M255 400 C255 467.2 70 492.8 70 560"><animate attributeName="d" values="M255 400 C255 467.2 70 492.8 70 560;M255 400 C255 467.2 60 492.8 60 560;M255 400 C255 467.2 70 492.8 70 560" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
         <path class="s-flow" d="M255 400 C255 467.2 70 492.8 70 560" style="animation-duration:12s;animation-delay:0s"><animate attributeName="d" values="M255 400 C255 467.2 70 492.8 70 560;M255 400 C255 467.2 60 492.8 60 560;M255 400 C255 467.2 70 492.8 70 560" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
         <path class="s-stream" d="M273 400 C273 476.4 162 505.6 162 582"><animate attributeName="d" values="M273 400 C273 476.4 162 505.6 162 582;M273 400 C273 476.4 172 505.6 172 582;M273 400 C273 476.4 162 505.6 162 582" dur="10.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></path>
@@ -607,17 +632,20 @@
         <text class="t-mono t-muted t-ph" x="300" y="20" text-anchor="middle">AI AGENTS</text>
         <rect class="f-s1 s-hair" x="147.4" y="622.2" width="305.2" height="32" rx="2"/>
         <text class="t-mono t-muted t-ph" x="300" y="644" text-anchor="middle">TOKENIZATION PLATFORMS</text>
-        <text class="t-mono t-muted t-ph" x="70" y="46" text-anchor="middle">CLAUDE</text>
+        <image class="agent-mark" href="/brand/agents/claude.svg" x="42" y="38" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-ph" x="70" y="582" text-anchor="middle">SECURITIZE</text>
-        <text class="t-mono t-muted t-ph" x="162" y="46" text-anchor="middle">CHATGPT</text>
+        <image class="agent-mark" href="/brand/agents/chatgpt.png" x="134" y="38" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-ph" x="162" y="604" text-anchor="middle">ONDO</text>
-        <text class="t-mono t-muted t-ph" x="254" y="46" text-anchor="middle">GEMINI</text>
+        <rect class="f-s1 s-hair" x="226" y="38" width="56" height="56" rx="3"/>
+        <image class="agent-mark" href="/brand/agents/gemini.svg" x="236.1" y="48.1" width="35.8" height="35.8" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-ph" x="254" y="582" text-anchor="middle">SUPERSTATE</text>
-        <text class="t-mono t-muted t-ph" x="346" y="46" text-anchor="middle">KIMI</text>
+        <rect class="f-s1 s-hair" x="318" y="38" width="56" height="56" rx="3"/>
+        <image class="agent-mark" href="/brand/agents/kimi.svg" x="328.1" y="48.1" width="35.8" height="35.8" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-ph" x="346" y="604" text-anchor="middle">FRANKLIN</text>
-        <text class="t-mono t-muted t-ph" x="438" y="46" text-anchor="middle">OPENCLAW</text>
+        <rect class="f-s1 s-hair" x="410" y="38" width="56" height="56" rx="3"/>
+        <image class="agent-mark" href="/brand/agents/openclaw.svg" x="420.1" y="48.1" width="35.8" height="35.8" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-ph" x="438" y="582" text-anchor="middle">BLACKROCK BUIDL</text>
-        <text class="t-mono t-muted t-ph" x="530" y="46" text-anchor="middle">HERMES</text>
+        <image class="agent-mark" href="/brand/agents/hermes.svg" x="502" y="38" width="56" height="56" preserveAspectRatio="xMidYMid meet"/>
         <text class="t-mono t-muted t-ph" x="530" y="604" text-anchor="middle">CENTRIFUGE</text>
         <rect class="f-s1 s-hair" x="150" y="250" width="300" height="150" rx="2"/>
         <g transform="translate(286 273) scale(0.875)"><rect class="f-ink" x="0" y="0" width="18" height="11"/><rect class="f-brand" x="0" y="13" width="32" height="6"/><rect class="f-ink" x="14" y="21" width="18" height="11"/></g>
@@ -738,7 +766,7 @@
   </section>
 
   <!-- ── Control ── -->
-  <section class="section" id="control">
+  <section class="section" id="control" hidden>
     <div class="container">
       <div class="split split-head">
         <div class="reveal">
@@ -776,25 +804,25 @@
         <div class="eyebrow">Who it’s for</div>
         <h2 class="display-lg">Built for the people who put agents to work.</h2>
       </div>
-      <div class="grid grid-4 reveal">
-        <div class="card">
+      <div class="bento reveal">
+        <div class="card bento-a">
           <div class="idx">01</div>
-          <h3 class="heading-sm">Agent platforms and wallets</h3>
+          <h3 class="heading-md">Agent platforms and wallets</h3>
           <p>Give every agent you host tokenized assets it can actually use.</p>
         </div>
-        <div class="card">
+        <div class="card bento-b">
           <div class="idx">02</div>
-          <h3 class="heading-sm">Treasuries and trading desks</h3>
+          <h3 class="heading-md">Treasuries and trading desks</h3>
           <p>Put idle balances to work and meet weekend margin calls without staffing them.</p>
         </div>
-        <div class="card">
+        <div class="card bento-c">
           <div class="idx">03</div>
-          <h3 class="heading-sm">Issuers</h3>
+          <h3 class="heading-md">Issuers</h3>
           <p>Reach every agent through one listing instead of one integration per platform.</p>
         </div>
-        <div class="card">
+        <div class="card bento-d">
           <div class="idx">04</div>
-          <h3 class="heading-sm">Institutions on permissioned rails</h3>
+          <h3 class="heading-md">Institutions on permissioned rails</h3>
           <p>Let agents operate on Canton and its peers, with the venue’s own rules enforced before every action.</p>
         </div>
       </div>

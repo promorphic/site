@@ -101,6 +101,8 @@
     strong { font-weight: 500; }
     strong.b { font-weight: 700; }
     strong.u { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    /* the amber underline: a claim marked in the brand colour, text stays ink */
+    .u-brand { color: var(--ink); text-decoration: underline; text-decoration-color: var(--brand); text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-skip-ink: none; }
     h1, h2, h3 { text-wrap: balance; }
     p { text-wrap: pretty; }
     :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
@@ -495,7 +497,7 @@
         <div class="reveal">
           <p class="lead vision-lines">Two economies are being built at once.<br>The <strong class="u">Agentic Economy</strong>: software that acts on behalf of people and companies.<br>The <strong class="u">Onchain Economy</strong>: the world’s assets becoming programmable tokens.</p>
           <p class="muted">Agents are the natural operators of tokenized assets, and tokenized assets are the natural balance sheet of agents. They are one economy seen from two sides.</p>
-          <p class="lead"><span class="hl-inline"><strong class="b">Promorphic is the connective tissue.</strong></span></p>
+          <p class="lead"><strong class="b u-brand">Promorphic is the connective tissue.</strong></p>
         </div>
       </div>
     </div>
@@ -540,7 +542,7 @@
           <h2 class="display-lg">Connect once. Reach every tokenized asset.</h2>
         </div>
         <div class="reveal">
-          <p class="lead">Tokenized assets live across dozens of issuers and venues, each with its own rules, rhythms, and rails. Promorphic sits in front of all of them as one universal layer: an agent connects once, and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</p>
+          <p class="lead">Tokenized assets live across dozens of issuers and venues, each with its own rules, rhythms, and rails. Promorphic sits in front of all of them as one universal layer: <span class="u-brand">an agent connects once, and can discover, price, hold, move, redeem, and pledge any tokenized asset, wherever it lives.</span></p>
         </div>
       </div>
       <figure class="diagram streams reveal">

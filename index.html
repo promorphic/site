@@ -180,7 +180,8 @@
     @media (min-width: 480px) { .hl br { display: inline; } }
     @media (max-width: 479px) { .hero h1 { font-size: min(44px, 10.5vw); } }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
-    .hero .sub strong { color: var(--ink); }
+    .hero .sub strong { display: block; color: var(--ink); }
+    .hero .sub br { display: none; }
 
     /* ── Hero figure: streams converge on the layer and fan out to the venues ── */
     .diagram { margin-top: var(--space-6); padding-top: var(--space-4); }
@@ -477,7 +478,7 @@
     </div>
     <div class="container">
       <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
-      <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong> Connect once, and an agent can act on any tokenized asset, wherever it trades.</p>
+      <p class="lead sub measure"><strong>The universal layer that connects agents to assets.</strong><br>Connect once, and an agent can act on any tokenized asset, wherever it trades.</p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:founders@promorphic.xyz">Talk to us</a>
         <a class="btn btn-secondary" href="#layer">See the layer</a>

@@ -1,0 +1,7 @@
+# scratch copies and local helpers never ship
+index-v2.html
+preview-*.html
+hero-*.html
+_render-*.html
+*.command
+.DS_Store

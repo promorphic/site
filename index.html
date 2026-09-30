@@ -383,6 +383,9 @@
       .card, .stat, .part-text { padding: var(--space-6); }
       .analogy { margin-top: var(--space-8); padding: var(--space-7) var(--space-8); font-size: 28px; }
       .split { grid-template-columns: 5fr 7fr; gap: var(--space-7); align-items: start; }
+      /* the right column starts level with the headline, not with the eyebrow above it */
+      .split > .reveal:last-child { padding-top: 40px; }
+      .split > .panel:last-child { padding-top: 0; margin-top: 40px; }
       .footer .container { flex-direction: row; align-items: center; justify-content: space-between; }
     }
     @media (min-width: 768px) {
@@ -909,7 +912,7 @@
     <div class="container">
       <div class="section-head reveal">
         <div class="eyebrow">Why now</div>
-        <h2 class="display-lg measure-wide">Both sides of the market have arrived for the <strong class="b">tokenization supercycle</strong>.</h2>
+        <h2 class="display-lg measure-wide">Both sides of the market have arrived for the <strong class="b">Tokenization Supercycle</strong>.</h2>
       </div>
       <div class="sides reveal">
         <div class="side">

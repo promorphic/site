@@ -5,3 +5,4 @@ hero-*.html
 _render-*.html
 *.command
 .DS_Store
+_audit-*.html

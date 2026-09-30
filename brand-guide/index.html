@@ -168,6 +168,9 @@
     }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
     .hero .sub strong { display: block; color: var(--ink); }
+    /* the secondary button sits on the skyline photograph: a solid ground keeps the texture out of it */
+    .hero .btn-secondary { background: var(--surface-0); border-color: var(--ink-faint); }
+    .hero .btn-secondary:hover { background: var(--surface-1); border-color: var(--ink); }
     .hero .sub strong + br { display: none; }
 
     /* ── Hero figure: streams converge on the layer and fan out to the venues ── */
@@ -198,6 +201,8 @@
     .ig-streams .s-rail { stroke: var(--hairline); stroke-width: 1; }
     .ig-streams .t-faint { fill: var(--ink-faint); }
     .ig-streams .s-hair-line { stroke: var(--hairline); stroke-width: 1; }
+    .ig-streams .f-onbrand { fill: var(--on-brand); }
+    .ig-streams .t-onbrand-fill { fill: var(--on-brand); }
     .ig-streams .t-onbrand { fill: var(--on-brand); }
     .ig-streams .agent-mark.on-dark { display: none; }
     [data-theme="dark"] .ig-streams .agent-mark.on-light { display: none; }
@@ -210,6 +215,7 @@
     [data-theme="dark"] .ig-streams .agent-mark.on-dark { display: inline; }
     .streams-desktop { display: none; }
     .streams-phone, .streams-phone ~ .diagram-caption { max-width: 480px; margin-left: auto; margin-right: auto; }
+    @media (min-width: 720px) { .streams-phone { max-width: 600px; } }
     .diagram-caption { margin-top: var(--space-4); color: var(--ink-faint); text-align: center; }
 
     /* ── Grids & cards ── */
@@ -324,6 +330,8 @@
     .loop-desktop { display: none; }
     .loop-phone { max-width: 560px; }
     .loop-cards { gap: var(--space-4); }
+    .nb { white-space: nowrap; }
+    @media (min-width: 720px) { .loop-phone { max-width: none; } .loop-cards { grid-template-columns: repeat(3, 1fr); } }
     .ig-loop .lp-ring { fill: none; stroke: var(--ink-faint); stroke-width: 2.5; }
     .ig-loop .lp-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; animation: pm-loop 14s linear infinite; }
     @keyframes pm-loop { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1000; } }
@@ -502,10 +510,10 @@
     .tiles { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
     .tiles .bg-tile { aspect-ratio: 2.4; min-width: 0; }
     .tiles .bg-tile svg { width: 26%; }
-    .dl { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-5); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); margin-top: var(--space-5); }
+    .dl { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); padding: var(--space-4) var(--space-5); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); margin-top: var(--space-5); }
     .dl:hover { background: var(--surface-2); border-color: var(--ink-faint); }
     .dl .dl-name { font-weight: 500; }
-    .dl .dl-meta { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); margin-left: auto; white-space: nowrap; }
+    .dl .dl-meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); margin-left: auto; white-space: nowrap; }
     .sw-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
     .sw { border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); overflow: hidden; background: var(--surface-1); }
     .sw-chip { height: 72px; border-bottom: var(--border-w) solid var(--hairline); }
@@ -609,7 +617,7 @@
         <li>Where only one ink is allowed (print, embossing, third-party listings), use the mono black or mono white files: the bar takes the ink too.</li>
         <li>Never recolour the bar, add a shadow, an outline, a gradient or a glow, rotate the mark, or place it on a photograph without the tile behind it.</li>
       </ul>
-      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · 38 KB</span></a>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG + README · 38 KB</span></a>
     </section>
 
     <section class="bg-section" id="colour">
@@ -701,7 +709,7 @@
 
     <section class="bg-section" id="downloads">
       <h2 class="display-lg">Downloads</h2>
-      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · 38 KB</span></a>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG + README · 38 KB</span></a>
       <a class="dl" href="/brand-guide/promorphic-brand-guide.pdf"><span aria-hidden="true">↓</span><span class="dl-name">Promorphic brand guide (.pdf)</span><span class="dl-meta">this page, printed</span></a>
       <a class="dl" href="/brand/og-image.png"><span aria-hidden="true">↓</span><span class="dl-name">Share card (1200 × 630)</span><span class="dl-meta">PNG</span></a>
       <div class="links-row">

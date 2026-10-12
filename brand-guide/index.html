@@ -452,7 +452,6 @@
       /* the right column starts level with the headline, not with the eyebrow above it */
       .split > .reveal:last-child { padding-top: 40px; }
       .split > .panel:last-child { padding-top: 0; margin-top: 40px; }
-      .footer .container { flex-direction: row; align-items: center; justify-content: space-between; }
     }
     @media (min-width: 768px) {
       .nav { display: flex; }
@@ -460,6 +459,7 @@
 
     /* ── 960 and up: full type scale, three-up grids ── */
     @media (min-width: 960px) {
+      .footer .container { flex-direction: row; align-items: center; justify-content: space-between; }
       .display-xl { line-height: 1; }
       .display-lg { line-height: 1.05; }
       .nav { gap: var(--space-6); }
@@ -770,6 +770,8 @@
         parts.classList.toggle('is-paused', !entries[entries.length - 1].isIntersecting);
       }).observe(parts);
     });
+
+
 
     // Theme toggle: on is the dark version. The choice is remembered.
     var root = document.documentElement;

@@ -33,6 +33,10 @@ Every agent acts under a mandate its owner sets (size, asset and counterparty li
 
 Chains: Ethereum, Solana, Canton, Arc, Robinhood Chain, Base. Issuers and platforms include Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge. Naming a venue says where an agent can act; it does not imply a partnership or customer relationship.
 
+## Access
+
+Promorphic is in private beta. Request access at founders@promorphic.xyz and we'll be in touch within a week.
+
 ## Who it is for
 
 Agent platforms and wallets; treasuries and trading desks; asset issuers; financial institutions on permissioned rails.

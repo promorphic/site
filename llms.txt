@@ -31,7 +31,7 @@ Every agent acts under a mandate its owner sets (size, asset and counterparty li
 
 ## Where an agent can act
 
-Chains: Ethereum, Solana, Canton, Arc, Robinhood Chain, Base. Issuers and platforms include Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge. Naming a venue says where an agent can act; it does not imply a partnership or customer relationship.
+Chains: Ethereum, Canton, Stellar, Robinhood Chain. Issuers and platforms include Securitize, Ondo, Superstate, Franklin Templeton, BlackRock BUIDL and Centrifuge. Naming a venue says where an agent can act; it does not imply a partnership or customer relationship.
 
 ## Access
 

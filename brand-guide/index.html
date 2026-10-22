@@ -168,6 +168,7 @@
     }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
     .hero .sub strong { display: block; color: var(--ink); }
+    .hero .access { margin-top: var(--space-4); color: var(--ink-muted); }
     /* the secondary button sits on the skyline photograph: a solid ground keeps the texture out of it */
     .hero .btn-secondary { background: var(--surface-0); border-color: var(--ink-faint); }
     .hero .btn-secondary:hover { background: var(--surface-1); border-color: var(--ink); }
@@ -239,6 +240,8 @@
     .entry .value { font-family: var(--font-mono); font-size: 36px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); margin-bottom: var(--space-1); }
     .entry .caption { font-size: 15px; line-height: 1.5; color: var(--ink-muted); max-width: 38ch; }
     .entry .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); }
+    .entry .source a { color: inherit; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
+    .entry .source a:hover { color: var(--ink); text-decoration-color: var(--ink-faint); }
     .entry-lg { flex: 1; align-content: center; }
     .entry-lg .value { font-size: 64px; }
     /* from 600px each entry is one row: the number on the left, its caption and source beside it */
@@ -300,7 +303,7 @@
     .venues { margin-top: var(--space-6); background: var(--surface-1); border-top: var(--border-w) solid var(--hairline); border-bottom: var(--border-w) solid var(--hairline); padding: var(--space-5) 0; }
     .marquee { overflow: hidden; }
     /* six identical sets; the track moves left by exactly one set, so the loop has no seam up to a 5400px window */
-    .marquee-track { display: flex; width: max-content; animation: pm-marquee 40s linear infinite; }
+    .marquee-track { display: flex; width: max-content; animation: pm-marquee 32s linear infinite; }
     .marquee-set { flex: none; display: flex; align-items: center; list-style: none; }
     .marquee-set li { flex: none; display: flex; align-items: center; padding-right: var(--space-8); }
     .marquee-set img { display: block; }
@@ -617,7 +620,14 @@
         <li>Where only one ink is allowed (print, embossing, third-party listings), use the mono black or mono white files: the bar takes the ink too.</li>
         <li>Never recolour the bar, add a shadow, an outline, a gradient or a glow, rotate the mark, or place it on a photograph without the tile behind it.</li>
       </ul>
-      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG + README · 38 KB</span></a>
+      <h3 class="heading-sm">Files</h3>
+      <table class="scale">
+        <tr><th>Format</th><th>Sizes</th><th>Use</th></tr>
+        <tr><td>SVG</td><td>any</td><td>web, print, anything that takes a vector</td></tr>
+        <tr><td>PNG (transparent)</td><td>marks 128 · 256 · 512 · 1024 px; tile 180 · 192 · 512 · 1024 px; wordmarks 600 · 1200 · 2400 px wide</td><td>decks, docs, app icons, partner pages</td></tr>
+        <tr><td>JPEG (on its ground)</td><td>marks 512 · 1024 px; tile 1024 px; wordmarks 1200 · 2400 px wide</td><td>forms and tools that refuse transparency</td></tr>
+      </table>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · PNG · JPEG · 572 KB</span></a>
     </section>
 
     <section class="bg-section" id="colour">
@@ -709,7 +719,7 @@
 
     <section class="bg-section" id="downloads">
       <h2 class="display-lg">Downloads</h2>
-      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG + README · 38 KB</span></a>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · PNG · JPEG · 572 KB</span></a>
       <a class="dl" href="/brand-guide/promorphic-brand-guide.pdf"><span aria-hidden="true">↓</span><span class="dl-name">Promorphic brand guide (.pdf)</span><span class="dl-meta">this page, printed</span></a>
       <a class="dl" href="/brand/og-image.png"><span aria-hidden="true">↓</span><span class="dl-name">Share card (1200 × 630)</span><span class="dl-meta">PNG</span></a>
       <div class="links-row">

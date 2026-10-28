@@ -1,6 +1,6 @@
 # Promorphic
 
-> Agentic infrastructure for tokenized assets. Promorphic is the universal layer that connects AI agents to tokenized real-world assets: connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every issuer, venue and chain it trades.
+> AI treasury manager for onchain asset managers. Agentic infrastructure for tokenized assets: Promorphic is one layer that connects AI agents to tokenized real-world assets. Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every issuer, venue and chain it trades.
 
 Site: https://promorphic.xyz/ · Contact: founders@promorphic.xyz · X: https://x.com/_promorphic
 

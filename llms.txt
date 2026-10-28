@@ -2,7 +2,7 @@
 
 > AI treasury manager for onchain asset managers. Agentic infrastructure for tokenized assets: Promorphic is one layer that connects AI agents to tokenized real-world assets. Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every issuer, venue and chain it trades.
 
-Site: https://promorphic.xyz/ · Contact: founders@promorphic.xyz · X: https://x.com/_promorphic
+Site: https://promorphic.xyz/ · Docs: https://docs.promorphic.xyz · Brand guide: https://promorphic.xyz/brand-guide/ · Contact: founders@promorphic.xyz · X: https://x.com/_promorphic
 
 ## What Promorphic is
 
@@ -43,7 +43,10 @@ Agent platforms and wallets; treasuries and trading desks; asset issuers; financ
 
 ## Why now
 
-About $40B of tokenized real-world assets on public chains excluding stablecoins (rwa.xyz / Token Terminal, Sept 2026); about $9T a month moving on Canton Network (Canton, 2026); $114T custodied at DTCC, whose tokenization service launches Oct 2026 (DTCC, 2026); 100k+ agentic brokerage accounts opened at Robinhood in two months (Robinhood, Jul 2026).
+- About $40B of tokenized real-world assets on public chains, excluding stablecoins. Source: rwa.xyz (https://app.rwa.xyz/) and Token Terminal (https://tokenterminal.com/), Sept 2026.
+- About $9T a month moving on Canton Network. Source: Canton, self-reported, Q1 2026 ecosystem report (https://cdn.prod.website-files.com/697d5b6446aa7378c74b26d0/69e14b7e09c6eed9fcb9d4fd_Canton_Q1%202026%20Ecosystem%20Report_04.16.26.pdf).
+- $114T of assets custodied at DTCC, whose tokenization service launches Oct 2026. Source: DTCC (https://www.dtcc.com/products-and-services/digital-assets/tokenization), 2026.
+- 100k+ agentic brokerage accounts opened at Robinhood in two months. Source: Vlad Tenev, Robinhood, 31 Jul 2026 (https://x.com/vladtenev/status/2083311105888165900).
 
 ## Legal
 

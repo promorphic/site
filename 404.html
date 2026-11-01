@@ -159,6 +159,7 @@
     }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
     .hero .sub strong { display: block; color: var(--ink); }
+    .hero .access { margin-top: var(--space-4); color: var(--ink-muted); }
     /* the secondary button sits on the skyline photograph: a solid ground keeps the texture out of it */
     .hero .btn-secondary { background: var(--surface-0); border-color: var(--ink-faint); }
     .hero .btn-secondary:hover { background: var(--surface-1); border-color: var(--ink); }
@@ -230,6 +231,8 @@
     .entry .value { font-family: var(--font-mono); font-size: 36px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); margin-bottom: var(--space-1); }
     .entry .caption { font-size: 15px; line-height: 1.5; color: var(--ink-muted); max-width: 38ch; }
     .entry .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); }
+    .entry .source a { color: inherit; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
+    .entry .source a:hover { color: var(--ink); text-decoration-color: var(--ink-faint); }
     .entry-lg { flex: 1; align-content: center; }
     .entry-lg .value { font-size: 64px; }
     /* from 600px each entry is one row: the number on the left, its caption and source beside it */
@@ -291,7 +294,7 @@
     .venues { margin-top: var(--space-6); background: var(--surface-1); border-top: var(--border-w) solid var(--hairline); border-bottom: var(--border-w) solid var(--hairline); padding: var(--space-5) 0; }
     .marquee { overflow: hidden; }
     /* six identical sets; the track moves left by exactly one set, so the loop has no seam up to a 5400px window */
-    .marquee-track { display: flex; width: max-content; animation: pm-marquee 40s linear infinite; }
+    .marquee-track { display: flex; width: max-content; animation: pm-marquee 32s linear infinite; }
     .marquee-set { flex: none; display: flex; align-items: center; list-style: none; }
     .marquee-set li { flex: none; display: flex; align-items: center; padding-right: var(--space-8); }
     .marquee-set img { display: block; }
@@ -515,7 +518,6 @@
       <a href="mailto:founders@promorphic.xyz">founders@promorphic.xyz</a>
       <a href="https://x.com/_promorphic" target="_blank" rel="noopener noreferrer">@_promorphic</a>
     </div>
-    <p class="label legal">&copy; 2026 Promorphic Inc, Panama.</p>
   </div>
 </footer>
 <script>

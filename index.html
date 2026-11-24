@@ -159,10 +159,10 @@
        the headline keeps its amber bands up in the sky; the photograph is shown as taken */
     /* the hero fills everything above the fold on every screen: the photograph is the first thing seen, edge to edge */
     .hero { align-items: stretch; min-height: calc(100vh - var(--header-h)); min-height: calc(100svh - var(--header-h)); }
-    .hero .container { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-8); }
+    .hero .container { display: flex; flex-direction: column; justify-content: flex-end; }
     .hero { padding-bottom: var(--space-6); }
     .hero .skyline img { object-position: 50% 100%; }
-    .hero-foot .sub { margin-top: 0; }
+    .hero-foot .sub { margin-top: var(--space-5); }
     .hero-note { padding: var(--space-4) 0; }
     .hero-note .access { margin: 0; color: var(--ink-muted); }
     /* below 960px the hero is taller than the photo is wide, so the photo would shrink to fit and the water become a thin band:
@@ -540,9 +540,9 @@
       <img src="/brand/financial-district-2400.jpg" srcset="/brand/financial-district-1200.jpg 1200w, /brand/financial-district-2400.jpg 2400w" sizes="(max-width: 959px) 2400px, 100vw" width="2400" height="1351" alt="" fetchpriority="high" decoding="async">
     </div>
     <div class="container">
-      <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
       <div class="hero-foot">
-      <p class="lead sub measure"><strong>We let financial institutions and everyday investors trade and manage tokenized assets with mandate-based AI agents.</strong><br><strong>Connect once and an agent can act on any tokenized asset.</strong></p>
+        <h1 class="display-xl"><span class="hl">Agentic Infrastructure <br>For Tokenized Assets.</span></h1>
+      <p class="lead sub measure"><strong>We let financial institutions and everyday investors trade and manage tokenized assets with mandate-based AI agents.</strong></p>
       <div class="actions">
         <a class="btn btn-primary" href="https://docs.promorphic.xyz" target="_blank" rel="noopener noreferrer">Docs</a>
         <a class="btn btn-secondary" href="#layer">See the layer</a>

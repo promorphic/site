@@ -140,22 +140,33 @@
     .btn-sm { height: var(--control-h-sm); padding: 0 var(--space-4); font-size: 14px; }
     .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
 
-    /* ── Hero: the skyline behind the headline, drifting slowly and fading into the page ── */
-    .hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(600px, calc(100svh - var(--header-h))); padding: var(--space-8) 0 var(--space-7); }
+    /* ── Hero: the Financial District at dusk behind the headline, in full colour, drifting slowly.
+       The hero is dark in both themes (data-theme="dark" on the section), so the photograph is shown as it was taken
+       and the words sit on it in the dark version's ink, as on app.promorphic.xyz ── */
+    .hero { position: relative; overflow: hidden; display: flex; align-items: center; min-height: min(600px, calc(100svh - var(--header-h))); padding: var(--space-8) 0 var(--space-7); background: var(--surface-0); color: var(--ink); }
     .hero .container { position: relative; z-index: 1; }
     .skyline { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-    .skyline img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: grayscale(1) brightness(.9); transform-origin: 50% 70%; animation: pm-skyline-in 2.4s var(--ease) both, pm-skyline-drift 24s ease-in-out infinite alternate; }
-    [data-theme="light"] .skyline img { filter: grayscale(1) invert(1) brightness(1.04) contrast(.8); }
-    @media (prefers-color-scheme: light) { :root:not([data-theme]) .skyline img { filter: grayscale(1) invert(1) brightness(1.04) contrast(.8); } }
-    /* the photo fades into the page ground at its edges, so it never has a hard edge */
-    .skyline::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, color-mix(in srgb, var(--surface-0) 60%, transparent) 0%, color-mix(in srgb, var(--surface-0) 45%, transparent) 42%, transparent 68%), linear-gradient(to bottom, color-mix(in srgb, var(--surface-0) 40%, transparent) 0%, transparent 35%, transparent 55%, var(--surface-0) 100%); }
-    /* Phones: the photo is taller than the hero and pinned to its top, so the skyline sits down beside the buttons rather than mid-frame */
+    .skyline img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; transform-origin: 50% 70%; animation: pm-skyline-in 2.4s var(--ease) both, pm-skyline-drift 30s ease-in-out infinite alternate; }
+    /* the copy and the buttons sit at the foot of the photograph, on the dark water, so the white type reads without a shade;
+       the headline keeps its amber bands up in the sky; the photograph is shown as taken */
+    /* the hero fills everything above the fold on every screen: the photograph is the first thing seen, edge to edge */
+    .hero { align-items: stretch; min-height: calc(100vh - var(--header-h)); min-height: calc(100svh - var(--header-h)); }
+    .hero .container { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-8); }
+    .hero { padding-bottom: var(--space-6); }
+    .hero .skyline img { object-position: 50% 100%; }
+    .hero-foot .sub { margin-top: 0; }
+    .hero-note { padding: var(--space-4) 0; }
+    .hero-note .access { margin: 0; color: var(--ink-muted); }
+    /* below 960px the hero is taller than the photo is wide, so the photo would shrink to fit and the water become a thin band:
+       the photo is drawn taller than the hero instead, pinned to the bottom, so the water stays deep enough to carry the copy */
+    @media (max-width: 959px) {
+      .hero .skyline img { position: absolute; left: 0; bottom: 0; height: 140%; object-position: 46% 100%; }
+    }
     @media (max-width: 719px) {
-      .skyline img { height: 145%; object-position: 50% 0; }
-      .skyline::after { background: linear-gradient(to bottom, color-mix(in srgb, var(--surface-0) 62%, transparent) 0%, color-mix(in srgb, var(--surface-0) 55%, transparent) 45%, color-mix(in srgb, var(--surface-0) 30%, transparent) 78%, var(--surface-0) 100%); }
+      .hero .skyline img { height: 175%; object-position: 40% 100%; }
     }
     @keyframes pm-skyline-in { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes pm-skyline-drift { from { transform: scale(1.04) translate(2%, 0); } to { transform: scale(1.14) translate(-2%, -2%); } }
+    @keyframes pm-skyline-drift { from { transform: scale(1.02) translate(1%, 0); } to { transform: scale(1.08) translate(-1%, -1%); } }
     /* Headline highlight: one block, so every band is the same length; a band per line, 0.1em apart */
     .hero h1 { line-height: 1.3; }
     .hl { display: block; width: -moz-fit-content; width: fit-content; max-width: 100%; padding: 0 0.16em; color: var(--on-brand); background: linear-gradient(to bottom, transparent 0.05em, var(--brand) 0.05em, var(--brand) calc(100% - 0.05em), transparent calc(100% - 0.05em)) 0 0 / 100% 1.3em repeat-y; }
@@ -168,7 +179,6 @@
     }
     .hero .sub { margin-top: var(--space-5); color: var(--ink-muted); }
     .hero .sub strong { display: block; color: var(--ink); }
-    .hero .access { margin-top: var(--space-4); color: var(--ink-muted); }
     /* the secondary button sits on the skyline photograph: a solid ground keeps the texture out of it */
     .hero .btn-secondary { background: var(--surface-0); border-color: var(--ink-faint); }
     .hero .btn-secondary:hover { background: var(--surface-1); border-color: var(--ink); }
@@ -445,7 +455,7 @@
     @media (min-width: 720px) {
       :root { --gutter: var(--space-6); --section-pad: var(--space-8); }
       .heading-md { font-size: 28px; }
-      .hero { padding: var(--space-9) 0 var(--space-8); }
+      .hero { padding: var(--space-9) 0 var(--space-7); }
       .grid { gap: var(--space-5); }
       .grid-2, .grid-4 { grid-template-columns: repeat(2, 1fr); }
       .panel .row { padding: var(--space-5) var(--space-6); }
@@ -627,7 +637,7 @@
         <tr><td>PNG (transparent)</td><td>marks 128 · 256 · 512 · 1024 px; tile 180 · 192 · 512 · 1024 px; wordmarks 600 · 1200 · 2400 px wide</td><td>decks, docs, app icons, partner pages</td></tr>
         <tr><td>JPEG (on its ground)</td><td>marks 512 · 1024 px; tile 1024 px; wordmarks 1200 · 2400 px wide</td><td>forms and tools that refuse transparency</td></tr>
       </table>
-      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · PNG · JPEG · 576 KB</span></a>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · PNG · JPEG · 578 KB</span></a>
     </section>
 
     <section class="bg-section" id="colour">
@@ -719,7 +729,7 @@
 
     <section class="bg-section" id="downloads">
       <h2 class="display-lg">Downloads</h2>
-      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · PNG · JPEG · 576 KB</span></a>
+      <a class="dl" href="/brand/promorphic-logo-set.zip" download><span aria-hidden="true">↓</span><span class="dl-name">Promorphic logo set (.zip)</span><span class="dl-meta">SVG · PNG · JPEG · 578 KB</span></a>
       <a class="dl" href="/brand-guide/promorphic-brand-guide.pdf"><span aria-hidden="true">↓</span><span class="dl-name">Promorphic brand guide (.pdf)</span><span class="dl-meta">this page, printed</span></a>
       <a class="dl" href="/brand/og-image.png"><span aria-hidden="true">↓</span><span class="dl-name">Share card (1200 × 630)</span><span class="dl-meta">PNG</span></a>
       <div class="links-row">

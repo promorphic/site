@@ -99,8 +99,6 @@
     :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
     .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
     .section { padding: var(--section-pad) 0; border-top: var(--border-w) solid var(--hairline); scroll-margin-top: calc(var(--header-h) + var(--space-6) - var(--section-pad)); }
-    .section-flush { padding-top: 0; border-top: 0; scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
-    .section-rule { border-top: var(--border-w) solid var(--hairline); }
     .measure { max-width: var(--measure); }
     .measure-wide { max-width: 760px; }
     .lead { font-size: 20px; line-height: 1.5; letter-spacing: -0.005em; }
@@ -113,7 +111,6 @@
     .display-xl { font-size: clamp(44px, 7.5vw, 72px); line-height: 1.02; font-weight: 500; letter-spacing: -0.03em; }
     .display-lg { font-size: clamp(32px, 5vw, 48px); line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; }
     .heading-md { font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.015em; }
-    .heading-sm { font-size: 20px; line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
     .eyebrow { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--ink-muted); margin-bottom: var(--space-4); }
     .eyebrow::after { content: ""; display: inline-block; width: var(--space-6); height: var(--border-w); background: var(--hairline); }
     .label { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; }
@@ -191,7 +188,6 @@
     /* the secondary button sits on the skyline photograph: a solid ground keeps the texture out of it */
     .hero .btn-secondary { background: var(--surface-0); border-color: var(--ink-faint); }
     .hero .btn-secondary:hover { background: var(--surface-1); border-color: var(--ink); }
-    .hero .sub strong + br { display: none; }
 
     /* ── Hero figure: streams converge on the layer and fan out to the venues ── */
     .diagram { margin-top: var(--space-6); padding-top: var(--space-4); }
@@ -203,24 +199,15 @@
     @keyframes pm-flow { from { stroke-dashoffset: 576; } to { stroke-dashoffset: 0; } }
     .streams.is-paused .s-flow { animation-play-state: paused; }
     .ig-streams .s-hair { stroke: var(--hairline); stroke-width: 1; }
-    .ig-streams .f-s0 { fill: var(--surface-0); }
-    .ig-streams .f-ink { fill: var(--ink); }
     .ig-streams .f-brand { fill: var(--brand); }
     .ig-streams .t-mono { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; }
     .ig-streams .t-sans { font-family: var(--font-sans); }
     .ig-streams .t-name { font-size: 30px; font-weight: 500; letter-spacing: -.02em; }
     .ig-streams .t-sm { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
     .ig-streams .t-ph { font-size: 17px; letter-spacing: .04em; }
-    .ig-streams .t-ph-layer { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
     .ig-streams .t-ink { fill: var(--ink); }
-    .ig-streams .t-muted { fill: var(--ink-muted); }
-    .ig-streams .t-brandink { fill: var(--ink-muted); }
     /* Streams v4 additions: the layer's box is raised (surface-1); waypoints are hollow; tier headings are captions */
     .ig-streams .f-s1 { fill: var(--surface-1); }
-    .ig-streams .s-node { fill: var(--surface-0); stroke: var(--ink-faint); stroke-width: 1; }
-    .ig-streams .s-rail { stroke: var(--hairline); stroke-width: 1; }
-    .ig-streams .t-faint { fill: var(--ink-faint); }
-    .ig-streams .s-hair-line { stroke: var(--hairline); stroke-width: 1; }
     .ig-streams .f-onbrand { fill: var(--on-brand); }
     .ig-streams .t-onbrand-fill { fill: var(--on-brand); }
     .ig-streams .t-onbrand { fill: var(--on-brand); }
@@ -245,10 +232,6 @@
     .card .idx { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-muted); }
     .card h3 { color: var(--ink); }
     .card p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
-    .stat { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
-    .stat .value { font-family: var(--font-mono); font-size: 40px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
-    .stat .caption { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
-    .stat .source { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-faint); margin-top: var(--space-1); }
     .section-head { margin-bottom: var(--space-5); }
     /* Why now: a ledger with two sides, the assets and the agents, and the layer between them */
     .sides { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
@@ -271,10 +254,9 @@
     }
     .side-mid { display: none; flex-direction: column; align-items: center; gap: var(--space-4); }
     .side-mid::before, .side-mid::after { content: ""; flex: 1; width: var(--border-w); background: var(--hairline); }
-    .section-head .lead { margin-top: var(--space-4); }
     .split { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
     .split-head { margin-bottom: var(--space-6); }
-    .split .lead + .lead, .split .muted + .lead { margin-top: var(--space-5); }
+    .split .muted + .lead { margin-top: var(--space-5); }
     .split h2 + .lead { margin-top: var(--space-4); }
     /* One panel, three rows: the problem's cases beside its copy rather than beneath it */
     .panel { background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); }
@@ -284,7 +266,6 @@
     .panel h3 { color: var(--ink); }
     .panel p { grid-column: 2; font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
     .footnote { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--border-w) solid var(--hairline); font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
-    .footnote strong { color: var(--ink); }
     /* The analogy: a raised slab like every card, larger type, one highlighted phrase */
     .analogy { max-width: 920px; margin: var(--space-6) auto 0; padding: var(--space-5); background: var(--surface-1); color: var(--ink); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); text-align: center; text-wrap: balance; font-size: 22px; line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; }
     /* Highlight, inline: the marker band on a phrase; a band per line when it wraps */
@@ -339,14 +320,6 @@
     @keyframes pm-marquee { from { transform: translateX(0); } to { transform: translateX(calc(-100% / 6)); } }
     .marquee:hover .marquee-track { animation-play-state: paused; }
 
-    /* ── Why ── */
-    .facts { display: grid; grid-template-columns: 1fr; gap: 0; border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); margin-top: var(--space-6); }
-    .fact { padding: var(--space-5); border-top: var(--border-w) solid var(--hairline); }
-    .fact:first-child { border-top: 0; }
-    .fact .k { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-2); }
-    .fact p { font-size: 15px; line-height: 1.55; color: var(--ink-muted); }
-    .fact p strong { color: var(--ink); }
-
     /* Why Promorphic: three facts on one loop */
     .loop { margin-top: var(--space-6); }
     .loop-desktop { display: none; }
@@ -357,18 +330,13 @@
     .ig-loop .lp-ring { fill: none; stroke: var(--ink-faint); stroke-width: 2.5; }
     .ig-loop .lp-flow { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; animation: pm-loop 14s linear infinite; }
     @keyframes pm-loop { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1000; } }
-    .ig-loop .lp-arrow { fill: var(--ink-faint); }
     .ig-loop .lp-leader { fill: none; stroke: var(--ink-faint); stroke-width: 1; }
     .ig-loop .s-rule { stroke: var(--hairline); stroke-width: 1; opacity: .55; }
-    .ig-loop .s-hair { stroke: var(--hairline); stroke-width: 1; }
     .ig-loop .t-mono { font-family: var(--font-mono); letter-spacing: .02em; }
     .ig-loop .t-sm { font-size: 12px; font-weight: 500; letter-spacing: .14em; }
-    .ig-loop .t-ph { font-size: 17px; font-weight: 500; letter-spacing: .14em; }
     .ig-loop .t-sans { font-family: var(--font-sans); }
     .ig-loop .lp-lead { font-size: 19px; font-weight: 500; letter-spacing: -.01em; }
     .ig-loop .lp-body { font-size: 15px; }
-    .ig-loop .lp-lead-ph { font-size: 26px; font-weight: 500; letter-spacing: -.01em; }
-    .ig-loop .lp-body-ph { font-size: 20px; }
     .ig-loop .t-ink { fill: var(--ink); }
     .ig-loop .t-muted { fill: var(--ink-muted); }
     .ig-loop .f-ink { fill: var(--ink); }
@@ -385,8 +353,6 @@
     .faq details[open] summary::after { content: "\2212"; }
     .faq summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
     .faq .answer { margin: 0 0 var(--space-5); font-size: 16px; line-height: 1.6; color: var(--ink-muted); max-width: 68ch; }
-    /* Who it's for as four glyph cells */
-    .pg-shade { fill: var(--ink-faint); opacity: .16; }
     .pg-block { fill: var(--surface-1); stroke: var(--ink-faint); stroke-width: 1; }
     .pg-src-fill { fill: var(--brand); animation: pg-blink 4.2s steps(1, end) infinite; }
     @keyframes pg-blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
@@ -395,7 +361,6 @@
     .pg-label-tight { letter-spacing: .06em; }
     .pg-tag { fill: var(--brand); }
     .pg-onbrand { fill: var(--on-brand); }
-    .pg-node-c { fill: var(--brand); }
     .pg-mark.on-dark { display: none; }
     [data-theme="dark"] .pg-mark.on-light { display: none; }
     [data-theme="dark"] .pg-mark.on-dark { display: inline; }
@@ -438,7 +403,6 @@
     .footer .links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); }
     .footer .links a { font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink-muted); text-decoration: none; transition: color 150ms var(--ease); }
     .footer .links a:hover { color: var(--ink); }
-    .footer .legal { color: var(--ink-faint); }
     /* footnotes: one quiet line above the footer row, in the same faint mono as the copyright */
     .footer .container.footnotes { display: block; padding-bottom: var(--space-5); margin-bottom: var(--space-5); border-bottom: var(--border-w) solid var(--hairline); }
     .footer .footnote { margin: 0; padding: 0; border: 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; letter-spacing: 0.02em; color: var(--ink-faint); max-width: none; scroll-margin-top: var(--header-h); }
@@ -466,9 +430,8 @@
       .heading-md { font-size: 28px; }
       .hero { padding: var(--space-9) 0 var(--space-7); }
       .grid { gap: var(--space-5); }
-      .grid-2, .grid-4 { grid-template-columns: repeat(2, 1fr); }
       .panel .row { padding: var(--space-5) var(--space-6); }
-      .card, .stat, .part-text { padding: var(--space-6); }
+      .card, .part-text { padding: var(--space-6); }
       .analogy { margin-top: var(--space-7); padding: var(--space-6) var(--space-7); font-size: 28px; }
       .split { grid-template-columns: 5fr 7fr; gap: var(--space-7); align-items: start; }
       /* the right column starts level with the headline, not with the eyebrow above it */
@@ -493,14 +456,10 @@
       .part { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
       .part:first-child { border-left: 0; }
       .split { gap: var(--space-8); }
-      .facts { grid-template-columns: repeat(3, 1fr); }
-      .fact { border-top: 0; border-left: var(--border-w) solid var(--hairline); }
-      .fact:first-child { border-left: 0; }
     }
 
     /* ── 1080 and up: four-up grids, the horizontal figure ── */
     @media (min-width: 1080px) {
-      .grid-4 { grid-template-columns: repeat(4, 1fr); }
       .streams-desktop { display: block; }
       .streams-phone { display: none; }
       .streams-phone ~ .diagram-caption { max-width: none; }

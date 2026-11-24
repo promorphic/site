@@ -499,11 +499,6 @@
   </style>
   <style>
     /* ── Brand guide page ── */
-    .bg-cover { height: 220px; overflow: hidden; position: relative; border-bottom: var(--border-w) solid var(--hairline); }
-    .bg-cover img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: grayscale(1) brightness(.9); }
-    [data-theme="light"] .bg-cover img { filter: grayscale(1) invert(1) contrast(.8) brightness(1.05); }
-    @media (prefers-color-scheme: light) { :root:not([data-theme]) .bg-cover img { filter: grayscale(1) invert(1) contrast(.8) brightness(1.05); } }
-    .bg-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--surface-0)); }
     .bg { max-width: 880px; margin: 0 auto; padding: 0 var(--gutter); }
     .bg-intro { display: grid; grid-template-columns: 1fr; gap: var(--space-6); padding: var(--space-7) 0; align-items: center; }
     .bg-tile { aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; border: var(--border-w) solid var(--hairline); }
@@ -566,7 +561,6 @@
     .toc a { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--ink-muted); text-decoration: none; }
     .toc a:hover { color: var(--ink); }
     @media (min-width: 720px) {
-      .bg-cover { height: 320px; }
       .bg-intro { grid-template-columns: 1fr 280px; }
       .tiles { grid-template-columns: repeat(3, 1fr); }
       .tiles .bg-tile { aspect-ratio: 1; }
@@ -582,7 +576,6 @@
     }
     @media print {
       .header, .footer, .theme-switch, .toc, .links-row { display: none !important; }
-      .bg-cover { height: 160px; }
       .bg-section { break-inside: avoid; }
     }
   </style>
@@ -605,7 +598,6 @@
 </header>
 
 <main id="main">
-  <div class="bg-cover" aria-hidden="true"><img src="/brand/skyline-2400.jpg" alt="" width="2400" height="1350"></div>
   <div class="bg">
     <div class="bg-intro">
       <div>

@@ -35,7 +35,7 @@ Chains: Ethereum, Canton, Stellar, Robinhood Chain. Issuers and platforms includ
 
 ## Access
 
-Promorphic is in private beta. Request access at founders@promorphic.xyz and we'll be in touch within a week.
+Promorphic is in private beta. Request access at https://promorphic.xyz/request-access/ and we'll be in touch within a week.
 
 ## Who it is for
 

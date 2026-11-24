@@ -576,7 +576,11 @@
     }
     @media print {
       .header, .footer, .theme-switch, .toc, .links-row { display: none !important; }
-      .bg-section { break-inside: avoid; }
+      /* sections flow across pages, so a short one never leaves a blank page behind it;
+         only the pieces that read as one thing stay whole, and headings stay with what follows */
+      .bg-section h2, .bg-section h3, .bg-section .lead { break-after: avoid; }
+      .bg-tile, .tiles, .sw, .spec, .demo, .part, .fig-demo, .links-row, tr, li, p { break-inside: avoid; }
+      #downloads { break-inside: avoid; }
     }
   </style>
 </head>

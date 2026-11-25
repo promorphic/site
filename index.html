@@ -130,7 +130,8 @@
     .cta { position: relative; }
     .cta-short { display: none; }
     .cta-tip { position: absolute; top: calc(100% + var(--space-2)); right: 0; width: 288px; max-width: calc(100vw - 2 * var(--gutter)); margin: 0; padding: var(--space-3) var(--space-4); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); color: var(--ink); opacity: 0; visibility: hidden; transform: translateY(-4px); pointer-events: none; transition: opacity 150ms var(--ease), transform 150ms var(--ease), visibility 150ms; }
-    .cta:hover .cta-tip, .cta:focus-within .cta-tip { opacity: 1; visibility: visible; transform: none; }
+    .cta:hover .cta-tip, .cta:has(:focus-visible) .cta-tip { opacity: 1; visibility: visible; transform: none; }
+    html:has(.ra-dialog[open]) .cta-tip { display: none; }
     @media (min-width: 720px) { .header .container, .header-actions { gap: var(--space-4); } }
     /* on a phone the wordmark, the switch and the button share one row */
     @media (max-width: 399px) {
@@ -143,6 +144,36 @@
       .cta-long { display: none; }
       .cta-short { display: inline; }
     }
+
+    /* ── Request access: a dialog over the page, in the page's theme ── */
+    html:has(.ra-dialog[open]) { overflow: hidden; }
+    .ra-dialog { width: min(480px, calc(100vw - 2 * var(--gutter))); max-height: calc(100svh - 2 * var(--gutter)); margin: auto; padding: var(--space-6); overflow-y: auto; background: var(--surface-0); color: var(--ink); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); }
+    .ra-dialog::backdrop { background: #0b0c0eb3; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+    .ra-dialog[open] { animation: pm-ra-in 150ms var(--ease); }
+    @keyframes pm-ra-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .ra-close { position: absolute; top: var(--space-3); right: var(--space-3); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; padding: 0; background: transparent; border: 0; border-radius: var(--radius-sm); color: var(--ink-muted); cursor: pointer; transition: color 150ms var(--ease), background-color 150ms var(--ease); }
+    .ra-close:hover { color: var(--ink); background: var(--surface-1); }
+    .ra-close svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+    .ra-dialog .eyebrow { margin-bottom: var(--space-3); }
+    .ra-title { font-size: 32px; line-height: 1.1; font-weight: 500; letter-spacing: -0.02em; }
+    .ra-sub { margin-top: var(--space-3); color: var(--ink-muted); }
+    .ra-form { margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4); }
+    .ra-field { display: flex; flex-direction: column; gap: var(--space-2); }
+    .ra-field label { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .ra-field label span { color: var(--ink-muted); font-weight: 400; }
+    .ra-field input { height: var(--control-h); padding: 0 var(--space-4); font: inherit; font-size: 16px; color: var(--ink); background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-sm); }
+    .ra-field input:focus { outline: 2px solid var(--focus); outline-offset: 2px; border-color: var(--ink-faint); }
+    .ra-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .ra-form .btn { margin-top: var(--space-2); }
+    .ra-form .btn[disabled] { opacity: .6; cursor: progress; }
+    .ra-msg { min-height: 1.5em; font-size: 15px; color: var(--ink-muted); }
+    .ra-msg.err { color: var(--ink); }
+    .ra-done { margin-top: var(--space-4); }
+    .ra-dialog:has(.ra-done:not([hidden])) .ra-intro { display: none; }
+    .ra-done .ra-sub a { color: var(--ink); }
+    .ra-done .btn { margin-top: var(--space-5); }
+    .ra-form[hidden], .ra-done[hidden] { display: none; }
+    @media (max-width: 479px) { .ra-dialog { padding: var(--space-5); } .ra-title { font-size: 28px; } }
     /* Theme toggle: a switch, off for the light version and on for the dark one */
     .theme-switch { flex: none; position: relative; width: 44px; height: 24px; padding: 0; background: var(--surface-1); border: var(--border-w) solid var(--hairline); border-radius: var(--radius-pill); cursor: pointer; transition: background-color 150ms var(--ease), border-color 150ms var(--ease); }
     .theme-switch:hover { border-color: var(--ink-faint); }
@@ -428,7 +459,8 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .js .reveal { opacity: 1; transition: none; }
-      body, .theme-switch, .theme-switch-knob, .cta-tip { transition: none; }
+      body, .theme-switch, .theme-switch-knob, .cta-tip, .ra-close { transition: none; }
+      .ra-dialog[open] { animation: none; }
       .ig-streams .s-flow { animation: none; stroke-dasharray: none; opacity: .5; }
       .pg-flow { animation: none; stroke-dasharray: none; }
       .skyline img { animation: none; }
@@ -1078,7 +1110,82 @@
   </div>
 </footer>
 
+<!-- Request access: opened by Get early access, and by /#request-access (where /request-access/ now leads) -->
+<dialog class="ra-dialog" id="ra-dialog" aria-labelledby="ra-title">
+  <button class="ra-close" type="button" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
+  <div class="eyebrow">Private beta</div>
+  <h2 class="ra-title" id="ra-title">Request access.</h2>
+  <p class="ra-sub ra-intro">Tell us who you are and we’ll be in touch within a week.</p>
+  <form class="ra-form" id="ra-form" novalidate>
+    <div class="ra-field">
+      <label for="ra-company">Company name</label>
+      <input id="ra-company" name="company" type="text" autocomplete="organization" required maxlength="120" autofocus>
+    </div>
+    <div class="ra-field">
+      <label for="ra-email">Work email</label>
+      <input id="ra-email" name="email" type="email" autocomplete="email" required maxlength="254" inputmode="email">
+    </div>
+    <div class="ra-field">
+      <label for="ra-chat">Telegram or Slack <span>(optional)</span></label>
+      <input id="ra-chat" name="chat" type="text" maxlength="120" placeholder="@handle">
+    </div>
+    <div class="ra-hp" aria-hidden="true"><label for="ra-website">Website</label><input id="ra-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+    <button class="btn btn-primary" type="submit">Request access</button>
+    <p class="ra-msg" id="ra-msg" role="status" aria-live="polite"></p>
+  </form>
+  <div class="ra-done" id="ra-done" hidden>
+    <p class="lead"><strong>Thank you. We’ll be in touch within a week.</strong></p>
+    <p class="ra-sub">If it’s urgent, write to <a href="mailto:founders@promorphic.xyz">founders@promorphic.xyz</a>.</p>
+    <button class="btn btn-secondary" type="button" data-close>Close</button>
+  </div>
+</dialog>
+
 <script>
+  (function () {
+    // Request access: Get early access opens the dialog instead of leaving the page.
+    var dialog = document.getElementById('ra-dialog');
+    if (dialog && dialog.showModal) {
+      var form = document.getElementById('ra-form'), msg = document.getElementById('ra-msg'), done = document.getElementById('ra-done');
+      var send = form.querySelector('button[type="submit"]');
+      // a local copy can point at a local API by setting window.PM_API before it submits
+      var api = function () { return /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && window.PM_API ? window.PM_API : 'https://promorphic-api-1017392197056.europe-west1.run.app'; };
+      var say = function (t, err) { msg.textContent = t; msg.className = 'ra-msg' + (err ? ' err' : ''); };
+      var open = function () { if (!dialog.open) dialog.showModal(); };
+      var close = function () { dialog.close(); };
+      document.querySelectorAll('a[href="/request-access/"]').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); open(); });
+      });
+      dialog.querySelectorAll('.ra-close, [data-close]').forEach(function (b) { b.addEventListener('click', close); });
+      // a click on the backdrop (outside the box) closes it
+      dialog.addEventListener('click', function (e) {
+        if (e.target !== dialog) return;
+        var r = dialog.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
+      });
+      dialog.addEventListener('close', function () {
+        if (location.hash === '#request-access') history.replaceState(null, '', location.pathname + location.search);
+        // after a request is sent, the next opening starts from an empty form
+        if (!done.hidden) { form.reset(); form.hidden = false; done.hidden = true; say(''); }
+      });
+      if (location.hash === '#request-access') open();
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var data = { company: form.company.value.trim(), email: form.email.value.trim(), chat: form.chat.value.trim(), website: form.website.value };
+        if (data.company.length < 2) { say('Enter your company’s name.', true); form.company.focus(); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(data.email)) { say('Enter a valid work email.', true); form.email.focus(); return; }
+        send.disabled = true; say('Sending…');
+        fetch(api() + '/access-request', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { return { ok: r.ok, b: b }; }); })
+          .then(function (res) {
+            send.disabled = false;
+            if (res.ok) { form.hidden = true; done.hidden = false; done.querySelector('[data-close]').focus(); return; }
+            say((res.b && res.b.error && res.b.error.message) || 'Something went wrong; try again, or email founders@promorphic.xyz.', true);
+          })
+          .catch(function () { say('We couldn’t reach the server; try again, or email founders@promorphic.xyz.', true); send.disabled = false; });
+      });
+    }
+  })();
+
   (function () {
     // Reveal: fade each block in once as it enters the viewport.
     var els = document.querySelectorAll('.reveal');

@@ -2,7 +2,7 @@
 
 > Agentic trading and portfolio management for tokenized assets. Promorphic lets financial institutions and individual investors trade and manage tokenized assets with mandate-based AI agents. Connect once, and an agent can discover, price, hold, move, redeem and pledge any tokenized asset, on every issuer, venue and chain it trades.
 
-Site: https://promorphic.xyz/ · Docs: https://docs.promorphic.xyz · Brand guide: https://promorphic.xyz/brand-guide/ · Contact: founders@promorphic.xyz · X: https://x.com/_promorphic
+Site: https://promorphic.xyz/ · Brand guide: https://promorphic.xyz/brand-guide/ · Contact: founders@promorphic.xyz · X: https://x.com/_promorphic
 
 ## What Promorphic is
 
